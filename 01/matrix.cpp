@@ -1,5 +1,5 @@
 #include "matrix.h"
-
+/*
 line::line(int sz)
 {
 	_size = sz;
@@ -21,4 +21,4 @@ matrix::matrix(int sz)
 	_size = sz;
 	_pos = 0;
 	_arr = new line[_size];
-}
+}*/
