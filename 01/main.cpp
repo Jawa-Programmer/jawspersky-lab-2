@@ -1,7 +1,8 @@
 #include <iostream>
-
+#include "matrix.h"
+using std::cout;
 int main()
 {
-	std::cout << "hello, world!" << std::endl;
+	cout << "hello, world!" << std::endl;
 	return 0;
 }
