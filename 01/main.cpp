@@ -24,7 +24,7 @@ using std::endl;
 bool pred(int a)
 {
 	return (a%2)==0;
-}
+} 
 
 int main()
 {
