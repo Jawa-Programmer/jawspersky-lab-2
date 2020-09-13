@@ -1,21 +1,24 @@
 #include "matrix.h"
+#include <iostream>
 
 line::line(int sz)
 {
 	_size = sz;
-	_pos = 0;
 	_arr = new int[_size];
 }
 line::~line()
 {
 	delete[] _arr;
 }
-void line::operator <<(int data)
+int& line::operator[](const int i)
 {
-	if(_pos<_size)
-		_arr[_pos++] = data;
+	return _arr[i];
 }
-
+void line::print()
+{
+	for(int i=0;i<_size;i++)
+		std::cout << _arr[i] << ", ";
+}
 matrix::matrix(int sz)
 {
 	_size = sz;
@@ -28,4 +31,16 @@ matrix::~matrix()
 		delete _arr[i];		
 	}
 	delete [] _arr;
+}
+line*& matrix::operator[](const int i)
+{
+	return _arr[i];
+}
+void matrix::print()
+{
+	for(int i=0; i<_size;i++){
+		std::cout << "["<<i<<"]:\t";
+		_arr[i]->print();
+		std::cout << std::endl;
+	}
 }
