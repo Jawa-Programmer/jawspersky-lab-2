@@ -9,8 +9,8 @@ using std::endl;
 /*
 * © Лабараторная работа №1. Вариант №14. Студент Фиреръ Анатолий (Б19-513)
 *
-* программа позволяет ввести непрямоугольную матрицу в следующем формате:
-* <число строк n> <n строк вида 'm, a[1], a[2]... a[m]'>
+* программа позволяет ввести прямоугольную матрицу в следующем формате:
+* <число строк m> <число столбцов n> <m*n целых чисел>
 *
 * в ответ выводится сама матрица и вектор b, каждый iй элемент которого есть сумма
 * удовлетворяющих предикату чисел iй строки.
@@ -34,27 +34,23 @@ bool pred2(int a)
 	return a >= 100;
 } 
 // этот комментарий написан из google chrome на смартфоне. 
-// возможно так будет проще кодить , чем через vnc
+// возможно так будет проще кодить, чем через vnc
 int main()
 {
-	cout << "Type count of lines in matrix: " << endl;
-	int lines;
-	cin >> lines;
-	matrix mt(lines);
+	cout << "Type count of coulms and rows in matrix: " << endl;
+	int M, N;
+	cin >> M >> N;
+	matrix mt(M, N);
 	mt.set_comparator(pred1);
 	// ввод матрицы
-	for (int i=0; i<lines;i++)
-	{
-		cout << endl << "Type count of numbers in line #" << (i+1) << endl;
-		int lnsz;
-		cin >> lnsz;
-		mt[i] = new line(lnsz);
-		cout << "Type " << lnsz << " integers:" << endl;
-		for (int j=0;j<lnsz;j++)
+	cout << "Type " << N*M << " integers:" << endl;
+	for (int i=0; i < M; i++)
+	{		
+		for (int j=0; j < N;j++)
 		{
 			int tmp;
 			cin >> tmp;
-			(*mt[i])[j] = tmp;
+			mt[i][j] = tmp;
 		}
 	}
 	cout << "----------|  MATRIX  |--------------" << endl;
