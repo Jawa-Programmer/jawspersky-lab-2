@@ -31,7 +31,7 @@ class line
 class matrix
 {
 	private:
-	line *_arr;
+	line **_arr;
 	int _size;
 	public:	
 	matrix(int);
