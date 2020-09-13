@@ -2,49 +2,45 @@
 #define MATRIX_H
 
 /// элемент списка. Хранит указатель на следующий элемент, данные и позицию в строке.
-template < class T > struct item {
-  item < T > * next;
+struct item {
+  item * next;
   int pos;
-  T data;
+  int data;
 };
 
 /// класс список объектов
-template < class T > class list {
+class list {
   private:
     /// указатель на начало списка
-    item < T > * _start;
+    item * _start = nullptr;
   /// длинна списка
   int _size;
   public:
   /// конструктор. производит инициализацию
   list(int sz){_size = sz;}
-    /// деструктор. Очищает список.
-    ~list();
+  /// деструктор. Очищает список.
+   ~list();
   /// вставить элемент на i позицию
-  void insert(int, T);
+  void insert(int, int);
   /// получить элемент по позиции
-  T operator[](const int);
+  int operator[](const int);
 };
 /// класс прямоугольной разреженной матрицы
-template < class T > class matrix {
+class matrix {
   private:
     /// функция, в которую пользователь может вставить критерий отбора числа.
-    bool( * _comparator)(T);
-    /// функция, производящая сложение T. (это сделано потому что мы не можем гарантировать складываемость объектов класса T и по этому всю ответсвенность сваливаем на юзверя))
-    T (* _add)(T,T);
+    bool( * _comparator)(int);
   /// массив списков чисел
-  list <T>* _arr;
+  list** _arr;
   /// количество строк и столбцов
   int _m, _n;
   /// строка чисел b.
-  T * _b;
+  int * _b;
   public:
   /// конструктор. производит выделение памяти под матрицу
   matrix(int, int);
   /// деструктор. очищает память
   ~matrix();
-  /// устанавливает функцию сложения T+T.
-  inline void set_calculator(T ( * calc)(T,T)){_add = calc;}
   /// выводит на экран матрицу
   void print();
   /// производит вычисление вектора b
@@ -52,7 +48,7 @@ template < class T > class matrix {
   /// выводит на экран искомый вектор b
   void print_b();
   /// оператор доступа к i строке. Позволителен синтаксис прямой работы с двумерной матрицей a[i][j]; но только для чтения
-  list<T> & operator[](const int);
+  list*& operator[](const int);
   /// возвращает количество строк в матрице.
   int rows() {
     return _m;
@@ -62,6 +58,6 @@ template < class T > class matrix {
     return _n;
   }
   /// устанавливает функцию-предикат, отбирающая числа строки для сложения.
-  inline void set_comparator(bool( * pred)(T)) {	_comparator = pred;}
+  inline void set_comparator(bool( * pred)(int)) {	_comparator = pred;}
 };
 #endif

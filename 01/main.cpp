@@ -30,23 +30,21 @@ bool pred1(int a) {
 bool pred2(int a) {
   return a >= 100;
 }
-int add(int a, int b){return a+b;}
 // этот комментарий написан из google chrome на смартфоне. 
 // возможно так будет проще кодить, чем через vnc
 int main() {
   cout << "Type count of coulms and rows in matrix: " << endl;
   int M, N;
   cin >> M >> N;
-  matrix <int> mt(M, N);
+  matrix mt(M, N);
   mt.set_comparator(pred1);
-  mt.set_calculator(add);
   // ввод матрицы
   cout << "Type " << N * M << " integers:" << endl;
   for (int i = 0; i < M; i++) {
     for (int j = 0; j < N; j++) {
       int tmp;
       cin >> tmp;
-      mt[i].insert(j, tmp);
+      mt[i]->insert(j, tmp);
     }
   }
   cout << "----------|  MATRIX  |--------------" << endl;
