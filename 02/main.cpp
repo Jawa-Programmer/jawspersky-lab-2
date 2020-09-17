@@ -6,6 +6,6 @@ using std::endl;
 
 int main()
 {
-	
+	cout << "nothing" << endl;
 	return 0;
 }
