@@ -1,4 +1,5 @@
 #include <iostream>
+#include "cycloid.h"
 
 using std::cin;
 using std::cout;
