@@ -41,24 +41,19 @@ namespace geometric{
 	class cycloid
 	{
 		private:
-		/// начальный угол
-		double _phase;
 		/// радиус циклоиды
 		double _radius;	
 		public:
 		/// конструктор класса. Инициализирует объект класса циклоида
-		cycloid(double radius, double phase = 0);
+		cycloid(double radius);
 		/// геттеры и сеттеры
-		inline double get_phase(){return _phase;}
 		inline double get_radius(){return _radius;}
-		inline void set_phase(double phase){_phase = phase;}
 		inline void set_radius(double radius){
 			if(radius <0) 
 				throw IncorrectRadiusException("Radius must be positive or zero");
 			else
 				_radius = radius;
-			}
-		
+			}		
 		/// возвращает декартовы координаты точки, на которую будет указывать циклоида после вращения на заданный угол
 		point coords(double);
 		/// возвращает радиус кривизны циклоиды в точке, на которую она будет указывать после поворота на заданный угол

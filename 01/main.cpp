@@ -19,7 +19,20 @@ using std::endl;
  * новую функцию в main и во время отладки менять передаваемую функцию, тем самым быстро
  * меня предикат.
  */
-
+ 
+/// Универсальная функция безопасного ввода значений из входного потока
+template <typename T> void safeGet(T& variable)
+{
+	cin >> variable;
+	while (!cin)
+	{
+		cin.clear();
+		cin.ignore(cin.rdbuf()->in_avail());
+		std::cerr << "incorrect input, try again: ";
+		cin >> variable;
+	}
+	return;
+}
 /// предикат, используемый для отбора чисел, входящих в сумму.
 /// Данный предикат возвращает истину для чётных чисел
 bool pred1(int a) {
@@ -34,18 +47,28 @@ bool pred2(int a) {
 // возможно так будет проще кодить, чем через vnc
 int main() {
   cout << "Type count of coulms and rows in matrix: " << endl;
-  int M, N;
-  cin >> M >> N;
+  int M, N;  
+  safeGet(M);
+  safeGet(N);
+  
   matrix mt(M, N);
   mt.set_comparator(pred1);
+  
   // ввод матрицы
-  cout << "Type " << N * M << " integers:" << endl;
-  for (int i = 0; i < M; i++) {
-    for (int j = 0; j < N; j++) {
-      int tmp;
-      cin >> tmp;
-      mt[i]->insert(j, tmp);
-    }
+  cout << "Type numbers in format i, j , num (0 <= i < M; 0 <= j < N). We you complete, type '-1 -1 0'." << endl;
+  while (1)
+  {
+	  int x,y,num;
+	  safeGet(y);
+	  safeGet(x);
+	  safeGet(num);
+	  if(x<0||y<0) break;
+	  if(x >= M || y >= N) {
+		  cout << "incorrect index" << endl;
+		  continue;
+	  }
+      mt[y]->insert(x, num);
+	  
   }
   cout << "----------|  MATRIX  |--------------" << endl;
   mt.print();

@@ -38,11 +38,11 @@ void case_1()
 		SEP;
 		cout << "test #1. ";
 		tests++;
-		double R = rand(-10000, -1), Ph = rand(-100,100);
-		cout << "R = " << R << ", Ph = "<< Ph << ". We wait exception" << endl;
+		double R = rand(-10000, -1);
+		cout << "R = " << R << ". We wait exception" << endl;
 		cycloid* cy;
 		try{
-			cy = new cycloid(R, Ph);
+			cy = new cycloid(R);
 			cerr << "case #1. test #1 failed"<< endl;
 			delete cy;	
 		}
@@ -59,7 +59,7 @@ void case_1()
 		cout << "test #2. ";
 		tests++;
 		double R = 0;		
-		cout << "R = " << R << ", Ph by default. We didn't wait exception" << endl;
+		cout << "R = " << R << ". We didn't wait exception" << endl;
 		cycloid* cy;
 		try{
 			cy = new cycloid(R);
@@ -79,7 +79,7 @@ void case_1()
 		cout << "test #3" << endl;
 		tests++;
 		double R = rand(1, 10000);
-		cout << "R = " << R << ", Ph by default. We didn't wait exception" << endl;
+		cout << "R = " << R << ". We didn't wait exception" << endl;
 		cycloid* cy;
 		try{
 			cy = new cycloid(R);
@@ -94,8 +94,8 @@ void case_1()
 		}	
 	}
 }
-/// циклоида без начального смещения и с единичным радиусом
-cycloid cy(1, 0);
+/// циклоида с единичным радиусом
+cycloid cy(1);
 
 ///проверка метода coords. Результат не должен отличатся от эталона больше одной сотой, так как при предварительных рассчетах использовалось значение числа pi = 3,142.
 /// для покрытия модуля достаточно двух тестов, потому что одно число может случайно совпасть, но для двух тестов совпадение исключено (хотя если не быть параноиком, то тут хватит и одного теста, так как метод не содержит ветвлений)))
@@ -173,13 +173,13 @@ void case_4()
 		double et = 4, res = cy.length(3.142);
 		if(abs(et-res)>0.01)
 		{
-			cerr << "case #3 test #1 failed." << endl << 
-			"We waited R = " << et << endl <<
-			"but recived R = " << res << endl;
+			cerr << "case #4 test #1 failed." << endl << 
+			"We waited L = " << et << endl <<
+			"but recived L = " << res << endl;
 		}
 		else
 		{
-			cout << "case #3 test #1 passed." <<endl;
+			cout << "case #4 test #1 passed." <<endl;
 			passed++;		
 		}
 	}
@@ -212,9 +212,9 @@ void case_5(){
 		double et = 3.142*3, res = cy.area();
 		if(abs(et-res)>0.01)
 		{
-			cerr << "case #3 test #1 failed." << endl << 
-			"We waited R = " << et << endl <<
-			"but recived R = " << res << endl;
+			cerr << "case #5 test #1 failed." << endl << 
+			"We waited S = " << et << endl <<
+			"but recived S = " << res << endl;
 		}
 		else
 		{
@@ -224,14 +224,61 @@ void case_5(){
 	}
 }
 
+/// проверка метода, возвращающего площадь поверхности вращения одной арки циклоиды.
+/// метод не содержит ветвлений и покрывается одним тестом
+void case_6(){
+	SEP;
+	cout << "case #6. testing method surface_area(). Error must be less than 0,01" << endl;	
+	{
+		tests++;
+		cout << "test #1. Ph = 3.142" << endl;
+		double et = 64*3.142/3, res = cy.surface_area();
+		if(abs(et-res)>0.01)
+		{
+			cerr << "case #6 test #1 failed." << endl << 
+			"We waited S = " << et << endl <<
+			"but recived S = " << res << endl;
+		}
+		else
+		{
+			cout << "case #6 test #1 passed." <<endl;
+			passed++;		
+		}
+	}
+}
+/// проверка метода, возвращающего объем тела вращения одной арки циклоиды.
+/// метод не содержит ветвлений и покрывается одним тестом
+/// из-за того, что число PI возводится в квадрат, тестовый эталон содержал число с большим количеством знаков после зпятой, чем предыдущие тестовые задачи
+void case_7(){
+	SEP;
+	cout << "case #7. testing method volume(). Error must be less than 0,01" << endl;	
+	{
+		tests++;
+		cout << "test #1. Ph = 3.142" << endl;
+		double et = 5*3.14159*3.14159, res = cy.volume();
+		if(abs(et-res)>0.01)
+		{
+			cerr << "case #7 test #1 failed." << endl << 
+			"We waited V = " << et << endl <<
+			"but recived V = " << res << endl;
+		}
+		else
+		{
+			cout << "case #7 test #1 passed." <<endl;
+			passed++;		
+		}
+	}
+}
 int main()
 {
 	
-	//case_1();
-	//case_2();
-	//case_3();
-	//case_4();
+	case_1();
+	case_2();
+	case_3();
+	case_4();
 	case_5();
+	case_6();
+	case_7();
 	
 	/*for (int i=1; i <= TESTS; i++)
 	{
