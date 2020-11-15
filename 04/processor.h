@@ -329,7 +329,7 @@ namespace jpl
 			public:
 			virtual std::ostream& print(std::ostream& out) const override {return out << "SUB";}
 			virtual byte operator()(const byte *args) const override {return args[1];}
-		} CP;
+		} SET;
 	}
 }
 #endif
