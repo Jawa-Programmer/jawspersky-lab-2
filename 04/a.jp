@@ -1,0 +1,42 @@
+# prog.insert(command(OP_INIT, "a")); // 0
+# prog.insert(command(OP_INIT, "b")); // 1
+# prog.insert(command(OP_INIT, "c")); // 2
+
+# prog.insert(command(OP_BINARY, nullptr, var_operand("a"), const_operand(3), &operators::SET)); // 3
+# prog.insert(command(OP_BINARY, nullptr, var_operand("b"), const_operand(2), &operators::SET)); // 4
+# prog.insert(command(OP_BINARY, nullptr, var_operand("c"), const_operand(1), &operators::SET)); // 5
+
+# prog.insert(command(OP_BINARY, nullptr, reg_operand(const_operand(0)), const_operand(0), &operators::SET)); // 6
+
+# prog.insert(command(OP_BINARY, nullptr, reg_operand(const_operand(1)), var_operand("b"), &operators::SET)); // 7
+# prog.insert(command(OP_BINARY, nullptr, reg_operand(const_operand(1)), reg_operand(const_operand(0)), &operators::SUB)); // 8
+
+# prog.insert(command(OP_JUMP, nullptr, reg_operand(const_operand(1)), const_operand(10), const_operand(13), &operators::SUB)); // 9
+
+# prog.insert(command(OP_BINARY, nullptr, var_operand("c"), var_operand("a"), &operators::MUL)); // 10
+
+# prog.insert(command(OP_UNARY, nullptr, reg_operand(const_operand(0)), &operators::INC)); // 11
+
+# prog.insert(command(OP_JUMP, nullptr, const_operand(7), &operators::SUB)); // 12
+
+# выше текст этой же программы, но вшитой в код main.cpp
+
+INIT	a
+INIT	b
+INIT	c
+
+SET	a	3
+SET b	3
+SET	c	1
+
+SET	(0	0
+SET	(1	b
+
+SUB	(1	(0
+
+JUMP	(1	10	13
+
+MUL	c	a
+INC	(0
+
+JUMP	7

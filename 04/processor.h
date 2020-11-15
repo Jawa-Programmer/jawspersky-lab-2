@@ -13,7 +13,7 @@ namespace jpl
 	bool is_valid_name(const std::string& lab);
 	
 	// перечисления
-	enum OPERATION_TYPE {OP_INIT, OP_JUMP, OP_UNARY, OP_BINARY};
+	enum OPERATION_TYPE {OP_INIT, OP_JUMP, OP_UNARY, OP_BINARY, OP_NONE};
 	
 	typedef uint16_t byte; // минимальноадресуемой еденицей памяти будет 16 бит
 	
@@ -36,7 +36,7 @@ namespace jpl
 	/// класс процессор. Связывает между собой УУ, ИУ, память и регистры
 	class processor;
 	/// ячейка памяти. Содержит данные и информацию о блокировавшем устойстве
-	struct slot {const ALU *locker; byte data;};
+	struct slot {const ALU *locker = nullptr; byte data = 0;};
 	
 	/// класс операции. (унарная, бинарная, переход, инициализация памяти)
 	//namespace operations {class base;}
@@ -55,6 +55,13 @@ namespace jpl
 		operand *args[3];// считаем, что может быть не более трёх операндов (три операнда нужны только в одном случае - расширенный условный переход (если правда, то адрес1, если ложь, то адрес2)
 		const operator_ *act;
 		public:
+		
+		command() : op(OP_NONE), act(nullptr)
+		{
+			args[0] = nullptr;
+			args[1] = nullptr;
+			args[2] = nullptr;
+		}
 		
 		command(OPERATION_TYPE op_, const char* str, const operator_ *act_ = nullptr);
 		command(OPERATION_TYPE op_, const char* str, const operand& op1, const operator_ *act_ = nullptr);
@@ -77,7 +84,7 @@ namespace jpl
 		OPERATION_TYPE get_operation() const {return op;}
 		const operator_* get_operator() const {return act;}
 		const std::string& get_label() const {return label;}
-		const operand* get_operand(int num) const {if(num < 0||num > 1)	throw std::logic_error("out bounds"); return args[num];}
+		const operand* get_operand(int num) const {if(num < 0|| num > 2)	throw std::logic_error("out bounds"); return args[num];}
 		
 		int get_args_count() const;
 		
@@ -219,6 +226,8 @@ namespace jpl
 		
 		byte alloc(size_t); // выделяет новую память и передает указатель на начало блока
 		
+		friend std::ostream& operator<<(std::ostream&, const RAM&);
+		
 		void free(byte) = delete; // пока заглушка, но в будущем планирую разработать систему по-настоящему динамической памяти
 	};
 	class progmem
@@ -242,6 +251,8 @@ namespace jpl
 		void jump(int a) {counter = a;}
 		/// инкрементирует счетчик
 		void inc() {++counter;}
+
+		int count() const {return counter;}
 		
 		bool has_next(){return counter < prog.size();}
 		// работа с именами переменных
@@ -305,6 +316,7 @@ namespace jpl
 			virtual std::ostream& print(std::ostream& out) const override {return out << "ADD";}
 			virtual byte operator()(const byte *args) const override {return args[0] + args[1];}
 		} ADD;
+		
 		const class : public base 
 		{
 			public:
@@ -314,22 +326,79 @@ namespace jpl
 		const class : public base 
 		{
 			public:
-			virtual std::ostream& print(std::ostream& out) const override {return out << "SUB";}
+			virtual std::ostream& print(std::ostream& out) const override {return out << "DIV";}
 			virtual byte operator()(const byte *args) const override {return args[0] / args[1];}
 		} DIV;
+		
 		const class : public base 
 		{
 			public:
-			virtual std::ostream& print(std::ostream& out) const override {return out << "SUB";}
+			virtual std::ostream& print(std::ostream& out) const override {return out << "MOD";}
+			virtual byte operator()(const byte *args) const override {return args[0] % args[1];}
+		} MOD;
+		
+		const class : public base 
+		{
+			public:
+			virtual std::ostream& print(std::ostream& out) const override {return out << "MUL";}
 			virtual byte operator()(const byte *args) const override {return args[0] * args[1];}
 		} MUL;
 		
 		const class : public base 
 		{
 			public:
-			virtual std::ostream& print(std::ostream& out) const override {return out << "SUB";}
+			virtual std::ostream& print(std::ostream& out) const override {return out << "INC";}
+			virtual byte operator()(const byte *args) const override {return args[0] + 1;}
+		} INC;
+		const class : public base 
+		{
+			public:
+			virtual std::ostream& print(std::ostream& out) const override {return out << "DEC";}
+			virtual byte operator()(const byte *args) const override {return args[0] - 1;}
+		} DEC;
+		
+		const class : public base 
+		{
+			public:
+			virtual std::ostream& print(std::ostream& out) const override {return out << "SET";}
 			virtual byte operator()(const byte *args) const override {return args[1];}
 		} SET;
+		
+		const class : public base 
+		{
+			public:
+			virtual std::ostream& print(std::ostream& out) const override {return out << "ADD";}
+			virtual byte operator()(const byte *args) const override {return -args[0];}
+		} INV;
+		
+		const class : public base 
+		{
+			public:
+			virtual std::ostream& print(std::ostream& out) const override {return out << "AND";}
+			virtual byte operator()(const byte *args) const override {return args[0] && args[1];}
+		} AND;
+		
+		const class : public base 
+		{
+			public:
+			virtual std::ostream& print(std::ostream& out) const override {return out << "OR";}
+			virtual byte operator()(const byte *args) const override {return args[0] || args[1];}
+		} OR;
+		
+		const class : public base 
+		{
+			public:
+			virtual std::ostream& print(std::ostream& out) const override {return out << "XOR";}
+			virtual byte operator()(const byte *args) const override {return (bool)args[0] != (bool)args[1];}
+		} XOR;
+		
+		const class : public base 
+		{
+			public:
+			virtual std::ostream& print(std::ostream& out) const override {return out << "XOR";}
+			virtual byte operator()(const byte *args) const override {return !args[0];}
+		} NOT;
+		
 	}
 }
 #endif

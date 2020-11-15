@@ -99,7 +99,7 @@ namespace jpl
 	}
 	
 	void command::set_operand(int num, const operand* arg) {
-			if(num < 0||num > 1)
+			if(num < 0 || num > 2)				
 				throw std::logic_error("out bounds");
 			if(arg) 
 				args[num] = arg->copy(); 
@@ -230,48 +230,60 @@ namespace jpl
 	{
 		progmem &prog = *proc.get_progmem();
 		
-		if(!prog.has_next())
 		{
-			std::cout << "time = " << time << "\t" << "awaiting for ALUs" << std::endl;
 			bool is_exec = false;
 			auto end = proc.al_end();
 			for(auto al = proc.al_begin(); al != end; ++al)
 				if(al->is_running())
-				{
 					(*al)(proc, time);
-					break;
-				}
+		}
+		if(!prog.has_next())
+		{
+			std::cout << "(" << time << "t)\t" << "awaiting for ALUs" << std::endl;
 			++time;
 			return false;
-		}		
+		}
+		
 		const command& cur = prog.current();
 		OPERATION_TYPE cur_op = cur.get_operation();
 		if(cur_op == OP_INIT)
 		{
-			std::cout << "time = " << time << "\t" << cur << std::endl;
+			std::cout << "(" << time << "t)\t[0x" << std::hex << prog.count() << std::dec << "]\t" << cur << std::endl;
 			if(!is_valid_name(cur.get_label()))  throw std::logic_error("incorrect var name");
 			int adr = proc.get_RAM()->alloc(1);
 			prog.set_name(cur.get_label(), adr);
-			if(cur.get_args_count() == 1)
-				(*proc.get_RAM())[adr].data = cur.get_operand(0) -> value(&proc);
 			prog.inc();
 		}
 		else if(cur_op == OP_JUMP)
 		{
-			std::cout << "time = " << time << "\t" << cur << std::endl;
 			int argc = cur.get_args_count();
-			if(argc == 1)
-				prog.jump(cur.get_operand(0) -> value(&proc));
-			else if(argc == 2)
-				if(cur.get_operand(0) -> value(&proc))
-					prog.jump(cur.get_operand(1) -> value(&proc));
-				else
-					prog.inc();
-			else
-				if(cur.get_operand(0) -> value(&proc))
-					prog.jump(cur.get_operand(1) -> value(&proc));
-				else
-					prog.jump(cur.get_operand(2) -> value(&proc));
+			bool is_e = false;
+			if(argc == 1){
+				if(cur.get_operand(0) -> lock(proc, nullptr)){
+					is_e = true;
+					prog.jump(cur.get_operand(0) -> value(&proc));
+				}
+			}
+			else if(argc == 2){
+				if(cur.get_operand(0) -> lock(proc, nullptr) && cur.get_operand(1) -> lock(proc, nullptr)){
+					is_e = true;
+					if(cur.get_operand(0) -> value(&proc))
+						prog.jump(cur.get_operand(1) -> value(&proc));
+					else
+						prog.inc();
+				}
+			}
+			else{
+				if(cur.get_operand(0) -> lock(proc, nullptr) && cur.get_operand(1) -> lock(proc, nullptr) && cur.get_operand(2) -> lock(proc, nullptr)){
+					is_e = true;
+					if(cur.get_operand(0) -> value(&proc))
+						prog.jump(cur.get_operand(1) -> value(&proc));
+					else
+						prog.jump(cur.get_operand(2) -> value(&proc));
+				}
+			}
+			if(is_e)
+				std::cout << "(" << time << "t)\t[0x" << std::hex << prog.count() << std::dec << "]\t" << cur << std::endl;
 		} 
 		else
 		{
@@ -280,7 +292,7 @@ namespace jpl
 			for(auto al = proc.al_begin(); al != end; ++al)
 				if((*al).is_available(*cur.get_operator()) && (*al)(proc, cur, time)){
 					is_exec = true;  
-					std::cout << "time = " << time << "\t" << cur << std::endl;
+					std::cout << "(" << time << "t)\t[0x" << std::hex << prog.count() << std::dec << "]\t" << cur << std::endl;
 					break;
 				}
 			if(is_exec)
@@ -307,7 +319,6 @@ namespace jpl
 				}
 				else if(cmd.get_operation() == OP_BINARY)
 				{
-					// такой вот буфер)
 					byte a[2] = {cmd.get_operand(0)->value(&proc), cmd.get_operand(1)->value(&proc)};
 					cmd.get_operand(0)->set(proc, (*cmd.get_operator())(a));
 					cmd.get_operand(0)->unlock(proc, this);
@@ -326,7 +337,7 @@ namespace jpl
 	bool ALU::operator()(processor& proc, const command& cmd_n, int time)
 	{
 		
-		if(!(*this)(proc, time)) return false;
+		if(last) return false;
 		
 		if(!is_available(*cmd_n.get_operator())) return false;
 		
@@ -395,6 +406,14 @@ namespace jpl
 		ram.resize(ret + s);
 		return ret;
 	}
+	std::ostream& operator<<(std::ostream& out, const RAM& ram)
+	{
+		auto end = ram.ram.cend();
+		int i = 0;
+		for(auto cur = ram.ram.cbegin(); cur != end; ++cur)
+			out << "[0x" << std::hex << i++ <<  "]:\t" << std::dec << (*cur).data  << std::endl;
+		return out;
+	}
 	///--- PROGMEM ---///
 	void progmem::insert( const command& cmd, int p)
 	{
@@ -409,7 +428,7 @@ namespace jpl
 		auto end = prog.prog.end();
 		for(auto cur = prog.prog.begin(); cur != end; ++cur)
 		{
-			out << "[" << i << "]:\t" << *cur << std::endl;
+			out << "[0x" << std::hex << i << std::dec << "]:\t" << *cur << std::endl;
 			i++;
 		}
 		return out;
