@@ -495,7 +495,7 @@ namespace jpl
 	void processor::run()
 	{
 		prog->jump(0);
-		prog->set_base(ram->alloc(prog->get_weight()));
+		if(prog->get_weight()) prog->set_base(ram->alloc(prog->get_weight()));
 		prog->set_name("end", prog->size()); // переход в конец программы
 		while(control.on_tick(*this));
 		auto end = al_end();

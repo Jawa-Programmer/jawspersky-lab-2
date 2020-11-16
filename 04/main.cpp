@@ -7,14 +7,16 @@
 using namespace jpl;
 
 
-int main()
+int main(int argc, const char **args)
 {
+	if(argc < 2) return 0;
+
 	progmem prog;	
 	RAM ram;	
 	
 	ram.alloc(4);
 	
-	std::ifstream in("b.jp");	
+	std::ifstream in(args[1]);	
 	read_program(in, prog); // чтение программы из файла
 	in.close();  
 	
