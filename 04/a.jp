@@ -1,42 +1,24 @@
-# prog.insert(command(OP_INIT, "a")); // 0
-# prog.insert(command(OP_INIT, "b")); // 1
-# prog.insert(command(OP_INIT, "c")); // 2
+; программа возводит a в степень b и помещает результат в с. 
+; нулевой и первый регистры процессора используются в качестве счётчика цикла
 
-# prog.insert(command(OP_BINARY, nullptr, var_operand("a"), const_operand(3), &operators::SET)); // 3
-# prog.insert(command(OP_BINARY, nullptr, var_operand("b"), const_operand(2), &operators::SET)); // 4
-# prog.insert(command(OP_BINARY, nullptr, var_operand("c"), const_operand(1), &operators::SET)); // 5
+		VAR		a ; объявленные переменные заносятся в таблицу соответсвия "имя - адрес"
+		VAR		b ; память для них выделяется статически (до выполнения программы)
+		VAR		c ; это избавляет программиста от необходимости работать с ОП напрямую
 
-# prog.insert(command(OP_BINARY, nullptr, reg_operand(const_operand(0)), const_operand(0), &operators::SET)); // 6
+		SET		a	3
+		SET 	b	4
+		SET		c	1
 
-# prog.insert(command(OP_BINARY, nullptr, reg_operand(const_operand(1)), var_operand("b"), &operators::SET)); // 7
-# prog.insert(command(OP_BINARY, nullptr, reg_operand(const_operand(1)), reg_operand(const_operand(0)), &operators::SUB)); // 8
+		SET		(0	0 ; круглая скобочка - разыменовывание номера регистра. То есть первый операнд есть 0-й регистр процессора
+					  ; квадратная скобочка аналогично значит, что в далее последует номер ячейки в ОП
+					  
+line7:	SET		(1	b ; Седьмая строка кода.
 
-# prog.insert(command(OP_JUMP, nullptr, reg_operand(const_operand(1)), const_operand(10), const_operand(13), &operators::SUB)); // 9
+		SUB		(1	(0
 
-# prog.insert(command(OP_BINARY, nullptr, var_operand("c"), var_operand("a"), &operators::MUL)); // 10
+		JUMP	(1	10	13 ; Так же поддерживается переход с помощью ручного задания номера строки (строки без инструкций игнорируются)
 
-# prog.insert(command(OP_UNARY, nullptr, reg_operand(const_operand(0)), &operators::INC)); // 11
+		MUL		c	a
+		INC		(0
 
-# prog.insert(command(OP_JUMP, nullptr, const_operand(7), &operators::SUB)); // 12
-
-# выше текст этой же программы, но вшитой в код main.cpp
-
-INIT	a
-INIT	b
-INIT	c
-
-SET	a	3
-SET b	3
-SET	c	1
-
-SET	(0	0
-SET	(1	b
-
-SUB	(1	(0
-
-JUMP	(1	10	13
-
-MUL	c	a
-INC	(0
-
-JUMP	7
+		JUMP	line7 ; безусловный переход к седьмой строке

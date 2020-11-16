@@ -7,8 +7,9 @@ namespace jpl
 	{
 		int len = lab.length();
 		if(len>8) return false;
-		for(int i=0; i < len; ++i)
-			if(!isalpha(lab[i])) return false;
+		if(!isalpha(lab[0])) return false;
+		for(int i=1; i < len; ++i)
+			if(!isalpha(lab[i]) && !isdigit(lab[i])) return false;
 		return true;
 	}
 	
@@ -121,6 +122,9 @@ namespace jpl
 	std::ostream& operator<<(std::ostream &out, const command &cmd){
 		
 		OPERATION_TYPE op_t = cmd.op;
+		
+		if(cmd.label.size()>0) out << cmd.label << ":\t";
+		else out << "\t";
 		if(op_t == OP_JUMP)
 		{
 			out << "JUMP\t";
@@ -131,10 +135,14 @@ namespace jpl
 			if(cmd.args[2])
 				cmd.args[2]->print(out) << "\t";
 		}
-		else if(op_t == OP_INIT)
+		else if(op_t == OP_ALLC)
 		{
-			out << "INIT\t" << cmd.label;
-			if(cmd.args[0]) cmd.args[0] -> print(out << "\t");
+			cmd.args[0] -> print(out << "ALLC\t");
+			if(cmd.args[1]) cmd.args[1] -> print(out << "\t");
+		}
+		else if(op_t == OP_VAR)
+		{
+			cmd.args[0] -> print(out << "VAR\t");
 		}
 		else if(op_t == OP_UNARY)
 		{
@@ -168,10 +176,42 @@ namespace jpl
 		return out;
 	}
 	
-	///--- ram_operand ---///
+	///--- label_operand ---///
 	
-	byte ram_operand::value(const processor* p) const {if(p == nullptr) throw std::logic_error("nullptr was given as argument"); return (*(p->get_RAM()))[adr->value(p)].data;}
-	void ram_operand::set(processor &p, byte val) const {(*(p.get_RAM()))[adr->value(&p)].data = val;}
+	label_operand::label_operand(const std::string &lab)
+	{
+		if(!is_valid_name(lab)) throw std::logic_error("incorrect var name");
+		label = lab;
+	}
+	
+	byte label_operand::value(const processor* p) const {
+		if(p == nullptr) throw std::logic_error("nullptr was given as argument"); 
+		return (*(p->get_progmem())).unname(label);
+	}
+		
+	std::ostream& label_operand::print(std::ostream& out) const
+	{
+		out << label;
+		return out;
+	}
+	
+	///--- ram_operand ---///
+	ram_operand::ram_operand(const label_operand &adr_) : adr(adr_.copy()), is_lab(true) {}
+	
+	operand* ram_operand::copy() const {ram_operand *tmp = new ram_operand(*adr); tmp->is_lab = is_lab; return tmp;}
+	
+	byte ram_operand::value(const processor* p) const {
+		if(p == nullptr) throw std::logic_error("nullptr was given as argument");
+		int base = 0;
+		if(is_lab) base = p->get_progmem()->get_base();			
+		return (*(p->get_RAM()))[adr->value(p)+ base].data;
+	}
+	void ram_operand::set(processor &p, byte val) const 
+	{
+		int base = 0;
+		if(is_lab) base = p.get_progmem()->get_base();	
+		(*(p.get_RAM()))[adr->value(&p)+base].data = val;
+	}
 	bool ram_operand::lock(processor &p, ALU* a) const 
 	{
 		slot &s = (*(p.get_RAM()))[adr->value(&p)];
@@ -187,43 +227,11 @@ namespace jpl
 	}
 	std::ostream& ram_operand::print(std::ostream& out) const
 	{
-		adr->print(out << "[");
+		if(!is_lab) out << "[";
+		adr->print(out);
 		return out;
 	}
 	
-	
-	///--- var_operand ---///
-	var_operand::var_operand(const std::string &lab)
-	{
-		if(!is_valid_name(lab)) throw std::logic_error("incorrect var name");
-		label = lab;
-	}
-	byte var_operand::value(const processor* p) const {
-		if(p == nullptr) throw std::logic_error("nullptr was given as argument"); 
-		int adr = (*(p->get_progmem())).unname(label);		
-		return (*(p->get_RAM()))[adr].data;}
-	void var_operand::set(processor &p, byte val) const {
-		int adr = (*(p.get_progmem())).unname(label);
-		(*(p.get_RAM()))[adr].data = val;
-	}
-	bool var_operand::lock(processor &p, ALU* a) const 
-	{
-		slot &s = (*(p.get_RAM()))[(*(p.get_progmem())).unname(label)];
-		if(s.locker && s.locker != a) return false;
-		s.locker = a;
-		return true;
-	}
-	void var_operand::unlock(processor &p, ALU* a) const 
-	{
-		slot &s = (*(p.get_RAM()))[(*(p.get_progmem())).unname(label)];
-		if(s.locker && s.locker != a) throw std::logic_error("ALU tried to unlock a memory slot that does not belong to it");
-		s.locker = nullptr;
-	}
-	std::ostream& var_operand::print(std::ostream& out) const
-	{
-		out << label;
-		return out;
-	}
 	///--- controller ---///
 	
 	bool controller::on_tick(processor& proc)
@@ -246,16 +254,40 @@ namespace jpl
 		
 		const command& cur = prog.current();
 		OPERATION_TYPE cur_op = cur.get_operation();
-		if(cur_op == OP_INIT)
+		if(cur_op == OP_VAR)
 		{
 			std::cout << "(" << time << "t)\t[0x" << std::hex << prog.count() << std::dec << "]\t" << cur << std::endl;
-			if(!is_valid_name(cur.get_label()))  throw std::logic_error("incorrect var name");
+			/*const std::string &name = ((label_operand *) cur.get_operand(0))->get_label();
+			if(!is_valid_name(name))  throw std::logic_error("incorrect var name");
 			int adr = proc.get_RAM()->alloc(1);
-			prog.set_name(cur.get_label(), adr);
+			prog.set_name(name, adr);*/
 			prog.inc();
+		}
+		else if(cur_op == OP_ALLC)
+		{
+			if(cur.get_args_count()==1){
+				if(cur.get_operand(0) -> lock(proc, nullptr))
+				{
+					std::cout << "(" << time << "t)\t[0x" << std::hex << prog.count() << std::dec << "]\t" << cur << std::endl;
+					byte adr = proc.get_RAM() -> alloc(1);  // выделяем память размером в 1 байт. Указатель помещаем в аргумент
+					cur.get_operand(0) -> set(proc, adr);
+					prog.inc();
+				}
+			}
+			else if(cur.get_args_count()==2){
+				if(cur.get_operand(0) -> lock(proc, nullptr) && cur.get_operand(1) -> lock(proc, nullptr))
+				{
+					std::cout << "(" << time << "t)\t[0x" << std::hex << prog.count() << std::dec << "]\t" << cur << std::endl;
+					byte adr = proc.get_RAM() -> alloc(cur.get_operand(1) -> value(&proc)); // выделяем память размером в переданное число вторым аргументом число. Указатель помещаем в первый аргумент
+					cur.get_operand(0) -> set(proc, adr);
+					prog.inc();
+				}
+			}
+			else throw std::logic_error("ALLC param must have one or two args");
 		}
 		else if(cur_op == OP_JUMP)
 		{
+			int cc = prog.count();
 			int argc = cur.get_args_count();
 			bool is_e = false;
 			if(argc == 1){
@@ -283,7 +315,7 @@ namespace jpl
 				}
 			}
 			if(is_e)
-				std::cout << "(" << time << "t)\t[0x" << std::hex << prog.count() << std::dec << "]\t" << cur << std::endl;
+				std::cout << "(" << time << "t)\t[0x" << std::hex << cc << std::dec << "]\t" << cur << std::endl;
 		} 
 		else
 		{
@@ -417,11 +449,36 @@ namespace jpl
 	///--- PROGMEM ---///
 	void progmem::insert( const command& cmd, int p)
 	{
+		if(cmd.get_operation() == OP_VAR){
+			set_name(((label_operand *) cmd.get_operand(0))->get_label(), weight);
+			++weight;
+		}
 		if(p >= 0)
 			prog.insert(prog.begin() + p, cmd);
 		else
 			prog.push_back(cmd);			
 	}
+	
+	void progmem::erase(int nm){
+		if(prog[nm].get_operation() == OP_VAR) { // при удалении объявления переменной, структура статических переменных поменялась
+			prog.erase(prog.begin()+nm);
+			weight = 0;
+			auto cend = prog.cend();
+			for(auto cur = prog.cbegin(); cur != cend; ++cur)
+			{
+				if(cur->get_operation() == OP_VAR)
+				{
+					label_operand *lb = (label_operand *) (cur -> get_operand(0));
+					vars.set(lb->get_label(), weight);
+					++weight;
+				}
+			}
+				
+		}
+		else
+			prog.erase(prog.begin()+nm);
+		}
+	
 	std::ostream& operator<<(std::ostream& out, const progmem& prog)
 	{
 		int i = 0;
@@ -437,6 +494,9 @@ namespace jpl
 	
 	void processor::run()
 	{
+		prog->jump(0);
+		prog->set_base(ram->alloc(prog->get_weight()));
+		prog->set_name("end", prog->size()); // переход в конец программы
 		while(control.on_tick(*this));
 		auto end = al_end();
 		for(auto al = al_begin(); al != end; ++al)

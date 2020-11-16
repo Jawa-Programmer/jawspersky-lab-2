@@ -13,7 +13,7 @@ namespace jpl
 	bool is_valid_name(const std::string& lab);
 	
 	// перечисления
-	enum OPERATION_TYPE {OP_INIT, OP_JUMP, OP_UNARY, OP_BINARY, OP_NONE};
+	enum OPERATION_TYPE {OP_ALLC, OP_JUMP, OP_UNARY, OP_BINARY, OP_VAR, OP_NONE};
 	
 	typedef uint16_t byte; // минимальноадресуемой еденицей памяти будет 16 бит
 	
@@ -138,30 +138,34 @@ namespace jpl
 		virtual bool lock(processor&, ALU*) const override; 
 		virtual void unlock(processor&, ALU*) const override;
 		virtual std::ostream& print(std::ostream&) const override;
+	};		
+	class label_operand : public operand
+	{
+		private:
+		std::string label; // этот операнд хранит число. используется для более легкого перехода в программе
+		public:
+		label_operand(const std::string& lab); // проверяет соответсвие строки стандарту языка (от одного до 8 латинских букв) Если содержит неподходящие символы или имеет неправильную длинну, то выбрасывается исключение
+		virtual byte value(const processor* p) const override;
+		const std::string& get_label() const {return label;}
+		virtual void set(processor&, byte) const override {throw std::logic_error("Trying set value to constant");}
+		virtual operand* copy() const override {return new label_operand(label);}
+		virtual bool lock(processor&, ALU*) const override {return true;} 
+		virtual void unlock(processor&, ALU*) const override {}
+		virtual std::ostream& print(std::ostream&) const override;
 	};
+	
 	class ram_operand : public operand
 	{
 		private:
+		bool is_lab;
 		operand *adr; // этот операнд хранит адрес в памяти. Возможна последовательность вложенных операндов, что позволяет создавать ссылки.
 		public:
-		ram_operand(const operand &adr_) : adr(adr_.copy()) {}
+		ram_operand(const operand &adr_) : adr(adr_.copy()), is_lab(false) {}
+		ram_operand(const label_operand &adr_);
 		~ram_operand(){	delete adr;}
 		virtual byte value(const processor* p) const override;
 		virtual void set(processor&, byte) const override;
-		virtual operand* copy() const override {return new ram_operand(*adr);}
-		virtual bool lock(processor&, ALU*) const override; 
-		virtual void unlock(processor&, ALU*) const override;
-		virtual std::ostream& print(std::ostream&) const override;
-	};
-	class var_operand : public operand
-	{
-		private:
-		std::string label; // этот операнд хранит адрес в памяти. Возможна последовательность вложенных операндов, что позволяет создавать ссылки.
-		public:
-		var_operand(const std::string& lab); // проверяет соответсвие строки стандарту языка (от одного до 8 латинских букв) Если содержит неподходящие символы или имеет неправильную длинну, то выбрасывается исключение
-		virtual byte value(const processor* p) const override;
-		virtual void set(processor&, byte) const override;
-		virtual operand* copy() const override {return new var_operand(label);}
+		virtual operand* copy() const override;
 		virtual bool lock(processor&, ALU*) const override; 
 		virtual void unlock(processor&, ALU*) const override;
 		virtual std::ostream& print(std::ostream&) const override;
@@ -237,7 +241,8 @@ namespace jpl
 		std::vector<command> prog;
 		/// таблица соответсвия имен переменных и адресов в ОП
 		dictionary<std::string, int> vars;
-		int counter = 0;
+		int counter = 0, weight = 0, base = 0; // под весом подразумевается суммарный вес всех выделеных заранее переменных. base - базовый адрес статических переменных
+		// Таким образом, синтаксис "VAR a" привод к созданию статической переменной, а "INIT a" к выделению дополнительной памяти
 		public:
 		// определять свои конструкторы не надо, так как поля типа vector и int сами заботятся о своем копировании и уничтожении
 		
@@ -245,13 +250,22 @@ namespace jpl
 		const command& current() const {return prog[counter];}
 		/// вставляет команду на указанную позицию. если число меньше нуля, то вставка идет в конец
 		void insert(const command& cmd, int p = -1);
-		/// возвращает ссылку на команду для редактирования.
-		command& operator[](int nm){return prog[nm];}
+		/// удаляет комманду
+		void erase(int nm);
+		
+		void clear() {prog.clear(), weight = 0;}
 		/// устанавливает счетчик
 		void jump(int a) {counter = a;}
 		/// инкрементирует счетчик
 		void inc() {++counter;}
 
+		int size() const {return prog.size();}
+		
+		int get_weight() const {return weight;}
+		
+		void set_base(int b) {base = b;}
+		int get_base() const {return base;}
+		
 		int count() const {return counter;}
 		
 		bool has_next(){return counter < prog.size();}

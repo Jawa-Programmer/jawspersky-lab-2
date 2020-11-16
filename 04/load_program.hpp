@@ -9,11 +9,14 @@ namespace jpl
 {
 	namespace local
 	{
+		std::unordered_set<std::string> labels;
+		
 		struct operation {OPERATION_TYPE tp; const operator_ *op;};
 		
 		std::map<std::string, operation> DCTR = 
 		{
-			{"INIT", {OP_INIT, nullptr}},
+			{"ALLC", {OP_ALLC, nullptr}},
+			{"VAR", {OP_VAR, nullptr}},
 			{"JUMP", {OP_JUMP, nullptr}},
 			
 			{"ADD", {OP_BINARY, &operators::ADD}},
@@ -36,21 +39,22 @@ namespace jpl
 			if(str[0] == '('){return new reg_operand(*op_from_string(str.substr(1)));}
 			else if(str[0] == '['){return new ram_operand(*op_from_string(str.substr(1)));}
 			else if(isdigit(str[0])){return new const_operand(std::stoi(str));}
-			else{return new var_operand(str);}
+			else{
+				if(labels.find(str) == labels.end())
+					return new ram_operand(str);
+				else
+					return new label_operand(str);
+			}
 		}
 		
-		command cmd_from_string(const std::string& str)
+		command cmd_from_string(const std::vector<std::string> line)
 		{
-			std::vector<std::string> line; 
-			std::istringstream iss(str);
-			std::copy(std::istream_iterator<std::string>(iss), std::istream_iterator<std::string>(), std::back_inserter(line));
 			operation oper = DCTR[line[0]];
 			
-			if(oper.tp == OP_INIT)
-			{
-				return command(oper.tp, &line[1][0]);;
+			if(oper.tp == OP_VAR)
+			{	
+				return command(oper.tp, nullptr, label_operand(line[1]));;
 			}
-			
 			
 			std::vector<operand*> args;
 			for(int i = 1; i < line.size(); ++i)
@@ -73,16 +77,39 @@ namespace jpl
 			return cmd;
 		}		
 	}
+	/// функция стирает програму по ссылке и записывает на ее место из указанного потока новую,
 	void read_program(std::istream &in, progmem &prog)
 	{
+		prog.clear();
+		local::labels.clear();
 		std::string line;
 		while(getline(in, line))
 		{
-			if(line[0] == '#' || line.length() == 0) continue;
-			command cmd = local::cmd_from_string(line);
+			line = line.substr(0, line.find(';')); // позволит писать комментарий с середины строки
+			if(line.length() == 0) continue;
+			
+			std::vector<std::string> line_n; 
+			std::istringstream iss(line);
+			std::copy(std::istream_iterator<std::string>(iss), std::istream_iterator<std::string>(), std::back_inserter(line_n));
+			
+			if(line_n.size() == 0) continue;
+			
+			std::string lab;
+			
+			if(line_n[0][line_n[0].size()-1] == ':')
+			{
+				lab = line_n[0].substr(0, line_n[0].size()-1);
+				prog.set_name(lab, prog.size());
+				local::labels.insert(lab);
+				line_n.erase(line_n.begin());
+				if(line_n.size() == 0) continue;
+			}	
+			command cmd = local::cmd_from_string(line_n);
+			cmd.set_label(lab);
 			prog.insert(cmd);
-			std::cout << "command = " << cmd << std::endl;
+			//std::cout << "command = " << cmd << std::endl;
 		}
+		local::labels.clear();
 	}
 }
 
