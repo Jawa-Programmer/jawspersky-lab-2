@@ -1,4 +1,4 @@
-#include "dictionary.h"
+#include "dictionary.hpp"
 #include <iostream>
 
 using std::cin;
@@ -8,11 +8,9 @@ using namespace jpl;
 
 int main()
 {
-	dictionary<std::string, int> dic;
+dictionary<std::string, int> dic({{"ab", 2}, {"c", 1}});
 	
-	dic.set("abc", 2);
-	dic.set("c", 3);
-	dic.set("ab", 1);
+	
 	
 	auto end = dic.end();
 	auto cur = dic.begin();
@@ -25,7 +23,7 @@ int main()
 	cout << "-----------------------------" << endl;
 	
 	dic.unset("c");
-	dic.set("abc", 4);
+	dic["abc"] = 4;
 	
 	cout << "dic[ab] = " << dic["ab"] << endl;
 	

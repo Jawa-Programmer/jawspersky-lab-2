@@ -1,2 +1,2 @@
-all: main.cpp dictionary.h
+all: main.cpp dictionary.hpp
 	g++ main.cpp -o main.exe

@@ -2,21 +2,30 @@
 #define JWDICTIONARY_H
 
 #include <stdexcept>
+#include <initializer_list>
 
 namespace jpl
 {
 		/// класс контейнер словарь. Объекты внутри храняться в списке, по этому поиск, вставка и удаление линейны.
+		/// ключи и данные хранятся по занчению
 		template <class KEY, class VAL>
 		class dictionary
 		{
 			private:
-			struct item {const KEY *key; const VAL *value; item *next;};
-			item *_begin;
+			/// структура, хранящая пару "ключ - значение"
+			struct item {KEY key; VAL value; item *next;};
+			/// указатель на первый элемент списка
+			item *_begin; 
+			/// размер списка
+			int _size = 0;
 			public:
 			/// конструктор по умолчанию
 			dictionary() : _begin(nullptr){}
 			
-			/// копирующий конструктор. Создаются новые item, но указатели на ключи и значение в них те же.
+			/// конструктор инициализации словаря списком пар "ключ - значение"
+			dictionary(const std::initializer_list<item>&);
+			
+			/// копирующий конструктор. Создаются новые item, все объекты копируются
 			dictionary(const dictionary&);
 			
 			/// перемещающий конструктор. Пемремещает указатели на begin и end. все :)
@@ -25,14 +34,31 @@ namespace jpl
 			/// деструктор
 			~dictionary();
 			
-			/// возвращает элемент по указанному индексу. Если индекс отсутсвует, то генерируется исключение типа std::out_of_range
-			VAL operator[](const KEY&) const;
+			/// возвращает константную ссылку на элемент по указанному ключу. Если индекс отсутсвует, то генерируется исключение типа std::out_of_range
+			const VAL& operator[](const KEY&) const;
+			
+			/// возвращает константную ссылку на элемент по указанному ключу. Если индекс отсутсвует, то создается новый элемент с использованием конструктора по умолчанию.
+			VAL& operator[](const KEY&);
 			
 			/// добавляет элемент в словарь. Если в словаре уже есть элемент с заданным ключем, то значение замещается
 			void set(const KEY&, const VAL&);
 			
 			/// элемент с заданным ключем исключается из словоря. Если элемента не было в словаре, словарь не меняется
 			void unset(const KEY&);
+			
+			/// возвращает размер словаря (количество элементов)
+			int size() const {return _size;}
+			
+			/// возвращает true, если словарь пуст
+			bool empty() const {return _begin == nullptr;}
+			
+			/// удаляет все элементы в словаре
+			void clear();
+			
+			/// оператор копирующего присваивания
+			dictionary& operator=(const dictionary&);
+			/// оператор перемещающего присваивания
+			dictionary& operator=(dictionary&&);
 			
 			/// класс итератор
 			class iterator
@@ -41,19 +67,41 @@ namespace jpl
 				item *cur;
 				public:
 				iterator(item* c = nullptr) : cur(c){}
-				const VAL& operator*() const { return *(cur -> value);}
+				VAL& operator*() const { return cur -> value;}
 				/// разыменовывает ключ
-				const KEY& operator-() const { return *(cur -> key);}
+				const KEY& operator-() const { return cur -> key;}
 				iterator& operator++();
 				iterator operator+(int) const;
 				bool operator==(const iterator&) const;
 				bool operator!=(const iterator&) const;
 				
 			};
+			/// класс константного итератора
+			class const_iterator
+			{
+				private:
+				item *cur;
+				public:
+				const_iterator(item* c = nullptr) : cur(c){}
+				const VAL& operator*() const { return cur -> value;}
+				/// разыменовывает ключ
+				const KEY& operator-() const { return cur -> key;}
+				const_iterator& operator++();
+				const_iterator operator+(int) const;
+				bool operator==(const iterator&) const;
+				bool operator!=(const iterator&) const;
+				
+			};
+			
 			/// возвращает итератор ссылающийся на первый элемент
 			iterator begin();
 			/// возвращает итератор ссылающийся на nullptr (как бы элемент после последнего)
 			iterator end();
+			
+			/// возвращает константный итератор ссылающийся на первый элемент
+			iterator cbegin();
+			/// возвращает константный итератор ссылающийся на nullptr (как бы элемент после последнего)
+			iterator cend();
 			
 		};
 				
@@ -74,6 +122,7 @@ namespace jpl
 				cur->next = tmp;
 				cur = tmp;
 			}
+			_size = old.size;
 		}
 		
 		template <class KEY, class VAL>
@@ -81,10 +130,36 @@ namespace jpl
 		{
 			_begin = old._begin;
 			old._begin = nullptr;
+			_size = old.size;
+		}
+		
+		template <class KEY, class VAL>
+		dictionary<KEY, VAL>::dictionary(const std::initializer_list<dictionary<KEY, VAL>::item> &args) : _size(args.size())
+		{
+			if(args.size() == 0)
+			{
+				_begin = nullptr;
+			}
+			else{
+				auto beg = args.begin();
+				auto end = args.end();
+				_begin = new dictionary<KEY, VAL>::item{beg->key, beg->value, nullptr};
+				auto cur = _begin;
+				for(++beg; beg != end; ++beg){
+					cur -> next = new dictionary<KEY, VAL>::item{beg->key, beg->value, nullptr};
+					cur = cur -> next;
+				}
+			}
 		}
 		
 		template <class KEY, class VAL>
 		dictionary<KEY, VAL>::~dictionary()
+		{
+			clear();
+		}
+		
+		template <class KEY, class VAL>
+		void dictionary<KEY, VAL>::clear()
 		{
 			while(_begin)
 			{
@@ -95,15 +170,31 @@ namespace jpl
 		}
 		
 		template <class KEY, class VAL>
-		VAL dictionary<KEY, VAL>::operator[](const KEY& key) const
+		const VAL& dictionary<KEY, VAL>::operator[](const KEY& key) const
 		{
 			dictionary<KEY, VAL>::item *tmp = _begin;
 			while(tmp)
 			{
-				if(*(tmp->key) == key) return *(tmp->value);
+				if(tmp->key == key) return tmp->value;
 				tmp = tmp -> next;
 			}		
-			throw new std::out_of_range("this key was not defined");
+			throw std::out_of_range("this key was not defined");
+		}
+		
+		
+		template <class KEY, class VAL>
+		VAL& dictionary<KEY, VAL>::operator[](const KEY& key)
+		{
+			dictionary<KEY, VAL>::item *tmp = _begin;
+			while(tmp)
+			{
+				if(tmp->key == key) return tmp->value;
+				tmp = tmp -> next;
+			}
+			tmp = new dictionary<KEY, VAL>::item{key, VAL(), _begin};
+			_begin = tmp;
+			++_size;
+			return tmp -> value;
 		}
 		
 		template <class KEY, class VAL>
@@ -113,32 +204,35 @@ namespace jpl
 			
 			while(tmp)
 			{
-				if(*(tmp->key) == key) {
-					tmp -> value = &val;
+				if(tmp->key == key) {
+					tmp -> value = val;
 					return;
 					}
 				tmp = tmp -> next;
 			}		
-			_begin = new dictionary<KEY, VAL>::item{&key, &val, _begin};
+			_begin = new dictionary<KEY, VAL>::item{key, val, _begin};
+			++_size;
 		}
 		
 		template <class KEY, class VAL>
 		void dictionary<KEY, VAL>::unset(const KEY& key)
 		{
 			dictionary<KEY, VAL>::item *cur = _begin;
-			if(*(cur -> key) == key) 
+			if(cur -> key == key) 
 			{
 				dictionary<KEY, VAL>::item *tmp = _begin -> next;
 				delete _begin;
+				--_size;
 				_begin = tmp;
 				return;
 			}
 			while(cur->next)
 			{
-					if(*(cur->next->key) == key) {
+					if(cur->next->key == key) {
 						dictionary<KEY, VAL>::item *tmp = cur -> next -> next;
 						delete cur -> next;
 						cur -> next = tmp;
+						--_size;
 						return;
 					}
 					cur = cur -> next;
@@ -164,7 +258,7 @@ namespace jpl
 				cur = cur -> next;
 				return *this;
 			}
-			throw new std::out_of_range("iterator out bounds");
+			throw std::out_of_range("iterator out bounds");
 		}
 		
 		template <class KEY, class VAL>
@@ -178,7 +272,7 @@ namespace jpl
 				tmp = tmp -> next;
 			}
 			if(i == k) return dictionary<KEY, VAL>::iterator(tmp);
-			throw new std::out_of_range("iterator out bounds");
+			throw std::out_of_range("iterator out bounds");
 		}
 		
 		template <class KEY, class VAL>
@@ -191,7 +285,6 @@ namespace jpl
 		{
 			return cur != b.cur;
 		}
-		
 }
 
 #endif
