@@ -1,3 +1,3 @@
-all: main.cpp processor.cpp 
+all: main.cpp processor.cpp operands.cpp 
 	cls || clear
-	g++ main.cpp processor.cpp -o main.exe
+	g++ main.cpp operands.cpp processor.cpp -o main.exe
