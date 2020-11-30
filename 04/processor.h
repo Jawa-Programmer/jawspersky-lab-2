@@ -6,6 +6,7 @@
 
 #include <vector>
 #include <unordered_set>
+#include <initializer_list>
 #include "../dictionary/dictionary.hpp"
 
 namespace jpl
@@ -14,6 +15,8 @@ namespace jpl
 	
 	// перечисления
 	enum OPERATION_TYPE {OP_ALLC, OP_JUMP, OP_UNARY, OP_BINARY, OP_VAR, OP_NONE};
+	
+	enum OPERAND_TYPE {OPR_CONST, OPR_LABEL, OPR_REG, OPR_RAM};
 	
 	typedef uint16_t byte; // минимальноадресуемой еденицей памяти будет 16 бит
 	
@@ -50,23 +53,23 @@ namespace jpl
 	class command
 	{
 		private:
+		/// тип операции
 		OPERATION_TYPE op;
+		/// метка
 		std::string label;
-		operand *args[3];// считаем, что может быть не более трёх операндов (три операнда нужны только в одном случае - расширенный условный переход (если правда, то адрес1, если ложь, то адрес2)
+		/// список аргументов
+		std::vector<operand*> args;
+		/// указатель на функтор, который выполняет операцию (нужен если операция математическая)
 		const operator_ *act;
 		public:
 		
-		command() : op(OP_NONE), act(nullptr)
-		{
-			args[0] = nullptr;
-			args[1] = nullptr;
-			args[2] = nullptr;
-		}
+		command() : op(OP_NONE), act(nullptr) {}
 		
 		command(OPERATION_TYPE op_, const char* str, const operator_ *act_ = nullptr);
-		command(OPERATION_TYPE op_, const char* str, const operand& op1, const operator_ *act_ = nullptr);
-		command(OPERATION_TYPE op_, const char* str, const operand& op1, const operand& op2, const operator_ *act_ = nullptr);
-		command(OPERATION_TYPE op_, const char* str, const operand& op1, const operand& op2, const operand& op3, const operator_ *act_ = nullptr); // чет vararg функции в с++ сложные. Просто имитирую их поведение путем ввода трех конструкторов)
+		
+		/// важно: полученные по указателю операнды не копируются. По этому используйте синтаксис вроде {new ram_operand(...), new const_operans(...), ...}
+		/// данные, переданные в _args будут уничтожены в деструкторе
+		command(OPERATION_TYPE op_, const char* str, const std::initializer_list<operand*> &_args, const operator_ *act_ = nullptr);
 		
 		command(const command& cmd);
 		command(command&& cmd);
@@ -76,17 +79,21 @@ namespace jpl
 		
 		~command();
 		
+		/// выполняет команду с использованием ресурсов указанного процессора, считая что в данный момент переданное системное время (в тиках)
+		void execute(processor &proc, long time) const;
+		
 		void set_operation(OPERATION_TYPE op_){op = op_;}
 		void set_operator(const operator_ *act_){act = act_;}
 		void set_label(const std::string &lab) {label = lab;}
-		void set_operand(int num, const operand* arg);
+		void add_operand(const operand& arg);
+		void remove_operand(int num);
 		
 		OPERATION_TYPE get_operation() const {return op;}
 		const operator_* get_operator() const {return act;}
 		const std::string& get_label() const {return label;}
-		const operand* get_operand(int num) const {if(num < 0|| num > 2)	throw std::logic_error("out bounds"); return args[num];}
+		const operand* get_operand(int num) const {if(num < 0|| num >= args.size())	throw std::logic_error("out bounds"); return args[num];}
 		
-		int get_args_count() const;
+		int get_args_count() const {return args.size();}
 		
 		/// вывод в поток текста программы
 		friend std::ostream& operator<<(std::ostream &out, const command& cmd);
@@ -96,11 +103,9 @@ namespace jpl
 	{
 		public:
 		virtual ~operand() {}
-		virtual byte value(const processor*) const = 0;
-		virtual void set(processor&, byte) const = 0; // пытается записать указанное значение в фактический адрес оператора (если попытаться записать данные по адресу константного операнда, будет выброшено исключение 
+		//virtual void value() const = 0;
 		virtual operand* copy() const = 0; // возвращает указатель на копию объекта операнда. Пользователь должен сам удалить его после использования! Что касается других классов библиотеки, они ганатированно вызывают delete после каждого вызова clone()
-		virtual bool lock(processor&, ALU*) const = 0; // пытается заблокировать адрес, куда ссылается операнд, в случае если его уже заблокировало другое устройство, вернет false
-		virtual void unlock(processor&, ALU*) const = 0; // пытается разблокировать адрес, куда ссылается операнд. В случае неудачи вызывается исключение (в боудущем это будет заменено на помещение флага ошибки в регистр процессора).
+		virtual OPERAND_TYPE type() const = 0;
 		/// вывод в поток текстового представления операнда
 		virtual std::ostream& print(std::ostream&) const = 0;
 		};
@@ -117,11 +122,11 @@ namespace jpl
 		const_operand& operator=(const const_operand& old) = default;
 		const_operand& operator=(const_operand&& old) = default;
 		
-		virtual byte value(const processor* p) const override{return val;}
-		virtual void set(processor&, byte) const override {throw std::logic_error("Trying set value to constant");} 
-		virtual operand* copy() const  override {return new const_operand(val);}
-		virtual bool lock(processor&, ALU*) const override {return true;} // константный операнд лежит в памяти программы и всегда доступен для чтения
-		virtual void unlock(processor&, ALU*) const override {} // константный операнд лежит в памяти программы и всегда доступен для чтения
+		byte value() const {return val;}
+		
+		virtual OPERAND_TYPE type() const override {return OPR_CONST;}
+		
+		virtual const_operand* copy() const  override {return new const_operand(val);}
 		virtual std::ostream& print(std::ostream& out) const override { return out << val;}
 	};
 	
@@ -132,11 +137,12 @@ namespace jpl
 		public:
 		reg_operand(const operand &adr_) : adr(adr_.copy()) {}
 		~reg_operand(){	delete adr;}
-		virtual byte value(const processor* p) const override;
-		virtual void set(processor&, byte) const override;
-		virtual operand* copy() const override {return new reg_operand(*adr);}
-		virtual bool lock(processor&, ALU*) const override; 
-		virtual void unlock(processor&, ALU*) const override;
+		
+		const operand& value() const {return *adr;}
+		
+		virtual OPERAND_TYPE type() const override {return OPR_REG;}
+		
+		virtual reg_operand* copy() const override {return new reg_operand(*adr);}
 		virtual std::ostream& print(std::ostream&) const override;
 	};		
 	class label_operand : public operand
@@ -145,12 +151,12 @@ namespace jpl
 		std::string label; // этот операнд хранит число. используется для более легкого перехода в программе
 		public:
 		label_operand(const std::string& lab); // проверяет соответсвие строки стандарту языка (от одного до 8 латинских букв) Если содержит неподходящие символы или имеет неправильную длинну, то выбрасывается исключение
-		virtual byte value(const processor* p) const override;
-		const std::string& get_label() const {return label;}
-		virtual void set(processor&, byte) const override {throw std::logic_error("Trying set value to constant");}
-		virtual operand* copy() const override {return new label_operand(label);}
-		virtual bool lock(processor&, ALU*) const override {return true;} 
-		virtual void unlock(processor&, ALU*) const override {}
+		const std::string& value() const {return label;}
+		
+		virtual OPERAND_TYPE type() const override {return OPR_LABEL;}
+		
+		virtual label_operand* copy() const override {return new label_operand(label);}
+		
 		virtual std::ostream& print(std::ostream&) const override;
 	};
 	
@@ -163,11 +169,15 @@ namespace jpl
 		ram_operand(const operand &adr_) : adr(adr_.copy()), is_lab(false) {}
 		ram_operand(const label_operand &adr_);
 		~ram_operand(){	delete adr;}
-		virtual byte value(const processor* p) const override;
-		virtual void set(processor&, byte) const override;
+		
+		const operand& value() const {return *adr;}
+		
+		virtual OPERAND_TYPE type() const override {return OPR_RAM;}
+		
+		bool is_label() const {return is_lab;}
+		
 		virtual operand* copy() const override;
-		virtual bool lock(processor&, ALU*) const override; 
-		virtual void unlock(processor&, ALU*) const override;
+		
 		virtual std::ostream& print(std::ostream&) const override;
 	};
 	/// устройство управления не требует инициализации, оно просто передает очередную команду процессора в свободное ALU, или само выполняет команду, если она связана с переходом или выделением памяти.
@@ -177,6 +187,7 @@ namespace jpl
 		uint64_t time = 0;
 		public:
 		bool on_tick(processor&);
+		
 	};
 	class ALU
 	{
@@ -195,8 +206,10 @@ namespace jpl
 		///  пытается завершить уже начатую комманду. Если команда не завершена, то возвращает false
 		bool operator()(processor&, int);
 		
-		//bool lock(processor& proc,const operand* op) {return op -> lock(proc, this);} // пытается заблокировать операнд собой
-		//void unlock(processor& proc,const operand* op){op->unlock(proc, this);} // пытается разблокировать операнд собой
+		/// методы блокировки операндов. Константные операнды пропускаются (возвращается true). Если уже заблокированно чем-то другим, то возвращается false	
+		bool lock(processor &proc, const operand& op);
+		void unlock(processor &proc, const operand& op);
+		
 		/// добавить оператор, который можно использовать
 		void add_operator(const operator_* op){avcom.insert(op);}
 		void remove_operator(const operator_* op){avcom.erase(op);}
@@ -299,11 +312,18 @@ namespace jpl
 		/// запускает исполнение переданной программы. Гарантируется, что изменится только счётчик, но не сама программа.
 		void run();
 		
+		bool is_free(const operand& op) const;
+		
+		slot& get_slot(const operand& op);
+		const slot& get_slot(const operand& op) const;
+		byte get_value(const operand& op) const;
+		
 		progmem* get_progmem() {return prog;}
 		const progmem* get_progmem() const {return prog;}
 		
 		void add_alu(const ALU& alu){alus.push_back(alu);}
 		void add_alu(ALU&& alu){alus.push_back(alu);} /// для семантики proc.add_alu(ALU());
+		
 		void remove_alu(int a){alus.erase(alus.begin()+a);}
 		ALU& edit_alu(int a){return alus[a];}
 				
@@ -311,106 +331,160 @@ namespace jpl
 		auto al_end() const {return alus.end();}
 		
 		slot& reg_access(byte i) {return regs[i];} // предостовляет доступ к указанному регистру из блока регистров процессора
+		const slot& reg_access(byte i) const {return regs[i];} // предостовляет доступ к указанному регистру из блока регистров процессора только для чтения
 		const slot& read_reg(byte i) const {return regs[i];} // получает регистр только для чтения
 		
 		void set_RAM(RAM *ram_){ram = ram_;}
 		RAM* get_RAM() const {return ram;}
 	};
 	
-	namespace operators { 
+	namespace operators {
+		
 		class base 
 		{
 			public:
 			virtual std::ostream& print(std::ostream&) const = 0; // выводит в поток текстовое название оператора (совпадает с названием константы безымянного класса)
-			virtual byte operator()(const byte*) const = 0; // передается список фактических значений, возвращается результат выполнения оператора.
+			virtual byte operator()(const std::initializer_list<byte>&) const = 0; // передается список фактических значений, возвращается результат выполнения оператора.
 		};
 		const class : public base 
 		{
 			public:
 			virtual std::ostream& print(std::ostream& out) const override {return out << "ADD";}
-			virtual byte operator()(const byte *args) const override {return args[0] + args[1];}
+			virtual byte operator()(const std::initializer_list<byte> &args) const override {
+				if(args.size() < 2) throw std::logic_error("incorrect count of args");
+				const byte *beg = args.begin();
+				return *beg + *(beg+1);
+				}
 		} ADD;
 		
 		const class : public base 
 		{
 			public:
 			virtual std::ostream& print(std::ostream& out) const override {return out << "SUB";}
-			virtual byte operator()(const byte *args) const override {return args[0] - args[1];}
+			virtual byte operator()(const std::initializer_list<byte> &args) const override {
+				if(args.size() < 2) throw std::logic_error("incorrect count of args");
+				const byte *beg = args.begin();
+				return *beg - *(beg+1);
+				}
 		} SUB;
 		const class : public base 
 		{
 			public:
 			virtual std::ostream& print(std::ostream& out) const override {return out << "DIV";}
-			virtual byte operator()(const byte *args) const override {return args[0] / args[1];}
+			virtual byte operator()(const std::initializer_list<byte> &args) const override {
+				if(args.size() < 2) throw std::logic_error("incorrect count of args");
+				const byte *beg = args.begin();
+				return *beg / *(beg+1);
+				}
 		} DIV;
 		
 		const class : public base 
 		{
 			public:
 			virtual std::ostream& print(std::ostream& out) const override {return out << "MOD";}
-			virtual byte operator()(const byte *args) const override {return args[0] % args[1];}
+			virtual byte operator()(const std::initializer_list<byte> &args) const override {
+				if(args.size() < 2) throw std::logic_error("incorrect count of args");
+				const byte *beg = args.begin();
+				return *beg % *(beg+1);
+				}
 		} MOD;
 		
 		const class : public base 
 		{
 			public:
 			virtual std::ostream& print(std::ostream& out) const override {return out << "MUL";}
-			virtual byte operator()(const byte *args) const override {return args[0] * args[1];}
+			virtual byte operator()(const std::initializer_list<byte> &args) const override {
+				if(args.size() < 2) throw std::logic_error("incorrect count of args");
+				const byte *beg = args.begin();
+				return *beg * *(beg+1);
+				}
 		} MUL;
 		
 		const class : public base 
 		{
 			public:
 			virtual std::ostream& print(std::ostream& out) const override {return out << "INC";}
-			virtual byte operator()(const byte *args) const override {return args[0] + 1;}
+			virtual byte operator()(const std::initializer_list<byte> &args) const override {
+				if(args.size() < 1) throw std::logic_error("incorrect count of args");
+				const byte *beg = args.begin();
+				return *beg + 1;
+				}
 		} INC;
 		const class : public base 
 		{
 			public:
 			virtual std::ostream& print(std::ostream& out) const override {return out << "DEC";}
-			virtual byte operator()(const byte *args) const override {return args[0] - 1;}
+			virtual byte operator()(const std::initializer_list<byte> &args) const override {
+				if(args.size() < 1) throw std::logic_error("incorrect count of args");
+				const byte *beg = args.begin();
+				return *beg - 1;
+				}
 		} DEC;
 		
 		const class : public base 
 		{
 			public:
 			virtual std::ostream& print(std::ostream& out) const override {return out << "SET";}
-			virtual byte operator()(const byte *args) const override {return args[1];}
+			virtual byte operator()(const std::initializer_list<byte> &args) const override {
+				if(args.size() < 2) throw std::logic_error("incorrect count of args");
+				const byte *beg = args.begin();
+				return *(beg+1);
+				}
 		} SET;
 		
 		const class : public base 
 		{
 			public:
 			virtual std::ostream& print(std::ostream& out) const override {return out << "ADD";}
-			virtual byte operator()(const byte *args) const override {return -args[0];}
+			virtual byte operator()(const std::initializer_list<byte> &args) const override {
+				if(args.size() < 1) throw std::logic_error("incorrect count of args");
+				const byte *beg = args.begin();
+				return - *beg;
+				}
 		} INV;
 		
 		const class : public base 
 		{
 			public:
 			virtual std::ostream& print(std::ostream& out) const override {return out << "AND";}
-			virtual byte operator()(const byte *args) const override {return args[0] && args[1];}
+			virtual byte operator()(const std::initializer_list<byte> &args) const override {
+				if(args.size() < 2) throw std::logic_error("incorrect count of args");
+				const byte *beg = args.begin();
+				return *beg && *(beg+1);
+				}
 		} AND;
 		
 		const class : public base 
 		{
 			public:
 			virtual std::ostream& print(std::ostream& out) const override {return out << "OR";}
-			virtual byte operator()(const byte *args) const override {return args[0] || args[1];}
+			virtual byte operator()(const std::initializer_list<byte> &args) const override {
+				if(args.size() < 2) throw std::logic_error("incorrect count of args");
+				const byte *beg = args.begin();
+				return *beg || *(beg+1);
+				}
 		} OR;
 		
 		const class : public base 
 		{
 			public:
 			virtual std::ostream& print(std::ostream& out) const override {return out << "XOR";}
-			virtual byte operator()(const byte *args) const override {return (bool)args[0] != (bool)args[1];}
+			virtual byte operator()(const std::initializer_list<byte> &args) const override {
+				if(args.size() < 2) throw std::logic_error("incorrect count of args");
+				const byte *beg = args.begin();
+				return ((bool)*beg) != ((bool)*(beg+1));
+				}
 		} XOR;
 		
 		const class : public base 
 		{
 			public:
-			virtual std::ostream& print(std::ostream& out) const override {return out << "XOR";}
-			virtual byte operator()(const byte *args) const override {return !args[0];}
+			virtual std::ostream& print(std::ostream& out) const override {return out << "NOT";}
+			virtual byte operator()(const std::initializer_list<byte> &args) const override {
+				if(args.size() < 1) throw std::logic_error("incorrect count of args");
+				const byte *beg = args.begin();
+				return !*beg;
+				}
 		} NOT;
 		
 	}

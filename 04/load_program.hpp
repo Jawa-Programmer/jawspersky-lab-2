@@ -53,7 +53,7 @@ namespace jpl
 			
 			if(oper.tp == OP_VAR)
 			{	
-				return command(oper.tp, nullptr, label_operand(line[1]));;
+				return command(oper.tp, nullptr, {new label_operand(line[1])});
 			}
 			
 			std::vector<operand*> args;
@@ -64,16 +64,13 @@ namespace jpl
 			if(args.size() == 0)
 				cmd = command(oper.tp, nullptr, oper.op);
 			else if(args.size() == 1)
-				cmd = command(oper.tp, nullptr, *args[0], oper.op);
+				cmd = command(oper.tp, nullptr, {args[0]}, oper.op);
 			else if(args.size() == 2)
-				cmd = command(oper.tp, nullptr, *args[0], *args[1], oper.op);
+				cmd = command(oper.tp, nullptr, {args[0], args[1]}, oper.op);
 			else if(args.size() == 3)
-				cmd = command(oper.tp, nullptr, *args[0], *args[1], *args[2], oper.op);
+				cmd = command(oper.tp, nullptr, {args[0], args[1], args[2]}, oper.op);
 			
-			while(!args.empty()){
-				delete args[args.size()-1];
-				args.pop_back();
-			}
+			args.clear();
 			return cmd;
 		}		
 	}
@@ -82,6 +79,7 @@ namespace jpl
 	{
 		prog.clear();
 		local::labels.clear();
+		local::labels.insert("end"); // указатель по-умолчанию. По "стандарту" моего языка, "end" является меткой конца программы. То есть JUMP end значит закончить исполнение программы немедленно.
 		std::string line;
 		while(getline(in, line))
 		{
@@ -107,7 +105,7 @@ namespace jpl
 			command cmd = local::cmd_from_string(line_n);
 			cmd.set_label(lab);
 			prog.insert(cmd);
-			//std::cout << "command = " << cmd << std::endl;
+			std::cout << "command = " << cmd << std::endl;
 		}
 		local::labels.clear();
 	}
