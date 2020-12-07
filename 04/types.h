@@ -8,8 +8,9 @@ namespace jpl
 	bool is_valid_name(const std::string& lab);
 	
 	// перечисления
-	enum OPERATION_TYPE {OP_ALLC, OP_JUMP, OP_UNARY, OP_BINARY, OP_VAR, OP_NONE};
+	enum OPERATION_TYPE {OP_ALLC, OP_JUMP, OP_UNARY, OP_BINARY, OP_VAR, OP_FREE, OP_NONE};
 	enum OPERAND_TYPE {OPR_CONST, OPR_LABEL, OPR_REG, OPR_RAM};
+	enum EXECUTOR {E_CONTROLLER, E_ALU};
 	
 	
 	typedef uint16_t byte; // минимальноадресуемой еденицей памяти будет 16 бит
@@ -32,15 +33,19 @@ namespace jpl
 	
 	/// класс процессор. Связывает между собой УУ, ИУ, память и регистры
 	class processor;
+	/// описатель процесса. Содержит ссылку на память программы, счётчик команд, адрес статически выделенной памяти памяти
+	class process;
 	/// ячейка памяти. Содержит данные и информацию о блокировавшем устойстве
 	struct slot {const ALU *locker = nullptr; byte data = 0;};
 	
-	/// класс операции. (унарная, бинарная, переход, инициализация памяти)
-	//namespace operations {class base;}
-	//typedef operations::base operation;
+	/// класс операции. (унарная, бинарная, переход, инициализация памяти, выделение памяти)
+	namespace operations {class base;}
+	typedef operations::base operation;
+	
 	/// класс оператора (ADD SUB MUL DIV и тд)
 	namespace operators {class base;}
 	typedef operators::base operator_;
+	
 }
 
 #endif

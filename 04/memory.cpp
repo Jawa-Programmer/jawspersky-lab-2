@@ -33,19 +33,43 @@ namespace jpl{
 		return regs[adr_];
 	}
 	///--- RAM ---///
-	byte RAM::alloc(size_t s)
+	byte RAM::alloc(size_t s, const process * own)
 	{
 		if(s < 1) throw std::logic_error("memory block size must be greater then zero");
-		int ret = ram.size();
-		ram.resize(ret + s);
+		byte ret = 0;
+		auto beg = blocks.cbegin();
+		for(; beg != blocks.cend(); ++beg)
+		{
+			if(beg -> adr >= ret + s) break;
+			ret = beg -> adr + beg -> len;
+		}
+		blocks.insert(beg, {ret, s, own});
+		if(ret+s > ram.size()) 
+			ram.resize(ret + s);
 		return ret;
 	}
+	
+	void RAM::free(byte adr, const process *own)
+	{
+		auto beg = blocks.cbegin();
+		for(; beg != blocks.cend() && beg -> adr != adr; ++beg); // можно было бы и дехотомию запилить, но мне лень :)
+		if(beg == blocks.cend()) throw std::logic_error("block with this addres not exist");
+		if(beg -> owner != own) throw std::logic_error("this processor not owns this block");
+		blocks.erase(beg);
+	}
+	
 	std::ostream& operator<<(std::ostream& out, const RAM& ram)
 	{
 		auto end = ram.ram.cend();
+		auto blk = ram.blocks.cbegin();
 		int i = 0;
-		for(auto cur = ram.ram.cbegin(); cur != end; ++cur)
-			out << "[0x" << std::hex << i++ <<  "]:\t" << std::dec << (*cur).data  << std::endl;
+		for(auto cur = ram.ram.cbegin(); cur != end; ++cur){
+			bool end = (blk->adr + blk->len-1) == i;
+			if(blk->adr == i){ out << blk->owner << ":{" <<std::endl; ++blk;}
+			out << "[0x" << std::hex << i++ <<  "]:\t" << std::dec << (*cur).data;
+			if(end) out << "}";
+			out << std::endl;
+			}
 		return out;
 	}
 }

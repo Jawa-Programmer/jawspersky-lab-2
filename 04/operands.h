@@ -55,14 +55,20 @@ namespace jpl
 	class label_operand : public operand
 	{
 		private:
+		bool unnamed;
+		int offset;
 		std::string label; // этот операнд хранит число. используется для более легкого перехода в программе
 		public:
-		label_operand(const std::string& lab); // проверяет соответсвие строки стандарту языка (от одного до 8 латинских букв) Если содержит неподходящие символы или имеет неправильную длинну, то выбрасывается исключение
+		
+		label_operand(const std::string& lab, int off = 0, bool unnamed = false); // проверяет соответсвие строки стандарту языка (от одного до 8 латинских букв) Если содержит неподходящие символы или имеет неправильную длинну, то выбрасывается исключение
 		const std::string& value() const {return label;}
+		int get_offset() const {return offset;}
 		
 		virtual OPERAND_TYPE type() const override {return OPR_LABEL;}
 		
-		virtual label_operand* copy() const override {return new label_operand(label);}
+		bool is_unnamed() const {return unnamed;}
+		
+		virtual label_operand* copy() const override {return new label_operand(label, offset, unnamed);}
 		
 		virtual std::ostream& print(std::ostream&) const override;
 	};

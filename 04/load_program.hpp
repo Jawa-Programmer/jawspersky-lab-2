@@ -5,55 +5,68 @@
 #include <iterator>
 #include <sstream>
 
+
 namespace jpl
 {
 	namespace local
 	{
 		std::unordered_set<std::string> labels;
 		
-		struct operation {OPERATION_TYPE tp; const operator_ *op;};
+		struct operation_ {const operation *tp; const operator_ *op;};
 		
-		std::map<std::string, operation> DCTR = 
+		std::map<std::string, operation_> DCTR = 
 		{
-			{"ALLC", {OP_ALLC, nullptr}},
-			{"VAR", {OP_VAR, nullptr}},
-			{"JUMP", {OP_JUMP, nullptr}},
+			{"ALLC", {&operations::ALLC, nullptr}},
+			{"VAR", {&operations::VAR, nullptr}},
+			{"JUMP", {&operations::JUMP, nullptr}},
+			{"FREE", {&operations::FREE, nullptr}},
 			
-			{"ADD", {OP_BINARY, &operators::ADD}},
-			{"SUB", {OP_BINARY, &operators::SUB}},
-			{"MUL", {OP_BINARY, &operators::MUL}},
-			{"DIV", {OP_BINARY, &operators::DIV}},
-			{"MOD", {OP_BINARY, &operators::MOD}},
-			{"INC", {OP_UNARY, &operators::INC}},
-			{"DEC", {OP_UNARY, &operators::DEC}},
-			{"SET", {OP_BINARY, &operators::SET}},
-			{"INV", {OP_UNARY, &operators::INV}},
-			{"AND", {OP_BINARY, &operators::AND}},
-			{"OR", {OP_BINARY, &operators::OR}},
-			{"XOR", {OP_BINARY, &operators::XOR}},
-			{"NOT", {OP_UNARY, &operators::NOT}},
+			{"ADD", {&operations::BINARY, &operators::ADD}},
+			{"SUB", {&operations::BINARY, &operators::SUB}},
+			{"MUL", {&operations::BINARY, &operators::MUL}},
+			{"DIV", {&operations::BINARY, &operators::DIV}},
+			{"MOD", {&operations::BINARY, &operators::MOD}},
+			{"INC", {&operations::UNARY, &operators::INC}},
+			{"DEC", {&operations::UNARY, &operators::DEC}},
+			{"SET", {&operations::BINARY, &operators::SET}},
+			{"INV", {&operations::UNARY, &operators::INV}},
+			{"AND", {&operations::BINARY, &operators::AND}},
+			{"OR", {&operations::BINARY, &operators::OR}},
+			{"XOR", {&operations::BINARY, &operators::XOR}},
+			{"NOT", {&operations::UNARY, &operators::NOT}}
 		};
 		
 		operand* op_from_string(const std::string& str)
-		{
+		{		
 			if(str[0] == '('){return new reg_operand(*op_from_string(str.substr(1)));}
 			else if(str[0] == '['){return new ram_operand(*op_from_string(str.substr(1)));}
+			else if(str[0] == '*'){return new label_operand(str.substr(1), 0, true);}
 			else if(isdigit(str[0])){return new const_operand(std::stoi(str));}
 			else{
-				if(labels.find(str) == labels.end())
-					return new ram_operand(str);
+				auto plus = str.find('+');
+				std::string label_ = str;
+				int of_ = 0;
+				if(plus != std::string::npos){
+					label_ = str.substr(0, plus);
+					of_ = std::stoi(str.substr(plus+1));
+				}				
+				if(labels.find(label_) == labels.end())
+					return new ram_operand(label_operand(label_, of_));
 				else
-					return new label_operand(str);
+					return new label_operand(label_, of_);
 			}
 		}
 		
 		command cmd_from_string(const std::vector<std::string> line)
 		{
-			operation oper = DCTR[line[0]];
+			operation_ oper = DCTR[line[0]];
 			
-			if(oper.tp == OP_VAR)
+			if(oper.tp == &operations::VAR)
 			{	
-				return command(oper.tp, nullptr, {new label_operand(line[1])});
+				if(line.size() > 2 )
+					return command(*oper.tp, nullptr, {new label_operand(line[1]), new const_operand(std::stoi(line[2]))});					
+				else
+					return command(*oper.tp, nullptr, {new label_operand(line[1])});
 			}
 			
 			std::vector<operand*> args;
@@ -62,13 +75,13 @@ namespace jpl
 			
 			command cmd;
 			if(args.size() == 0)
-				cmd = command(oper.tp, nullptr, oper.op);
+				cmd = command(*oper.tp, nullptr, oper.op);
 			else if(args.size() == 1)
-				cmd = command(oper.tp, nullptr, {args[0]}, oper.op);
+				cmd = command(*oper.tp, nullptr, {args[0]}, oper.op);
 			else if(args.size() == 2)
-				cmd = command(oper.tp, nullptr, {args[0], args[1]}, oper.op);
+				cmd = command(*oper.tp, nullptr, {args[0], args[1]}, oper.op);
 			else if(args.size() == 3)
-				cmd = command(oper.tp, nullptr, {args[0], args[1], args[2]}, oper.op);
+				cmd = command(*oper.tp, nullptr, {args[0], args[1], args[2]}, oper.op);
 			
 			args.clear();
 			return cmd;
@@ -80,8 +93,24 @@ namespace jpl
 		prog.clear();
 		local::labels.clear();
 		local::labels.insert("end"); // указатель по-умолчанию. По "стандарту" моего языка, "end" является меткой конца программы. То есть JUMP end значит закончить исполнение программы немедленно.
+		
+		std::stringstream iost; // костыль - мы делаем копию исходного кода программы, так как в общем поиск в потоке не возможен, но для правильной интерпретации меток необходимо делать два захода на чтение кода - в первый заход читаются только метки, во второй заход читается весь код.		
+		{
+			std::string line;
+			int i = 0;
+			while(getline(in, line))
+			{
+				iost << line << std::endl;
+				auto fnd = line.find(":");
+				if(fnd != std::string::npos)
+					local::labels.insert(line.substr(0, fnd));
+				i++;
+			}			
+		}
+		
+		
 		std::string line;
-		while(getline(in, line))
+		while(getline(iost, line))
 		{
 			line = line.substr(0, line.find(';')); // позволит писать комментарий с середины строки
 			if(line.length() == 0) continue;
@@ -98,15 +127,15 @@ namespace jpl
 			{
 				lab = line_n[0].substr(0, line_n[0].size()-1);
 				prog.set_name(lab, prog.size());
-				local::labels.insert(lab);
 				line_n.erase(line_n.begin());
 				if(line_n.size() == 0) continue;
 			}	
 			command cmd = local::cmd_from_string(line_n);
 			cmd.set_label(lab);
 			prog.insert(cmd);
-			std::cout << "command = " << cmd << std::endl;
+			//std::cout << "command = " << cmd << std::endl;
 		}
+		prog.set_name("end", prog.size());
 		local::labels.clear();
 	}
 }
