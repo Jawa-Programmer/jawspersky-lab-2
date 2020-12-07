@@ -17,7 +17,7 @@ dictionary<std::string, int> dic({{"ab", 2}, {"c", 1}});
 	
 	while(cur != end)
 	{
-		cout << "vec[" << (-cur) << "] = " << *cur << endl;
+		cout << "vec[" << cur->key << "] = " << cur->value << endl;
 		cur = cur + 1;
 	}
 	cout << "-----------------------------" << endl;
@@ -33,7 +33,7 @@ dictionary<std::string, int> dic({{"ab", 2}, {"c", 1}});
 	cout << "-----------------------------" << endl;
 	while(cur != end)
 	{
-		cout << "vec[" << (-cur) << "] = " << *cur << endl;
+		cout << "vec[" << cur->key << "] = " << cur->value << endl;
 		++cur;
 	}
 	
