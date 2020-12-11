@@ -107,7 +107,7 @@ namespace jpl
 			for(auto al = proc.al_begin(); al != end; ++al)
 				if((*al).is_available(*act) && (*al)(proc, *this, time)){
 					is_exec = true;  
-					std::cout << "(" << time << "t)\t[0x" << std::hex << prog.count() << std::dec << "]\t" << *this << std::endl;
+				//	std::cout << "(" << time << "t)\t[0x" << std::hex << prog.count() << std::dec << "]\t" << *this << std::endl;
 					break;
 				}
 			if(is_exec)
@@ -172,7 +172,7 @@ namespace jpl
 		}
 		if(!prog.has_next())
 		{
-			std::cout << "(" << time << "t)\t" << "awaiting for ALUs" << std::endl;
+			//std::cout << "(" << time << "t)\t" << "awaiting for ALUs" << std::endl;
 			++time;
 			return false;
 		}
@@ -332,7 +332,10 @@ namespace jpl
 				int base = 0;
 				if(rm->is_label())
 					base = prog.get_base();
-				return (*ram)[get_value(rm->value()) + base];
+				ram -> lock();	
+				slot &tmp =  (*ram)[get_value(rm->value()) + base];
+				ram -> unlock();	
+				return tmp;
 			}
 			break;
 			case OPR_REG:{
@@ -355,7 +358,10 @@ namespace jpl
 				const ram_operand *rm = (const ram_operand*) &op;int base = 0;
 				if(rm->is_label())
 					base = prog.get_base();
-				return (*ram)[get_value(rm->value()) + base];
+				ram -> lock();	
+				const slot &tmp = (*ram)[get_value(rm->value()) + base];
+				ram -> unlock();		
+				return tmp;
 			}
 			break;
 			case OPR_REG:{	
@@ -385,7 +391,11 @@ namespace jpl
 				int base = 0;
 				if(rm->is_label())
 					base = prog.get_base();
-				return (*ram)[get_value(rm->value()) + base].data;
+					
+				ram -> lock();					
+				byte tmp = (*ram)[get_value(rm->value()) + base].data;
+				ram -> unlock();		
+				return tmp;
 			}
 			break;
 			case OPR_REG:{
@@ -400,13 +410,18 @@ namespace jpl
 	{
 		prog = process(program);
 		prog.jump(0);
+		ram->lock();
 		if(prog.get_progmem().get_weight()) prog.set_base(ram->alloc(prog.get_progmem().get_weight(), &prog));
+		ram->unlock();
 		//prog->set_name("end", prog->size()); // переход в конец программы
 		while(control.on_tick(*this));
 		auto end = al_end();
 		for(auto al = al_begin(); al != end; ++al)
 			while(al->is_running()) control.on_tick(*this);			
-		if(prog.get_progmem().get_weight())
+		if(prog.get_progmem().get_weight()){
+			ram -> lock();
 			ram -> free(prog.get_base(), &prog);
+			ram -> unlock();
+		}
 	}
 }

@@ -27,14 +27,20 @@ namespace jpl {
 					int argc = cmd.get_args_count();
 					process &prog = proc.get_process();
 					if(argc == 1){
-						std::cout << "(" << time << "t)\t[0x" << std::hex << prog.count() << std::dec << "]\t" << cmd << std::endl;
-						byte adr = proc.get_RAM() -> alloc(1, &prog);  // выделяем память размером в 1 байт. Указатель помещаем в аргумент
+					//	std::cout << "(" << time << "t)\t[0x" << std::hex << prog.count() << std::dec << "]\t" << cmd << std::endl;
+						RAM *ram = proc.get_RAM();
+						ram->lock();
+						byte adr = ram -> alloc(1, &prog);  // выделяем память размером в 1 байт. Указатель помещаем в аргумент
+						ram->unlock();
 						proc.get_slot(*cmd.get_operand(0)).data = adr;
 						prog.inc();
 					}
 					else if(argc == 2){
-						std::cout << "(" << time << "t)\t[0x" << std::hex << prog.count() << std::dec << "]\t" << cmd << std::endl;
-						byte adr = proc.get_RAM() -> alloc(proc.get_value(*cmd.get_operand(1)), &prog); // выделяем память размером в переданное число вторым аргументом число. Указатель помещаем в первый аргумент
+					//	std::cout << "(" << time << "t)\t[0x" << std::hex << prog.count() << std::dec << "]\t" << cmd << std::endl;
+						RAM *ram = proc.get_RAM();
+						ram->lock();
+						byte adr = ram -> alloc(proc.get_value(*cmd.get_operand(1)), &prog); // выделяем память размером в переданное число вторым аргументом число. Указатель помещаем в первый аргумент
+						ram->unlock();
 						proc.get_slot(*cmd.get_operand(0)).data = adr;
 						prog.inc();
 					}
@@ -50,8 +56,11 @@ namespace jpl {
 					int argc = cmd.get_args_count();
 					process &prog = proc.get_process();
 					if(argc == 1){
-							std::cout << "(" << time << "t)\t[0x" << std::hex << prog.count() << std::dec << "]\t" << cmd << std::endl;
-							proc.get_RAM() -> free(proc.get_value(*cmd.get_operand(0)), &prog);  // освобождение динамически выделенной памяти
+					//		std::cout << "(" << time << "t)\t[0x" << std::hex << prog.count() << std::dec << "]\t" << cmd << std::endl;
+							RAM *ram = proc.get_RAM();
+							ram->lock();
+							ram -> free(proc.get_value(*cmd.get_operand(0)), &prog);  // освобождение динамически выделенной памяти
+							ram->unlock();
 							prog.inc();
 					}
 					else throw std::logic_error("FREE must have only one");
@@ -88,8 +97,8 @@ namespace jpl {
 						else
 							prog.jump(proc.get_value(*cmd.get_operand(2)));
 					}
-					if(is_e)
-						std::cout << "(" << time << "t)\t[0x" << std::hex << cc << std::dec << "]\t" << cmd << std::endl;
+					//if(is_e)
+					//	std::cout << "(" << time << "t)\t[0x" << std::hex << cc << std::dec << "]\t" << cmd << std::endl;
 				}
 		} JUMP;
 		const class : public base 
@@ -98,7 +107,7 @@ namespace jpl {
 				virtual OPERATION_TYPE type() const override {return OP_VAR;}
 				virtual EXECUTOR executor() const override {return E_CONTROLLER;}
 				virtual void operator()(processor &proc, const command& cmd, long time) const override{
-					std::cout << "(" << time << "t)\t[0x" << std::hex << proc.get_process().count() << std::dec << "]\t" << cmd << std::endl;
+				//	std::cout << "(" << time << "t)\t[0x" << std::hex << proc.get_process().count() << std::dec << "]\t" << cmd << std::endl;
 					proc.get_process().inc();
 				}
 		} VAR;

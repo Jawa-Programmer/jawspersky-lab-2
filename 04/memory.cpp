@@ -58,14 +58,18 @@ namespace jpl{
 		blocks.erase(beg);
 	}
 	
-	std::ostream& operator<<(std::ostream& out, const RAM& ram)
+	std::ostream& operator<<(std::ostream& out, const RAM& ram) // ну, вывод пока не буду блокировать, надеемся что пользователь сам будет ставить join на потоки процессоров
 	{
 		auto end = ram.ram.cend();
 		auto blk = ram.blocks.cbegin();
+		auto blke = ram.blocks.cend();
 		int i = 0;
 		for(auto cur = ram.ram.cbegin(); cur != end; ++cur){
-			bool end = (blk->adr + blk->len-1) == i;
-			if(blk->adr == i){ out << blk->owner << ":{" <<std::endl; ++blk;}
+			bool end = false;
+			if(blk != blke){
+				end = (blk->adr + blk->len-1) == i;
+				if(blk->adr == i){ out << blk->owner << ":{" <<std::endl; ++blk;}
+			}
 			out << "[0x" << std::hex << i++ <<  "]:\t" << std::dec << (*cur).data;
 			if(end) out << "}";
 			out << std::endl;
