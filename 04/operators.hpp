@@ -91,16 +91,6 @@ namespace jpl {
 				}
 		} DEC;
 		
-		const class : public base 
-		{
-			public:
-			virtual std::ostream& print(std::ostream& out) const override {return out << "SET";}
-			virtual byte operator()(const std::initializer_list<byte> &args) const override {
-				if(args.size() != 2) throw std::logic_error("incorrect count of args");
-				const byte *beg = args.begin();
-				return *(beg+1);
-				}
-		} SET;
 		
 		const class : public base 
 		{

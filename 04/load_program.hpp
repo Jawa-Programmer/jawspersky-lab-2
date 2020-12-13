@@ -20,6 +20,15 @@ namespace jpl
 			{"VAR", {&operations::VAR, nullptr}},
 			{"JUMP", {&operations::JUMP, nullptr}},
 			{"FREE", {&operations::FREE, nullptr}},
+			{"PUSH", {&operations::PUSH, nullptr}},
+			{"PUSHR", {&operations::PUSHR, nullptr}},
+			{"POP", {&operations::POP, nullptr}},
+			{"POPR", {&operations::POPR, nullptr}},
+			{"CALL", {&operations::CALL, nullptr}},
+			{"RET", {&operations::RET, nullptr}},
+			{"PEEK", {&operations::PEEK, nullptr}},
+			
+			{"SET", {&operations::SET, nullptr}},
 			
 			{"ADD", {&operations::BINARY, &operators::ADD}},
 			{"SUB", {&operations::BINARY, &operators::SUB}},
@@ -28,7 +37,6 @@ namespace jpl
 			{"MOD", {&operations::BINARY, &operators::MOD}},
 			{"INC", {&operations::UNARY, &operators::INC}},
 			{"DEC", {&operations::UNARY, &operators::DEC}},
-			{"SET", {&operations::BINARY, &operators::SET}},
 			{"INV", {&operations::UNARY, &operators::INV}},
 			{"AND", {&operations::BINARY, &operators::AND}},
 			{"OR", {&operations::BINARY, &operators::OR}},
@@ -92,8 +100,7 @@ namespace jpl
 	{
 		prog.clear();
 		local::labels.clear();
-		local::labels.insert("end"); // указатель по-умолчанию. По "стандарту" моего языка, "end" является меткой конца программы. То есть JUMP end значит закончить исполнение программы немедленно.
-		
+		local::labels.insert("end"); // указатель по-умолчанию. По "стандарту" моего языка, "end" является меткой конца программы. То есть JUMP end или CALL end значит закончить исполнение программы немедленно.
 		std::stringstream iost; // костыль - мы делаем копию исходного кода программы, так как в общем поиск в потоке не возможен, но для правильной интерпретации меток необходимо делать два захода на чтение кода - в первый заход читаются только метки, во второй заход читается весь код.		
 		{
 			std::string line;
@@ -110,6 +117,7 @@ namespace jpl
 		
 		
 		std::string line;
+		std::string llb; bool prw = false; // для случая, когда метка соит на строке перед строкой команды
 		while(getline(iost, line))
 		{
 			line = line.substr(0, line.find(';')); // позволит писать комментарий с середины строки
@@ -127,9 +135,15 @@ namespace jpl
 			{
 				lab = line_n[0].substr(0, line_n[0].size()-1);
 				prog.set_name(lab, prog.size());
+				if(line_n.size() == 1) {llb = lab; prw = true;}
 				line_n.erase(line_n.begin());
 				if(line_n.size() == 0) continue;
 			}	
+			else if(prw)
+			{
+				lab = llb;
+				prw = false;
+			}
 			command cmd = local::cmd_from_string(line_n);
 			cmd.set_label(lab);
 			prog.insert(cmd);

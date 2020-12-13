@@ -96,6 +96,11 @@ namespace jpl
 		
 		if(op->executor() == E_CONTROLLER)
 		{
+			auto vec = op->get_requirements();
+			for(int i=0; i < vec.size(); i++)
+				if(!proc.is_free(reg_operand(const_operand(vec[i]))))
+					return;
+			
 			for(int i=0; i < args.size(); i++)
 				if(!proc.is_free(*args[i])) return; 
 			(*op)(proc, *this, time);
@@ -105,7 +110,7 @@ namespace jpl
 			bool is_exec = false;
 			auto end = proc.al_end();
 			for(auto al = proc.al_begin(); al != end; ++al)
-				if((*al).is_available(*act) && (*al)(proc, *this, time)){
+				if((*al)(proc, *this, time)){
 					is_exec = true;  
 				//	std::cout << "(" << time << "t)\t[0x" << std::hex << prog.count() << std::dec << "]\t" << *this << std::endl;
 					break;
@@ -117,43 +122,17 @@ namespace jpl
 	
 	std::ostream& operator<<(std::ostream &out, const command &cmd){
 		
-		OPERATION_TYPE op_t = cmd.op->type();
+		EXECUTOR op_t = cmd.op->executor();
 		
 		if(cmd.label.size()>0) out << cmd.label << ":\t";
 		else out << "\t";
-		if(op_t == OP_JUMP)
-		{
-			out << "JUMP\t";
-			int cou = cmd.args.size();
-			if(cou >= 1)
-				cmd.args[0]->print(out) << "\t";
-			if(cou >= 2)
-				cmd.args[1]->print(out) << "\t";
-			if(cou >= 3)
-				cmd.args[2]->print(out) << "\t";
-		}
-		else if(op_t == OP_ALLC)
-		{
-			cmd.args[0] -> print(out << "ALLC\t");
-			if(cmd.args.size() > 1) cmd.args[1] -> print(out << "\t");
-		}
-		else if(op_t == OP_FREE)
-		{
-			cmd.args[0] -> print(out << "FREE\t");
-		}
-		else if(op_t == OP_VAR)
-		{
-			cmd.args[0] -> print(out << "VAR\t");
-			if(cmd.args.size() > 1) cmd.args[1] -> print(out << "\t");
-		}
-		else if(op_t == OP_UNARY)
-		{
-			cmd.args[0]->print(cmd.act->print(out) << "\t");
-		}
-		else if(op_t == OP_BINARY)
-		{
-			cmd.args[1]->print(cmd.args[0]->print(cmd.act->print(out) << "\t") << "\t");
-		}
+		if(cmd.act)
+			cmd.act->print(out);
+		else 
+			out << cmd.op->lab();
+		int c = cmd.args.size();
+		for(int i=0; i < c; i++)
+			cmd.args[i]->print(out << '\t');
 		return out;
 	}
 	
@@ -172,11 +151,11 @@ namespace jpl
 		}
 		if(!prog.has_next())
 		{
-			//std::cout << "(" << time << "t)\t" << "awaiting for ALUs" << std::endl;
+			
 			++time;
 			return false;
 		}
-		
+	//	std::cout << prog.current() << std::endl;
 		prog.current().execute(proc, time);
 		
 		++time;
@@ -216,7 +195,9 @@ namespace jpl
 				cmd.get_operation()(proc, cmd, time);
 				for(int i=0; i < cmd.get_args_count(); i++)
 					unlock(proc, *cmd.get_operand(i));
-				
+				auto vec = cmd.get_operation().get_requirements();
+				for(int i=0; i < vec.size(); i++)
+					unlock(proc, reg_operand(const_operand(vec[i])));
 				last = nullptr;
 				return true;
 			}
@@ -229,21 +210,29 @@ namespace jpl
 	bool ALU::operator()(processor& proc, const command& cmd_n, int time)
 	{
 		
-		if(last) return false;
-		
+		if(last) return false;		
 		if(!is_available(*cmd_n.get_operator())) return false;
 		
 		bool is_brk = true;
+		auto vec = cmd_n.get_operation().get_requirements();
 		
-		for(int i=0; i < cmd_n.get_args_count(); i++)
-				if(!lock(proc, *cmd_n.get_operand(i)))
+		for(int i=0; i < vec.size(); i++)
+			if(!lock(proc, reg_operand(const_operand(vec[i]))))
 				{
 					is_brk = false;
 					for(int j=0; j < i; j++)
-						unlock(proc, *cmd_n.get_operand(j));
+						unlock(proc, reg_operand(const_operand(vec[j])));
 					break;
 				}
-		
+		if(is_brk)
+			for(int i=0; i < cmd_n.get_args_count(); i++)
+					if(!lock(proc, *cmd_n.get_operand(i)))
+					{
+						is_brk = false;
+						for(int j=0; j < i; j++)
+							unlock(proc, *cmd_n.get_operand(j));
+						break;
+					}		
 		if(is_brk)
 		{
 			last = &cmd_n;
@@ -252,11 +241,11 @@ namespace jpl
 		}
 		return false;
 	}
+	
 	///--- PROGMEM ---///
 	void progmem::insert( const command& cmd, int p)
 	{
-		if(cmd.get_operation().type() == OP_VAR){
-			
+		if(cmd.get_operation().type() == OP_VAR){			
 			set_name(((label_operand *) cmd.get_operand(0))->value(), weight);
 			if(cmd.get_args_count() > 1){
 				if (cmd.get_operand(1)->type() != OPR_CONST) throw std::logic_error("incorrect operand. Parameters of static initialisation by INIT must be constant");
@@ -272,13 +261,13 @@ namespace jpl
 	}
 	
 	void progmem::erase(int nm){
-		if(&prog[nm].get_operation() == &operations::VAR) { // при удалении объявления переменной, структура статических переменных поменялась
+		if(prog[nm].get_operation().type() == OP_VAR) { // при удалении объявления переменной, структура статических переменных поменялась
 			prog.erase(prog.begin()+nm);
 			weight = 0;
 			auto cend = prog.cend();
 			for(auto cur = prog.cbegin(); cur != cend; ++cur)
 			{
-				if(&(cur->get_operation()) == &operations::VAR)
+				if(cur->get_operation().type() == OP_VAR)
 				{
 					label_operand *lb = (label_operand *) (cur -> get_operand(0));
 					vars.set(lb->value(), weight);
@@ -366,7 +355,7 @@ namespace jpl
 			break;
 			case OPR_REG:{	
 				const reg_operand *rg = (const reg_operand*) &op;
-				return reg_access(get_value(rg->value()));
+				return read_reg(get_value(rg->value()));
 			}
 			break;
 		}
@@ -409,7 +398,6 @@ namespace jpl
 	void processor::run(const progmem &program)
 	{
 		prog = process(program);
-		prog.jump(0);
 		ram->lock();
 		if(prog.get_progmem().get_weight()) prog.set_base(ram->alloc(prog.get_progmem().get_weight(), &prog));
 		ram->unlock();

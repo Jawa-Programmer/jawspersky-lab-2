@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <exception>
-#include <thread>
 
 #include <vector>
 #include <unordered_set>
@@ -14,60 +13,11 @@
 #include "operands.h"
 #include "memory.h"
 
+#include "command.h"
 
 namespace jpl
 {
 	// реализация классов 
-	
-	class command
-	{
-		private:
-		/// тип операции
-		const operation *op;
-		/// метка
-		std::string label;
-		/// список аргументов
-		std::vector<operand*> args;
-		/// указатель на функтор, который выполняет операцию (нужен если операция математическая)
-		const operator_ *act;
-		public:
-		
-		command();
-		
-		command(const operation &op_, const char* str, const operator_ *act_ = nullptr);
-		
-		/// важно: полученные по указателю операнды не копируются. По этому используйте синтаксис вроде {new ram_operand(...), new const_operans(...), ...}
-		/// данные, переданные в _args будут уничтожены в деструкторе
-		command(const operation &op_, const char* str, const std::initializer_list<operand*> &_args, const operator_ *act_ = nullptr);
-		
-		command(const command& cmd);
-		command(command&& cmd);
-		
-		command& operator=(const command&);
-		command& operator=(command&&);
-		
-		~command();
-		
-		/// выполняет команду с использованием ресурсов указанного процессора, считая что в данный момент переданное системное время (в тиках)
-		void execute(processor &proc, long time) const;
-		
-		void set_operation(const operation &op_);
-		void set_operator(const operator_ *act_){act = act_;}
-		void set_label(const std::string &lab) {label = lab;}
-		void add_operand(const operand& arg);
-		void remove_operand(int num);
-		
-		const operation& get_operation() const {return *op;}
-		const operator_* get_operator() const {return act;}
-		const std::string& get_label() const {return label;}
-		const operand* get_operand(int num) const {if(num < 0|| num >= args.size())	throw std::logic_error("out bounds"); return args[num];}
-		
-		int get_args_count() const {return args.size();}
-		
-		/// вывод в поток текста программы
-		friend std::ostream& operator<<(std::ostream &out, const command& cmd);
-	};	
-	
 	
 	/// устройство управления не требует инициализации, оно просто передает очередную команду процессора в свободное ALU, или само выполняет команду, если она связана с переходом или выделением памяти.
 	class controller
@@ -146,16 +96,23 @@ namespace jpl
 	};
 	class process {
 		private:
-		const progmem *prog;
-		int counter = 0, base = 0;
-		public:
+		std::vector<byte> stack; // область стека процесса. хранится на векторе для возможности произвольного доступа
+		int st_cou;
 		
-		process() : prog(nullptr) {} 
-		
-		process(const progmem &prog_) : prog(&prog_) {} 
-		
-		const progmem& get_progmem() const {return *prog;}
-		
+		const progmem *prog; // указатель на область памяти процесса
+		int counter = 0, base = 0; // счётчик команд и смещение области данных процесса в ОП.
+		public:		
+		process() : prog(nullptr), st_cou(-1) {} 		
+		process(const progmem &prog_) : prog(&prog_), st_cou(-1) {
+			try{
+				counter = prog->unname("start");
+			}
+			catch (const std::exception &e)
+			{
+				counter = 0;
+			}
+		} 		
+		const progmem& get_progmem() const {return *prog;}		
 		bool has_next(){return counter < prog->size();}
 		
 		void set_base(int b) {base = b;}
@@ -165,9 +122,20 @@ namespace jpl
 		/// инкрементирует счетчик
 		void inc() {++counter;}
 		/// устанавливает счетчик
-		void jump(int a) {counter = a;}
+		void jump(int a) {counter = a;}	
 		
-		
+		/// помещает байт информации на стек
+		void push(byte b){
+			if(st_cou < (int)stack.size()){
+				stack.push_back(b);
+			}
+			else stack[st_cou] = b;
+			++st_cou;
+		}
+		/// помещает байт информации на стек
+		byte pop(){return stack[st_cou];}
+		/// произвольный доступ к данным со стека (i - отступ от вершины стека)
+		byte stack_i(int i){return stack[stack.size()-1-i];}		
 		/// передает константный указатель на текущую команду для исполнения
 		const command& current() const {return (*prog)[counter];}
 		
@@ -178,6 +146,7 @@ namespace jpl
 		private:
 		controller control;
 		std::vector<ALU> alus;
+				
 		registers_block regs; // блок регистров это свойство самого процессора
 		RAM *ram; // но оперативная память явлется самостоятельным устройством, к которому могут обращаться несколько процессоров.
 		process prog; 
@@ -208,9 +177,9 @@ namespace jpl
 		auto al_begin(){return alus.begin();}
 		auto al_end() const {return alus.end();}
 		
+		int reg_count() const {return regs.get_size();}
 		slot& reg_access(byte i) {return regs[i];} // предостовляет доступ к указанному регистру из блока регистров процессора
-		const slot& reg_access(byte i) const {return regs[i];} // предостовляет доступ к указанному регистру из блока регистров процессора только для чтения
-		const slot& read_reg(byte i) const {return regs[i];} // получает регистр только для чтения
+		const slot& read_reg(byte i) const {return regs[i];} // предостовляет доступ к указанному регистру из блока регистров процессора только для чтения
 		
 		void set_RAM(RAM *ram_){ram = ram_;}
 		RAM* get_RAM() const {return ram;}
@@ -218,6 +187,6 @@ namespace jpl
 }
 
 #include "operators.hpp"
-#include "operations.hpp"
+#include "operations.h"
 
 #endif

@@ -22,6 +22,8 @@ namespace jpl{
 		~registers_block();
 		slot& operator[](const int &adr_); // так будет проще. Сама память не следит за правами доступа, это делает ALU
 		const slot& operator[](const int &adr_) const; // так будет проще. Сама память не следит за правами доступа, это делает ALU
+		
+		int get_size() const {return size;}
 	};
 	class RAM
 	{

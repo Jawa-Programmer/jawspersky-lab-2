@@ -8,7 +8,7 @@ namespace jpl
 	bool is_valid_name(const std::string& lab);
 	
 	// перечисления
-	enum OPERATION_TYPE {OP_ALLC, OP_JUMP, OP_UNARY, OP_BINARY, OP_VAR, OP_FREE, OP_NONE};
+	enum OPERATION_TYPE {OP_VAR, OP_EXTER, OP_NONE};
 	enum OPERAND_TYPE {OPR_CONST, OPR_LABEL, OPR_REG, OPR_RAM};
 	enum EXECUTOR {E_CONTROLLER, E_ALU};
 	

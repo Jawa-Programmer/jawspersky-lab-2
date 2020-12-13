@@ -33,7 +33,7 @@ namespace jpl
 		
 		virtual OPERAND_TYPE type() const override {return OPR_CONST;}
 		
-		virtual const_operand* copy() const  override {return new const_operand(val);}
+		virtual const_operand* copy() const override {return new const_operand(val);}
 		virtual std::ostream& print(std::ostream& out) const override { return out << val;}
 	};
 	
