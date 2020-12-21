@@ -1,0 +1,258 @@
+#define size 16
+
+VAR fr 9 ; массив 9ти байт для хранения информации об уже занятых ячейках (что бы не рисовать поверх занятого)
+
+VAR cou ; счетчик хода
+
+X: ;процедура выводит крестик 16x16 пикселов. Аргументы передаются как два числа на стеке - x и y левого верхнего угла
+	SET (4 1
+	GDO 2 ; начать рисовать линии
+	PEEK (4 2 ; один байт занимает адрес возврата, по этому аргумент лежит не 2 байта от вершины, а 3.
+	PEEK (5 1
+	
+	GDO 4 ; вводим вертекс
+	
+	ADD (4 size
+	ADD (5 size
+	
+	GDO 4 ; вводим вертекс
+	
+	SUB (4 size
+	
+	GDO 4 ; вводим вертекс
+	
+	
+	ADD (4 size
+	SUB (5 size
+	
+	GDO 4 ; вводим вертекс
+	
+	GDO 3 ; заканчиваем ввод примитивов
+	
+	RET 2
+O: ; рисует нолик, вписаный в квадрат 16х16 (левый верхний угол передается через стек)
+	SET (4 2
+	GDO 2 ; начать рисовать замкнутую ломаную
+	
+	PEEK (4 2 
+	PEEK (5 1
+	
+	ADD (4 8
+	GDO 4
+	
+	ADD (4 8
+	ADD (5 4
+	GDO 4
+	
+	ADD (5 8
+	GDO 4
+	
+	SUB (4 8
+	ADD (5 4
+	GDO 4
+	
+	SUB (4 8
+	SUB (5 4
+	GDO 4
+	
+	SUB (5 8
+	GDO 4
+	
+	GDO 3 ; заканчиваем ввод примитивов
+	
+	RET 2
+
+DRW: ; рисует по переданным координатам крестик или нолик (на основании чётности переменной cou)
+	
+	PEEK (4 2 
+	PEEK (5 1
+	PUSH (4
+	PUSH (5
+	
+	SET (0 cou
+	MOD (0 2
+	JUMP (0 iff
+	CALL X
+	JUMP eiff
+iff:
+	CALL O
+eiff:
+	INC cou ; увеличиваем счётчик хода на 1
+	RET 2
+
+GRD: ;отрисовка сетки
+	
+	SET (4 1
+	GDO 2 ; начать рисовать линии
+	
+	SET (4 24
+	SET (5 4
+	GDO 4
+
+	SET (5 64
+	GDO 4
+	
+	SET (4 43
+	SET (5 4
+	GDO 4
+	
+	SET (5 64
+	GDO 4
+	
+	SET (4 4
+	SET (5 24
+	GDO 4
+	
+	SET (4 64
+	GDO 4
+	
+	SET (4 4
+	SET (5 43
+	GDO 4
+	
+	SET (4 64
+	GDO 4
+	
+	GDO 3
+	RET
+
+start: ; точка входа в программу
+	SET cou	0
+	
+	; так как дисплей 256 пикселов в ширину, нарисовать больше линий в одной строке не получится
+	
+	SET	(4	0
+	SET	(5	0
+	SET	(6	0	; поместили в регистры процессора 4, 5 и 6 RGB компоненты черного цвета
+	GDO	0	; зачистили экран черным
+	
+	SET	(4	255
+	SET	(5	255
+	SET	(6	255	
+	SET	(7	255	; поместили в регистры процессора 4, 5, 6 и 7 ARGB компоненты белого цвета
+	GDO	1 ; сделали кисть белой
+
+	CALL GRD
+	GDO	5
+	
+loop:
+	KBD 2 ; получили символ с клавиатуры
+	
+	PUSH (3 ;копируем данные, что бы не потерять оригинал
+	
+	EQL (3	27 ;выйти если нажали esc
+	JUMP (3	end	; выйдет из цикла только при нажатии esc
+	
+	PEEK (3 ; сейчас в третьем регистре была уже не буква, а результат сравнения. Копируем букву обратно (не удаляя со стека)
+	NEQL (3	'q' 
+	JUMP (3 el1 ; то есть пропустить if если это не наша клавиша
+	JUMP fr eif ; проверяем что данная клетка не занята
+	PUSH 5
+	PUSH 5
+	CALL DRW
+	SET fr 1
+	JUMP eif ; аналог break в switch-case
+el1:
+	PEEK (3
+	NEQL (3	'w' 
+	JUMP (3 el2
+	JUMP fr+1 eif ; можно обращатся по константнуму индексу статического массива таким образом
+	PUSH 26
+	PUSH 5
+	CALL DRW
+	SET fr+1 1
+	JUMP eif
+el2:
+	PEEK (3
+	NEQL (3	'e' 
+	JUMP (3 el3
+	JUMP fr+2 eif
+	PUSH 47
+	PUSH 5
+	CALL DRW
+	SET fr+2 1
+	JUMP eif
+el3:
+	PEEK (3 
+	NEQL (3	'a' 
+	JUMP (3 el4 
+	JUMP fr+3 eif 
+	PUSH 5
+	PUSH 26
+	CALL DRW
+	SET fr+3 1
+	JUMP eif 
+el4:
+	PEEK (3
+	NEQL (3	's' 
+	JUMP (3 el5
+	JUMP fr+4 eif 
+	PUSH 26
+	PUSH 26
+	CALL DRW
+	SET fr+4 1
+	JUMP eif
+el5:
+	PEEK (3
+	NEQL (3	'd' 
+	JUMP (3 el6
+	JUMP fr+5 eif
+	PUSH 47
+	PUSH 26
+	CALL DRW
+	SET fr+5 1
+	JUMP eif
+el6:
+	PEEK (3 
+	NEQL (3	'z' 
+	JUMP (3 el7 
+	JUMP fr+6 eif 
+	PUSH 5
+	PUSH 47
+	CALL DRW
+	SET fr+6 1
+	JUMP eif 
+el7:
+	PEEK (3
+	NEQL (3	'x' 
+	JUMP (3 el8
+	JUMP fr+7 eif 
+	PUSH 26
+	PUSH 47
+	CALL DRW
+	SET fr+7 1
+	JUMP eif
+el8:
+	PEEK (3
+	NEQL (3	'c' 
+	JUMP (3 el9
+	JUMP fr+8 eif
+	PUSH 47
+	PUSH 47
+	CALL DRW
+	SET fr+8 1
+	JUMP eif
+el9: ;очищаем экран для игры заного
+	PEEK (3
+	NEQL (3	'r' 
+	JUMP (3 eif
+	SET fr 0
+	SET fr+1 0
+	SET fr+2 0
+	SET fr+3 0
+	SET fr+4 0
+	SET fr+5 0
+	SET fr+6 0
+	SET fr+7 0
+	SET fr+8 0
+	
+	SET	(4	0
+	SET	(5	0
+	SET	(6	0	
+	GDO	0
+	CALL GRD
+	SET cou 0
+eif:
+	GDO	5	; вывести содержимое буфера на экран
+	POP (3 ; убераем клавишу со стека, что бы не занимать лишнее место
+	JUMP loop

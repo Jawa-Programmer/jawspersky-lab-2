@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Библиотека эмулятор процессора: Класс jpl::operations::base</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Библиотека эмулятор процессора
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Библиотека предостовляет классы виртуальных устройст, исплользуя которые можно смоделировать ахритектуру и исполнить на ней код</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacejpl.html">jpl</a></li><li class="navelem"><a class="el" href="namespacejpl_1_1operations.html">operations</a></li><li class="navelem"><a class="el" href="classjpl_1_1operations_1_1base.html">base</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="classjpl_1_1operations_1_1base-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс jpl::operations::base<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>базовый класс операции. Определяет поведение контроллера.  
+ <a href="classjpl_1_1operations_1_1base.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="operations_8h_source.html">operations.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:ad431ba4de489fe232d27684095823456"><td class="memItemLeft" align="right" valign="top"><a id="ad431ba4de489fe232d27684095823456"></a>
+virtual <a class="el" href="namespacejpl.html#a8f9423c363d0d3ef87c408d510fd90ac">OPERATION_TYPE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1operations_1_1base.html#ad431ba4de489fe232d27684095823456">type</a> () const</td></tr>
+<tr class="memdesc:ad431ba4de489fe232d27684095823456"><td class="mdescLeft">&#160;</td><td class="mdescRight">возвращает тип операции. используется для внутреннего пользования. При определении производных операций, эту функцию переопределять не рекомендуется <br /></td></tr>
+<tr class="separator:ad431ba4de489fe232d27684095823456"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4faafe50fd7f41200abfd351af45fa5"><td class="memItemLeft" align="right" valign="top"><a id="af4faafe50fd7f41200abfd351af45fa5"></a>
+virtual <a class="el" href="namespacejpl.html#a33048375400995b60ea37a939940e975">EXECUTOR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1operations_1_1base.html#af4faafe50fd7f41200abfd351af45fa5">executor</a> () const =0</td></tr>
+<tr class="memdesc:af4faafe50fd7f41200abfd351af45fa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">сообщает ИУ, стоит ли передать команду в АЛУ или исполнить ее самому. При определении собственных операций, использущих АЛУ, учитывайте, что если команда не будет содержать оператор, или оператор не будет в списке поддерживаемых команд хотя бы одного АЛУ, то УУ уйдет в бесконечный цикл, так как не сможет выполнить данную команду и будет пытаться найти подходящее АЛУ снова и снова. <br /></td></tr>
+<tr class="separator:af4faafe50fd7f41200abfd351af45fa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8638c7dadc3f3a34cf310d99425621c6"><td class="memItemLeft" align="right" valign="top"><a id="a8638c7dadc3f3a34cf310d99425621c6"></a>
+virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1operations_1_1base.html#a8638c7dadc3f3a34cf310d99425621c6">lab</a> () const =0</td></tr>
+<tr class="memdesc:a8638c7dadc3f3a34cf310d99425621c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">возвращает текстовое название операции. Для операций, которые предпологают выполнение на АЛУ (<a class="el" href="classjpl_1_1operations_1_1base.html#af4faafe50fd7f41200abfd351af45fa5" title="сообщает ИУ, стоит ли передать команду в АЛУ или исполнить ее самому. При определении собственных опе...">executor()</a> вернул E_ALU) может возвращается nullptr. <br /></td></tr>
+<tr class="separator:a8638c7dadc3f3a34cf310d99425621c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acab709c7b2046d5f8ac27d8d59846679"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1operations_1_1base.html#acab709c7b2046d5f8ac27d8d59846679">operator()</a> (<a class="el" href="classjpl_1_1processor.html">processor</a> &amp;proc, const <a class="el" href="classjpl_1_1command.html">command</a> &amp;cmd, long time) const =0</td></tr>
+<tr class="separator:acab709c7b2046d5f8ac27d8d59846679"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>базовый класс операции. Определяет поведение контроллера. </p>
+</div><h2 class="groupheader">Методы</h2>
+<a id="acab709c7b2046d5f8ac27d8d59846679"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acab709c7b2046d5f8ac27d8d59846679">&#9670;&nbsp;</a></span>operator()()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void jpl::operations::base::operator() </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classjpl_1_1processor.html">processor</a> &amp;&#160;</td>
+          <td class="paramname"><em>proc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classjpl_1_1command.html">command</a> &amp;&#160;</td>
+          <td class="paramname"><em>cmd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>time</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>данный оператор производит фактичское исполнение команды и вносит соответсвующие изменения в регистры процессора. ВАЖНО! При определении собственных операций для УУ, не забывайте увеличивать значение счётчика команды на единицу (или, в зависимости от функционала, совершать переход в любую другую область программы). Операции, выполняемые на АЛУ, не требуют инкремента счёчика, это происходит автоматически. </p><dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">proc</td><td>ссылка на процессора </td></tr>
+    <tr><td class="paramname">cmd</td><td>ссылка на команду </td></tr>
+    <tr><td class="paramname">time</td><td>текущее системное время <br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>Объявления и описания членов класса находятся в файле:<ul>
+<li><a class="el" href="operations_8h_source.html">operations.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

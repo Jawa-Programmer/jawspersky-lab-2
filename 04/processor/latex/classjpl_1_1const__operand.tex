@@ -1,0 +1,123 @@
+\hypertarget{classjpl_1_1const__operand}{}\doxysection{Класс jpl\+::const\+\_\+operand}
+\label{classjpl_1_1const__operand}\index{jpl::const\_operand@{jpl::const\_operand}}
+
+
+класс константного операнда  
+
+
+
+
+{\ttfamily \#include $<$operands.\+h$>$}
+
+Граф наследования\+:jpl\+::const\+\_\+operand\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classjpl_1_1const__operand}
+\end{center}
+\end{figure}
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classjpl_1_1const__operand_a75b88fcebf5740abaf30904febd0a41d}\label{classjpl_1_1const__operand_a75b88fcebf5740abaf30904febd0a41d}} 
+\mbox{\hyperlink{classjpl_1_1const__operand_a75b88fcebf5740abaf30904febd0a41d}{const\+\_\+operand}} (\mbox{\hyperlink{namespacejpl_a6eac36f967442575ceec4981f5295996}{byte}} val\+\_\+)
+\begin{DoxyCompactList}\small\item\em инициализируется константным значением \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1const__operand_a4c345c9c3fdae6bbc5c3ac928d7f3b93}\label{classjpl_1_1const__operand_a4c345c9c3fdae6bbc5c3ac928d7f3b93}} 
+{\bfseries const\+\_\+operand} (const \mbox{\hyperlink{classjpl_1_1const__operand}{const\+\_\+operand}} \&old)=default
+\item 
+\mbox{\Hypertarget{classjpl_1_1const__operand_ab1d984f30222a5c44488cf27257ab80c}\label{classjpl_1_1const__operand_ab1d984f30222a5c44488cf27257ab80c}} 
+{\bfseries const\+\_\+operand} (\mbox{\hyperlink{classjpl_1_1const__operand}{const\+\_\+operand}} \&\&old)=default
+\item 
+\mbox{\Hypertarget{classjpl_1_1const__operand_a0e08581abe7612d5cb069c6f6af195c9}\label{classjpl_1_1const__operand_a0e08581abe7612d5cb069c6f6af195c9}} 
+\mbox{\hyperlink{classjpl_1_1const__operand}{const\+\_\+operand}} \& {\bfseries operator=} (const \mbox{\hyperlink{classjpl_1_1const__operand}{const\+\_\+operand}} \&old)=default
+\item 
+\mbox{\Hypertarget{classjpl_1_1const__operand_abd739db2b2f09603bd5744b4dcc81976}\label{classjpl_1_1const__operand_abd739db2b2f09603bd5744b4dcc81976}} 
+\mbox{\hyperlink{classjpl_1_1const__operand}{const\+\_\+operand}} \& {\bfseries operator=} (\mbox{\hyperlink{classjpl_1_1const__operand}{const\+\_\+operand}} \&\&old)=default
+\item 
+\mbox{\hyperlink{namespacejpl_a6eac36f967442575ceec4981f5295996}{byte}} \mbox{\hyperlink{classjpl_1_1const__operand_a67f3c32c5a3987cfade703ab665f96ac}{value}} () const
+\begin{DoxyCompactList}\small\item\em возвращает значение операнда \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06}{O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{classjpl_1_1const__operand_a5dc75b6ceb719e2f10a93edf00f3207d}{type}} () const override
+\begin{DoxyCompactList}\small\item\em возвращает тип операнда \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classjpl_1_1const__operand}{const\+\_\+operand}} $\ast$ \mbox{\hyperlink{classjpl_1_1const__operand_a60b3df294406ad4728a40838977f5c3f}{copy}} () const override
+\begin{DoxyCompactList}\small\item\em возвращает указатель на точную копию данного экземпляра \end{DoxyCompactList}\item 
+virtual std\+::ostream \& \mbox{\hyperlink{classjpl_1_1const__operand_af60b8b57955c8beaa63cb74078be0dc4}{print}} (std\+::ostream \&out) const override
+\begin{DoxyCompactList}\small\item\em вывод в поток текстового представления операнда \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+класс константного операнда 
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classjpl_1_1const__operand_a60b3df294406ad4728a40838977f5c3f}\label{classjpl_1_1const__operand_a60b3df294406ad4728a40838977f5c3f}} 
+\index{jpl::const\_operand@{jpl::const\_operand}!copy@{copy}}
+\index{copy@{copy}!jpl::const\_operand@{jpl::const\_operand}}
+\doxysubsubsection{\texorpdfstring{copy()}{copy()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classjpl_1_1const__operand}{const\+\_\+operand}}$\ast$ jpl\+::const\+\_\+operand\+::copy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+возвращает указатель на точную копию данного экземпляра 
+
+\begin{DoxyReturn}{Возвращает}
+указатель на компию 
+\end{DoxyReturn}
+
+
+Замещает \mbox{\hyperlink{classjpl_1_1operand_a16e5db84aae8d271ab7916deb1311c3e}{jpl\+::operand}}.
+
+\mbox{\Hypertarget{classjpl_1_1const__operand_af60b8b57955c8beaa63cb74078be0dc4}\label{classjpl_1_1const__operand_af60b8b57955c8beaa63cb74078be0dc4}} 
+\index{jpl::const\_operand@{jpl::const\_operand}!print@{print}}
+\index{print@{print}!jpl::const\_operand@{jpl::const\_operand}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily virtual std\+::ostream\& jpl\+::const\+\_\+operand\+::print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+вывод в поток текстового представления операнда 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em ссылка} & на поток \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+ссылка на поток 
+\end{DoxyReturn}
+
+
+Замещает \mbox{\hyperlink{classjpl_1_1operand_a179e28da31b42fa617f7c35908581d35}{jpl\+::operand}}.
+
+\mbox{\Hypertarget{classjpl_1_1const__operand_a5dc75b6ceb719e2f10a93edf00f3207d}\label{classjpl_1_1const__operand_a5dc75b6ceb719e2f10a93edf00f3207d}} 
+\index{jpl::const\_operand@{jpl::const\_operand}!type@{type}}
+\index{type@{type}!jpl::const\_operand@{jpl::const\_operand}}
+\doxysubsubsection{\texorpdfstring{type()}{type()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06}{O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE}} jpl\+::const\+\_\+operand\+::type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+возвращает тип операнда 
+
+\begin{DoxyReturn}{Возвращает}
+тип операнда (O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE) 
+\end{DoxyReturn}
+
+
+Замещает \mbox{\hyperlink{classjpl_1_1operand_ad9d49492d693134e9b3fb10859d62ede}{jpl\+::operand}}.
+
+\mbox{\Hypertarget{classjpl_1_1const__operand_a67f3c32c5a3987cfade703ab665f96ac}\label{classjpl_1_1const__operand_a67f3c32c5a3987cfade703ab665f96ac}} 
+\index{jpl::const\_operand@{jpl::const\_operand}!value@{value}}
+\index{value@{value}!jpl::const\_operand@{jpl::const\_operand}}
+\doxysubsubsection{\texorpdfstring{value()}{value()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacejpl_a6eac36f967442575ceec4981f5295996}{byte}} jpl\+::const\+\_\+operand\+::value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+возвращает значение операнда 
+
+\begin{DoxyReturn}{Возвращает}
+данные 
+\end{DoxyReturn}
+
+
+Объявления и описания членов класса находятся в файле\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{operands_8h}{operands.\+h}}\end{DoxyCompactItemize}

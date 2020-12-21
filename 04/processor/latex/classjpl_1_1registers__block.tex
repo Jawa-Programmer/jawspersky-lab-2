@@ -1,0 +1,134 @@
+\hypertarget{classjpl_1_1registers__block}{}\doxysection{Класс jpl\+::registers\+\_\+block}
+\label{classjpl_1_1registers__block}\index{jpl::registers\_block@{jpl::registers\_block}}
+
+
+класс блока регистров процессора.  
+
+
+
+
+{\ttfamily \#include $<$memory.\+h$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classjpl_1_1registers__block_aadfc065077cda10c0f77f83b4f1a1f91}{registers\+\_\+block}} (size\+\_\+t sz)
+\begin{DoxyCompactList}\small\item\em конструктор, инициализирующий блок регистров указанного размера \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classjpl_1_1registers__block_aa9635900ced342ee46167c918423f1ee}{registers\+\_\+block}} (const \mbox{\hyperlink{classjpl_1_1registers__block}{registers\+\_\+block}} \&old)
+\begin{DoxyCompactList}\small\item\em копирующий конструктор \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classjpl_1_1registers__block_a2c4d10477741c6908a688fea34e2cdd5}{registers\+\_\+block}} (\mbox{\hyperlink{classjpl_1_1registers__block}{registers\+\_\+block}} \&\&)
+\begin{DoxyCompactList}\small\item\em перемещающий конструктор \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1registers__block_ac6d927afa2846a4521e80d48c213680b}\label{classjpl_1_1registers__block_ac6d927afa2846a4521e80d48c213680b}} 
+\mbox{\hyperlink{classjpl_1_1registers__block_ac6d927afa2846a4521e80d48c213680b}{$\sim$registers\+\_\+block}} ()
+\begin{DoxyCompactList}\small\item\em деструктор. Высвобождает память \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structjpl_1_1slot}{slot}} \& \mbox{\hyperlink{classjpl_1_1registers__block_aa9db2715dfb2a723d06b841f6341c41b}{operator\mbox{[}$\,$\mbox{]}}} (const int \&adr\+\_\+)
+\begin{DoxyCompactList}\small\item\em оператор доступа к регистру из блока регистров по его номеру. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structjpl_1_1slot}{slot}} \& \mbox{\hyperlink{classjpl_1_1registers__block_a09377ee8ab1019b3ede4cdccab99a2cd}{operator\mbox{[}$\,$\mbox{]}}} (const int \&adr\+\_\+) const
+\begin{DoxyCompactList}\small\item\em оператор доступа только для чтения к регистру из блока регистров по его номеру. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classjpl_1_1registers__block_afdd2c24488155a6fdf7636c062fcdbde}{get\+\_\+size}} () const
+\begin{DoxyCompactList}\small\item\em возвращает размер блока регистров \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+класс блока регистров процессора. 
+
+\doxysubsection{Конструктор(ы)}
+\mbox{\Hypertarget{classjpl_1_1registers__block_aadfc065077cda10c0f77f83b4f1a1f91}\label{classjpl_1_1registers__block_aadfc065077cda10c0f77f83b4f1a1f91}} 
+\index{jpl::registers\_block@{jpl::registers\_block}!registers\_block@{registers\_block}}
+\index{registers\_block@{registers\_block}!jpl::registers\_block@{jpl::registers\_block}}
+\doxysubsubsection{\texorpdfstring{registers\_block()}{registers\_block()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily jpl\+::registers\+\_\+block\+::registers\+\_\+block (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{sz }\end{DoxyParamCaption})}
+
+
+
+конструктор, инициализирующий блок регистров указанного размера 
+
+--- \mbox{\hyperlink{classjpl_1_1registers__block}{registers\+\_\+block}} ---///
+
+
+\begin{DoxyParams}{Аргументы}
+{\em sz} & количество регистров в блоке регистров. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1registers__block_aa9635900ced342ee46167c918423f1ee}\label{classjpl_1_1registers__block_aa9635900ced342ee46167c918423f1ee}} 
+\index{jpl::registers\_block@{jpl::registers\_block}!registers\_block@{registers\_block}}
+\index{registers\_block@{registers\_block}!jpl::registers\_block@{jpl::registers\_block}}
+\doxysubsubsection{\texorpdfstring{registers\_block()}{registers\_block()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily jpl\+::registers\+\_\+block\+::registers\+\_\+block (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classjpl_1_1registers__block}{registers\+\_\+block}} \&}]{old }\end{DoxyParamCaption})}
+
+
+
+копирующий конструктор 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em old} & экземпляр для снятия копии \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1registers__block_a2c4d10477741c6908a688fea34e2cdd5}\label{classjpl_1_1registers__block_a2c4d10477741c6908a688fea34e2cdd5}} 
+\index{jpl::registers\_block@{jpl::registers\_block}!registers\_block@{registers\_block}}
+\index{registers\_block@{registers\_block}!jpl::registers\_block@{jpl::registers\_block}}
+\doxysubsubsection{\texorpdfstring{registers\_block()}{registers\_block()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily jpl\+::registers\+\_\+block\+::registers\+\_\+block (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classjpl_1_1registers__block}{registers\+\_\+block}} \&\&}]{old }\end{DoxyParamCaption})}
+
+
+
+перемещающий конструктор 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em донор} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classjpl_1_1registers__block_afdd2c24488155a6fdf7636c062fcdbde}\label{classjpl_1_1registers__block_afdd2c24488155a6fdf7636c062fcdbde}} 
+\index{jpl::registers\_block@{jpl::registers\_block}!get\_size@{get\_size}}
+\index{get\_size@{get\_size}!jpl::registers\_block@{jpl::registers\_block}}
+\doxysubsubsection{\texorpdfstring{get\_size()}{get\_size()}}
+{\footnotesize\ttfamily int jpl\+::registers\+\_\+block\+::get\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+возвращает размер блока регистров 
+
+\begin{DoxyReturn}{Возвращает}
+размер блока регистров 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classjpl_1_1registers__block_aa9db2715dfb2a723d06b841f6341c41b}\label{classjpl_1_1registers__block_aa9db2715dfb2a723d06b841f6341c41b}} 
+\index{jpl::registers\_block@{jpl::registers\_block}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!jpl::registers\_block@{jpl::registers\_block}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structjpl_1_1slot}{slot}} \& jpl\+::registers\+\_\+block\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{const int \&}]{adr\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+оператор доступа к регистру из блока регистров по его номеру. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em adr\+\_\+} & номер регистра \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1registers__block_a09377ee8ab1019b3ede4cdccab99a2cd}\label{classjpl_1_1registers__block_a09377ee8ab1019b3ede4cdccab99a2cd}} 
+\index{jpl::registers\_block@{jpl::registers\_block}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!jpl::registers\_block@{jpl::registers\_block}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structjpl_1_1slot}{slot}} \& jpl\+::registers\+\_\+block\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{const int \&}]{adr\+\_\+ }\end{DoxyParamCaption}) const}
+
+
+
+оператор доступа только для чтения к регистру из блока регистров по его номеру. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em adr\+\_\+} & номер регистра \\
+\hline
+\end{DoxyParams}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{memory_8h}{memory.\+h}}\item 
+memory.\+cpp\end{DoxyCompactItemize}

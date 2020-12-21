@@ -1,0 +1,141 @@
+\hypertarget{classjpl_1_1_r_a_m}{}\doxysection{Класс jpl\+::R\+AM}
+\label{classjpl_1_1_r_a_m}\index{jpl::RAM@{jpl::RAM}}
+
+
+класс оперативной памяти  
+
+
+
+
+{\ttfamily \#include $<$memory.\+h$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structjpl_1_1slot}{slot}} \& \mbox{\hyperlink{classjpl_1_1_r_a_m_a72da3adcf9d39eec8ff0853ff8f55469}{operator\mbox{[}$\,$\mbox{]}}} (const int \&adr\+\_\+)
+\begin{DoxyCompactList}\small\item\em оператор доступа только для чтения к регистру из блока регистров по его номеру. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structjpl_1_1slot}{slot}} \& \mbox{\hyperlink{classjpl_1_1_r_a_m_a4b79b945a6340ededdc4047a00428f14}{operator\mbox{[}$\,$\mbox{]}}} (const int \&adr\+\_\+) const
+\begin{DoxyCompactList}\small\item\em оператор доступа только для чтения к регистру из блока регистров по его номеру. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacejpl_a6eac36f967442575ceec4981f5295996}{byte}} \mbox{\hyperlink{classjpl_1_1_r_a_m_aedd297e2c2b3fdd923bb6b5cedeed8fe}{alloc}} (size\+\_\+t sz, const \mbox{\hyperlink{classjpl_1_1process}{process}} $\ast$lc)
+\begin{DoxyCompactList}\small\item\em выделение блока памяти из кучи. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classjpl_1_1_r_a_m_a77b6dc8023acd6470127d3f373c9f16a}{free}} (\mbox{\hyperlink{namespacejpl_a6eac36f967442575ceec4981f5295996}{byte}} adr, const \mbox{\hyperlink{classjpl_1_1process}{process}} $\ast$ls)
+\begin{DoxyCompactList}\small\item\em возвращение в кучу блока памяти по указанному адресу \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1_r_a_m_afb53315e7226be76fcf160bec947b560}\label{classjpl_1_1_r_a_m_afb53315e7226be76fcf160bec947b560}} 
+void \mbox{\hyperlink{classjpl_1_1_r_a_m_afb53315e7226be76fcf160bec947b560}{lock\+\_\+write}} ()
+\begin{DoxyCompactList}\small\item\em блокирует возможность читать/писать из других потоков (мьютекс) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1_r_a_m_af1171a8fe5c089973329572001deacc7}\label{classjpl_1_1_r_a_m_af1171a8fe5c089973329572001deacc7}} 
+void \mbox{\hyperlink{classjpl_1_1_r_a_m_af1171a8fe5c089973329572001deacc7}{unlock\+\_\+write}} ()
+\begin{DoxyCompactList}\small\item\em разблокирует возможность читать/писать из других потоков (мьютекс) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1_r_a_m_a6c596d7168a34a3ac0eb660063182bf7}\label{classjpl_1_1_r_a_m_a6c596d7168a34a3ac0eb660063182bf7}} 
+void \mbox{\hyperlink{classjpl_1_1_r_a_m_a6c596d7168a34a3ac0eb660063182bf7}{lock\+\_\+read}} ()
+\begin{DoxyCompactList}\small\item\em блокирует возможность писать из других потоков, но оставляет возможность читать(мьютекс) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1_r_a_m_a2c930971becb5b209b0a859f423db563}\label{classjpl_1_1_r_a_m_a2c930971becb5b209b0a859f423db563}} 
+void \mbox{\hyperlink{classjpl_1_1_r_a_m_a2c930971becb5b209b0a859f423db563}{unlock\+\_\+read}} ()
+\begin{DoxyCompactList}\small\item\em отменяет действие lock\+\_\+read. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Друзья}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{classjpl_1_1_r_a_m_aca381a0eb2520684ca5953bb27a80809}{operator$<$$<$}} (std\+::ostream \&out, const \mbox{\hyperlink{classjpl_1_1_r_a_m}{R\+AM}} \&ram)
+\begin{DoxyCompactList}\small\item\em вывод состояния ОП в указанный поток \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+класс оперативной памяти 
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classjpl_1_1_r_a_m_aedd297e2c2b3fdd923bb6b5cedeed8fe}\label{classjpl_1_1_r_a_m_aedd297e2c2b3fdd923bb6b5cedeed8fe}} 
+\index{jpl::RAM@{jpl::RAM}!alloc@{alloc}}
+\index{alloc@{alloc}!jpl::RAM@{jpl::RAM}}
+\doxysubsubsection{\texorpdfstring{alloc()}{alloc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacejpl_a6eac36f967442575ceec4981f5295996}{byte}} jpl\+::\+R\+A\+M\+::alloc (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{sz,  }\item[{const \mbox{\hyperlink{classjpl_1_1process}{process}} $\ast$}]{lc }\end{DoxyParamCaption})}
+
+
+
+выделение блока памяти из кучи. 
+
+--- \mbox{\hyperlink{classjpl_1_1_r_a_m}{R\+AM}} ---///
+
+
+\begin{DoxyParams}{Аргументы}
+{\em sz} & размер выделяемого блока \\
+\hline
+{\em lc} & указатель на процесс-\/владелец (может быть nullptr) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1_r_a_m_a77b6dc8023acd6470127d3f373c9f16a}\label{classjpl_1_1_r_a_m_a77b6dc8023acd6470127d3f373c9f16a}} 
+\index{jpl::RAM@{jpl::RAM}!free@{free}}
+\index{free@{free}!jpl::RAM@{jpl::RAM}}
+\doxysubsubsection{\texorpdfstring{free()}{free()}}
+{\footnotesize\ttfamily void jpl\+::\+R\+A\+M\+::free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacejpl_a6eac36f967442575ceec4981f5295996}{byte}}}]{adr,  }\item[{const \mbox{\hyperlink{classjpl_1_1process}{process}} $\ast$}]{ls }\end{DoxyParamCaption})}
+
+
+
+возвращение в кучу блока памяти по указанному адресу 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em adr} & адрес блока для освобождения \\
+\hline
+{\em lc} & указатель на процесс-\/владелец (может быть nullptr) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1_r_a_m_a72da3adcf9d39eec8ff0853ff8f55469}\label{classjpl_1_1_r_a_m_a72da3adcf9d39eec8ff0853ff8f55469}} 
+\index{jpl::RAM@{jpl::RAM}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!jpl::RAM@{jpl::RAM}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structjpl_1_1slot}{slot}}\& jpl\+::\+R\+A\+M\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{const int \&}]{adr\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+оператор доступа только для чтения к регистру из блока регистров по его номеру. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em adr\+\_\+} & номер регистра \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1_r_a_m_a4b79b945a6340ededdc4047a00428f14}\label{classjpl_1_1_r_a_m_a4b79b945a6340ededdc4047a00428f14}} 
+\index{jpl::RAM@{jpl::RAM}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!jpl::RAM@{jpl::RAM}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structjpl_1_1slot}{slot}}\& jpl\+::\+R\+A\+M\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{const int \&}]{adr\+\_\+ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+оператор доступа только для чтения к регистру из блока регистров по его номеру. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em adr\+\_\+} & номер регистра \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Документация по друзьям класса и функциям, относящимся к классу}
+\mbox{\Hypertarget{classjpl_1_1_r_a_m_aca381a0eb2520684ca5953bb27a80809}\label{classjpl_1_1_r_a_m_aca381a0eb2520684ca5953bb27a80809}} 
+\index{jpl::RAM@{jpl::RAM}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!jpl::RAM@{jpl::RAM}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out,  }\item[{const \mbox{\hyperlink{classjpl_1_1_r_a_m}{R\+AM}} \&}]{ram }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+вывод состояния ОП в указанный поток 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em out} & адрес блока для освобождения ~\newline
+ \\
+\hline
+{\em out} & ссылка на ОП для вывода \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+ссылка на переданный поток 
+\end{DoxyReturn}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{memory_8h}{memory.\+h}}\item 
+memory.\+cpp\end{DoxyCompactItemize}

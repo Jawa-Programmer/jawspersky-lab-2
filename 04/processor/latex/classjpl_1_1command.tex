@@ -1,0 +1,365 @@
+\hypertarget{classjpl_1_1command}{}\doxysection{Класс jpl\+::command}
+\label{classjpl_1_1command}\index{jpl::command@{jpl::command}}
+
+
+класс команды процессора.  
+
+
+
+
+{\ttfamily \#include $<$command.\+h$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classjpl_1_1command_a13c97316daf73fc2b36ea947dc7a7ae4}\label{classjpl_1_1command_a13c97316daf73fc2b36ea947dc7a7ae4}} 
+\mbox{\hyperlink{classjpl_1_1command_a13c97316daf73fc2b36ea947dc7a7ae4}{command}} ()
+\begin{DoxyCompactList}\small\item\em конструктор по-\/умолчанию. необходим для возможности работы с vector. Попытка выполнить команду, созданную этим конструктором, приведет к выбрасыванию исключения std\+::logic\+\_\+error. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classjpl_1_1command_abf6800875e7ab9a8836de50728053c6b}{command}} (const \mbox{\hyperlink{classjpl_1_1operations_1_1base}{operation}} \&op\+\_\+, const char $\ast$str, const \mbox{\hyperlink{classjpl_1_1operators_1_1base}{operator\+\_\+}}$\ast$act\+\_\+=nullptr)
+\begin{DoxyCompactList}\small\item\em конструктор для команды без операндов \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classjpl_1_1command_a62e6ee0d094438aa0576893ae3465990}{command}} (const \mbox{\hyperlink{classjpl_1_1operations_1_1base}{operation}} \&op\+\_\+, const char $\ast$str, const std\+::initializer\+\_\+list$<$ \mbox{\hyperlink{classjpl_1_1operand}{operand}} $\ast$ $>$ \&\+\_\+args, const \mbox{\hyperlink{classjpl_1_1operators_1_1base}{operator\+\_\+}}$\ast$act\+\_\+=nullptr)
+\begin{DoxyCompactList}\small\item\em конструктор для команды со списком операндов \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classjpl_1_1command_ab1617b9d4fb0b8ceb180733cc58767ba}{command}} (const \mbox{\hyperlink{classjpl_1_1command}{command}} \&cmd)
+\begin{DoxyCompactList}\small\item\em копирующий конструктор. Операнды так же копируюстя \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classjpl_1_1command_a74901d85ed0248a601848a2645779be3}{command}} (\mbox{\hyperlink{classjpl_1_1command}{command}} \&\&cmd)
+\begin{DoxyCompactList}\small\item\em перемещающий конструктор. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classjpl_1_1command}{command}} \& \mbox{\hyperlink{classjpl_1_1command_ade1f91885b5c3e151eb54a403774ee5f}{operator=}} (const \mbox{\hyperlink{classjpl_1_1command}{command}} \&)
+\begin{DoxyCompactList}\small\item\em копирующее присваивание \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classjpl_1_1command}{command}} \& \mbox{\hyperlink{classjpl_1_1command_a18ad8d4cfbdd2ec3088b688448600c6a}{operator=}} (\mbox{\hyperlink{classjpl_1_1command}{command}} \&\&)
+\begin{DoxyCompactList}\small\item\em перемещающие присваивание. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1command_a1024a764578741b3ff9560ffbd822e50}\label{classjpl_1_1command_a1024a764578741b3ff9560ffbd822e50}} 
+\mbox{\hyperlink{classjpl_1_1command_a1024a764578741b3ff9560ffbd822e50}{$\sim$command}} ()
+\begin{DoxyCompactList}\small\item\em деструктор. Уничтожает объекты операндов, переданные в конструкторе \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classjpl_1_1command_a07385e0585824d0161e627093e80ee76}{execute}} (\mbox{\hyperlink{classjpl_1_1processor}{processor}} \&proc, long time) const
+\begin{DoxyCompactList}\small\item\em выполняет команду с использованием ресурсов указанного процессора, считая что в данный момент переданное системное время (в тиках) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classjpl_1_1command_aef559165910a05a6f64a7689aba5e525}{set\+\_\+operation}} (const \mbox{\hyperlink{classjpl_1_1operations_1_1base}{operation}} \&op\+\_\+)
+\begin{DoxyCompactList}\small\item\em заменить операцию на переданную \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classjpl_1_1command_ae15410462d0326bbf6ff7e64cf138018}{set\+\_\+operator}} (const \mbox{\hyperlink{classjpl_1_1operators_1_1base}{operator\+\_\+}}$\ast$act\+\_\+)
+\begin{DoxyCompactList}\small\item\em заменить оператор на переданный \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classjpl_1_1command_ae1fb3766e62ed8d1e00213d371ab5b46}{set\+\_\+label}} (const std\+::string \&lab)
+\begin{DoxyCompactList}\small\item\em заменить метку на переданную \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classjpl_1_1command_ad103e3ca89b9680062955ab1fccd03fe}{add\+\_\+operand}} (const \mbox{\hyperlink{classjpl_1_1operand}{operand}} \&arg)
+\begin{DoxyCompactList}\small\item\em добавить операнд в список операндов \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classjpl_1_1command_aff091e40ade6f01b6210855a8c37ae5a}{remove\+\_\+operand}} (int num)
+\begin{DoxyCompactList}\small\item\em удалить операнд из списка операндов \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classjpl_1_1operations_1_1base}{operation}} \& \mbox{\hyperlink{classjpl_1_1command_a459ddf35d57f715384f587d99910fea1}{get\+\_\+operation}} () const
+\begin{DoxyCompactList}\small\item\em возвращает константную ссылку на операцию \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classjpl_1_1operators_1_1base}{operator\+\_\+}}$\ast$ \mbox{\hyperlink{classjpl_1_1command_a0b93030d26d38243ed826785f7edddcd}{get\+\_\+operator}} () const
+\begin{DoxyCompactList}\small\item\em возвращает константный указатель на оператор \end{DoxyCompactList}\item 
+const std\+::string \& \mbox{\hyperlink{classjpl_1_1command_a6d7bb47596f830e122fac86acc946791}{get\+\_\+label}} () const
+\begin{DoxyCompactList}\small\item\em возвращает текстовое представление метки \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classjpl_1_1operand}{operand}} $\ast$ \mbox{\hyperlink{classjpl_1_1command_a4525ddcd77f911fa5aeeea9e51ec1100}{get\+\_\+operand}} (int num) const
+\begin{DoxyCompactList}\small\item\em возвращает операнд по его номеру \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classjpl_1_1command_aa555ac71903b1c724ce7e3205d987ac5}{get\+\_\+args\+\_\+count}} () const
+\begin{DoxyCompactList}\small\item\em возвращает количество операндов у данного экземпляра команды \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Друзья}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{classjpl_1_1command_ac6ad145f47d81fe07e070b17f87b5e3b}{operator$<$$<$}} (std\+::ostream \&out, const \mbox{\hyperlink{classjpl_1_1command}{command}} \&cmd)
+\begin{DoxyCompactList}\small\item\em выводит текстовое представление данной команды в указанный поток. Перевод строки не осуществляется \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+класс команды процессора. 
+
+\doxysubsection{Конструктор(ы)}
+\mbox{\Hypertarget{classjpl_1_1command_abf6800875e7ab9a8836de50728053c6b}\label{classjpl_1_1command_abf6800875e7ab9a8836de50728053c6b}} 
+\index{jpl::command@{jpl::command}!command@{command}}
+\index{command@{command}!jpl::command@{jpl::command}}
+\doxysubsubsection{\texorpdfstring{command()}{command()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily jpl\+::command\+::command (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classjpl_1_1operations_1_1base}{operation}} \&}]{op\+\_\+,  }\item[{const char $\ast$}]{str,  }\item[{const \mbox{\hyperlink{classjpl_1_1operators_1_1base}{operator\+\_\+}}$\ast$}]{act\+\_\+ = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+конструктор для команды без операндов 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em op\+\_\+} & ссылка на класс операции. Основные операции вынесены в файл \mbox{\hyperlink{operations_8h}{operations.\+h}}, пользовательские операции так же поддерживаются. \\
+\hline
+{\em str} & текстовая метка команды. Используется при выводе команды в поток. Может быть nullptr. \\
+\hline
+{\em act} & указатель на оператор. Оператор выполняет математическую операцию на АЛУ. Если команда адресована к УУ, то этот параметр должен быть nullptr (по-\/умолчанию) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1command_a62e6ee0d094438aa0576893ae3465990}\label{classjpl_1_1command_a62e6ee0d094438aa0576893ae3465990}} 
+\index{jpl::command@{jpl::command}!command@{command}}
+\index{command@{command}!jpl::command@{jpl::command}}
+\doxysubsubsection{\texorpdfstring{command()}{command()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily jpl\+::command\+::command (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classjpl_1_1operations_1_1base}{operation}} \&}]{op\+\_\+,  }\item[{const char $\ast$}]{str,  }\item[{const std\+::initializer\+\_\+list$<$ \mbox{\hyperlink{classjpl_1_1operand}{operand}} $\ast$ $>$ \&}]{\+\_\+args,  }\item[{const \mbox{\hyperlink{classjpl_1_1operators_1_1base}{operator\+\_\+}}$\ast$}]{act\+\_\+ = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+конструктор для команды со списком операндов 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em op\+\_\+} & ссылка на класс операции. Основные операции вынесены в файл \mbox{\hyperlink{operations_8h}{operations.\+h}}, пользовательские операции так же поддерживаются. \\
+\hline
+{\em str} & текстовая метка команды. Используется при выводе команды в поток. Может быть nullptr. \\
+\hline
+{\em \+\_\+args} & список указателей на операнды. ВАЖНО! следует использовать синтаксис \{new operand(), ...\} так как класс команды не создает копию объекта по ссылке. Все операнды удаляются в деструкторе \\
+\hline
+{\em act} & указатель на оператор. Оператор выполняет математическую операцию на АЛУ. Если команда адресована к УУ, то этот параметр должен быть nullptr (по-\/умолчанию) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1command_ab1617b9d4fb0b8ceb180733cc58767ba}\label{classjpl_1_1command_ab1617b9d4fb0b8ceb180733cc58767ba}} 
+\index{jpl::command@{jpl::command}!command@{command}}
+\index{command@{command}!jpl::command@{jpl::command}}
+\doxysubsubsection{\texorpdfstring{command()}{command()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily jpl\+::command\+::command (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classjpl_1_1command}{command}} \&}]{cmd }\end{DoxyParamCaption})}
+
+
+
+копирующий конструктор. Операнды так же копируюстя 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em cmd} & команда, с которой необходимо снять копию \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1command_a74901d85ed0248a601848a2645779be3}\label{classjpl_1_1command_a74901d85ed0248a601848a2645779be3}} 
+\index{jpl::command@{jpl::command}!command@{command}}
+\index{command@{command}!jpl::command@{jpl::command}}
+\doxysubsubsection{\texorpdfstring{command()}{command()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily jpl\+::command\+::command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classjpl_1_1command}{command}} \&\&}]{cmd }\end{DoxyParamCaption})}
+
+
+
+перемещающий конструктор. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em cmd} & команда, ресурсы которой необходимо перенести \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classjpl_1_1command_ad103e3ca89b9680062955ab1fccd03fe}\label{classjpl_1_1command_ad103e3ca89b9680062955ab1fccd03fe}} 
+\index{jpl::command@{jpl::command}!add\_operand@{add\_operand}}
+\index{add\_operand@{add\_operand}!jpl::command@{jpl::command}}
+\doxysubsubsection{\texorpdfstring{add\_operand()}{add\_operand()}}
+{\footnotesize\ttfamily void jpl\+::command\+::add\+\_\+operand (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classjpl_1_1operand}{operand}} \&}]{arg }\end{DoxyParamCaption})}
+
+
+
+добавить операнд в список операндов 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em arg} & операнд для добавления \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1command_a07385e0585824d0161e627093e80ee76}\label{classjpl_1_1command_a07385e0585824d0161e627093e80ee76}} 
+\index{jpl::command@{jpl::command}!execute@{execute}}
+\index{execute@{execute}!jpl::command@{jpl::command}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily void jpl\+::command\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classjpl_1_1processor}{processor}} \&}]{proc,  }\item[{long}]{time }\end{DoxyParamCaption}) const}
+
+
+
+выполняет команду с использованием ресурсов указанного процессора, считая что в данный момент переданное системное время (в тиках) 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em proc} & ссылка на процессор, на котором небходимо выполнить данную команду \\
+\hline
+{\em time} & показание регистра таймера процессора. Необходимо для того, что бы была возможность симулировать длительность выполнения операций \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1command_aa555ac71903b1c724ce7e3205d987ac5}\label{classjpl_1_1command_aa555ac71903b1c724ce7e3205d987ac5}} 
+\index{jpl::command@{jpl::command}!get\_args\_count@{get\_args\_count}}
+\index{get\_args\_count@{get\_args\_count}!jpl::command@{jpl::command}}
+\doxysubsubsection{\texorpdfstring{get\_args\_count()}{get\_args\_count()}}
+{\footnotesize\ttfamily int jpl\+::command\+::get\+\_\+args\+\_\+count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+возвращает количество операндов у данного экземпляра команды 
+
+\begin{DoxyReturn}{Возвращает}
+количество операндов 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classjpl_1_1command_a6d7bb47596f830e122fac86acc946791}\label{classjpl_1_1command_a6d7bb47596f830e122fac86acc946791}} 
+\index{jpl::command@{jpl::command}!get\_label@{get\_label}}
+\index{get\_label@{get\_label}!jpl::command@{jpl::command}}
+\doxysubsubsection{\texorpdfstring{get\_label()}{get\_label()}}
+{\footnotesize\ttfamily const std\+::string\& jpl\+::command\+::get\+\_\+label (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+возвращает текстовое представление метки 
+
+\begin{DoxyReturn}{Возвращает}
+строка метка 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classjpl_1_1command_a4525ddcd77f911fa5aeeea9e51ec1100}\label{classjpl_1_1command_a4525ddcd77f911fa5aeeea9e51ec1100}} 
+\index{jpl::command@{jpl::command}!get\_operand@{get\_operand}}
+\index{get\_operand@{get\_operand}!jpl::command@{jpl::command}}
+\doxysubsubsection{\texorpdfstring{get\_operand()}{get\_operand()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classjpl_1_1operand}{operand}}$\ast$ jpl\+::command\+::get\+\_\+operand (\begin{DoxyParamCaption}\item[{int}]{num }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+возвращает операнд по его номеру 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em num} & номер операнда (нумерация с 0) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+константный указатель на операнд 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classjpl_1_1command_a459ddf35d57f715384f587d99910fea1}\label{classjpl_1_1command_a459ddf35d57f715384f587d99910fea1}} 
+\index{jpl::command@{jpl::command}!get\_operation@{get\_operation}}
+\index{get\_operation@{get\_operation}!jpl::command@{jpl::command}}
+\doxysubsubsection{\texorpdfstring{get\_operation()}{get\_operation()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classjpl_1_1operations_1_1base}{operation}}\& jpl\+::command\+::get\+\_\+operation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+возвращает константную ссылку на операцию 
+
+\begin{DoxyReturn}{Возвращает}
+константная ссылка на операцию 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classjpl_1_1command_a0b93030d26d38243ed826785f7edddcd}\label{classjpl_1_1command_a0b93030d26d38243ed826785f7edddcd}} 
+\index{jpl::command@{jpl::command}!get\_operator@{get\_operator}}
+\index{get\_operator@{get\_operator}!jpl::command@{jpl::command}}
+\doxysubsubsection{\texorpdfstring{get\_operator()}{get\_operator()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classjpl_1_1operators_1_1base}{operator\+\_\+}}$\ast$ jpl\+::command\+::get\+\_\+operator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+возвращает константный указатель на оператор 
+
+\begin{DoxyReturn}{Возвращает}
+константный указатель на оператор 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classjpl_1_1command_a18ad8d4cfbdd2ec3088b688448600c6a}\label{classjpl_1_1command_a18ad8d4cfbdd2ec3088b688448600c6a}} 
+\index{jpl::command@{jpl::command}!operator=@{operator=}}
+\index{operator=@{operator=}!jpl::command@{jpl::command}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classjpl_1_1command}{command}} \& jpl\+::command\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classjpl_1_1command}{command}} \&\&}]{cmd }\end{DoxyParamCaption})}
+
+
+
+перемещающие присваивание. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em cmd} & команда, ресурсы которой необходимо перенести \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+ссылка на себя 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classjpl_1_1command_ade1f91885b5c3e151eb54a403774ee5f}\label{classjpl_1_1command_ade1f91885b5c3e151eb54a403774ee5f}} 
+\index{jpl::command@{jpl::command}!operator=@{operator=}}
+\index{operator=@{operator=}!jpl::command@{jpl::command}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classjpl_1_1command}{command}} \& jpl\+::command\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classjpl_1_1command}{command}} \&}]{cmd }\end{DoxyParamCaption})}
+
+
+
+копирующее присваивание 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em cmd} & команда, с которой необходимо снять копию \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+ссылка на себя 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classjpl_1_1command_aff091e40ade6f01b6210855a8c37ae5a}\label{classjpl_1_1command_aff091e40ade6f01b6210855a8c37ae5a}} 
+\index{jpl::command@{jpl::command}!remove\_operand@{remove\_operand}}
+\index{remove\_operand@{remove\_operand}!jpl::command@{jpl::command}}
+\doxysubsubsection{\texorpdfstring{remove\_operand()}{remove\_operand()}}
+{\footnotesize\ttfamily void jpl\+::command\+::remove\+\_\+operand (\begin{DoxyParamCaption}\item[{int}]{num }\end{DoxyParamCaption})}
+
+
+
+удалить операнд из списка операндов 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em num} & номер операнда (нумерация начинается с 0) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1command_ae1fb3766e62ed8d1e00213d371ab5b46}\label{classjpl_1_1command_ae1fb3766e62ed8d1e00213d371ab5b46}} 
+\index{jpl::command@{jpl::command}!set\_label@{set\_label}}
+\index{set\_label@{set\_label}!jpl::command@{jpl::command}}
+\doxysubsubsection{\texorpdfstring{set\_label()}{set\_label()}}
+{\footnotesize\ttfamily void jpl\+::command\+::set\+\_\+label (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{lab }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+заменить метку на переданную 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em lab} & новая метка \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1command_aef559165910a05a6f64a7689aba5e525}\label{classjpl_1_1command_aef559165910a05a6f64a7689aba5e525}} 
+\index{jpl::command@{jpl::command}!set\_operation@{set\_operation}}
+\index{set\_operation@{set\_operation}!jpl::command@{jpl::command}}
+\doxysubsubsection{\texorpdfstring{set\_operation()}{set\_operation()}}
+{\footnotesize\ttfamily void jpl\+::command\+::set\+\_\+operation (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classjpl_1_1operations_1_1base}{operation}} \&}]{op\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+заменить операцию на переданную 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em op\+\_\+} & новая операция \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1command_ae15410462d0326bbf6ff7e64cf138018}\label{classjpl_1_1command_ae15410462d0326bbf6ff7e64cf138018}} 
+\index{jpl::command@{jpl::command}!set\_operator@{set\_operator}}
+\index{set\_operator@{set\_operator}!jpl::command@{jpl::command}}
+\doxysubsubsection{\texorpdfstring{set\_operator()}{set\_operator()}}
+{\footnotesize\ttfamily void jpl\+::command\+::set\+\_\+operator (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classjpl_1_1operators_1_1base}{operator\+\_\+}}$\ast$}]{act\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+заменить оператор на переданный 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em act\+\_\+} & новый оператор \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Документация по друзьям класса и функциям, относящимся к классу}
+\mbox{\Hypertarget{classjpl_1_1command_ac6ad145f47d81fe07e070b17f87b5e3b}\label{classjpl_1_1command_ac6ad145f47d81fe07e070b17f87b5e3b}} 
+\index{jpl::command@{jpl::command}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!jpl::command@{jpl::command}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out,  }\item[{const \mbox{\hyperlink{classjpl_1_1command}{command}} \&}]{cmd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+выводит текстовое представление данной команды в указанный поток. Перевод строки не осуществляется 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em out} & ссылка на поток \\
+\hline
+{\em cmd} & константная ссылка на команду, которую необходимо вывести в поток \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+ссылка на переданный поток 
+\end{DoxyReturn}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{command_8h}{command.\+h}}\item 
+processor.\+cpp\end{DoxyCompactItemize}

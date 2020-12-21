@@ -1,0 +1,81 @@
+\hypertarget{operators_8hpp}{}\doxysection{Файл operators.\+hpp}
+\label{operators_8hpp}\index{operators.hpp@{operators.hpp}}
+
+
+Файл содержит описание базовых математических операторов, которые можно использовать в АЛУ при проектировании эмулятора процессора  
+
+
+{\ttfamily \#include \char`\"{}types.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$initializer\+\_\+list$>$}\newline
+\doxysubsection*{Классы}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classjpl_1_1operators_1_1base}{jpl\+::operators\+::base}}
+\begin{DoxyCompactList}\small\item\em базовый класс математического оператора. Является функтором. Любой поддерживаемый АЛУ оператор является экземпляром потомка данного класса \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Пространства имен}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacejpl}{jpl}}
+\begin{DoxyCompactList}\small\item\em пространство имен Jawa Programmer Library. \end{DoxyCompactList}\item 
+ \mbox{\hyperlink{namespacejpl_1_1operators}{jpl\+::operators}}
+\begin{DoxyCompactList}\small\item\em пространство имён содержит базовые математические операторы. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Переменные}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacejpl_1_1operators_adbb33e4e831408fecfe623ea153c5772}\label{namespacejpl_1_1operators_adbb33e4e831408fecfe623ea153c5772}} 
+\mbox{\hyperlink{namespacejpl_1_1operators_adbb33e4e831408fecfe623ea153c5772}{jpl\+::operators\+::\+A\+DD}}
+\begin{DoxyCompactList}\small\item\em оператор возвращает сумму двух аргументов \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operators_ab38c813e3e004b6c3c4be3bf503a30dc}\label{namespacejpl_1_1operators_ab38c813e3e004b6c3c4be3bf503a30dc}} 
+\mbox{\hyperlink{namespacejpl_1_1operators_ab38c813e3e004b6c3c4be3bf503a30dc}{jpl\+::operators\+::\+S\+UB}}
+\begin{DoxyCompactList}\small\item\em оператор возвращает разность двух аргументов \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operators_a1a0c18e2d40473f0424383e1aa1eba9e}\label{namespacejpl_1_1operators_a1a0c18e2d40473f0424383e1aa1eba9e}} 
+\mbox{\hyperlink{namespacejpl_1_1operators_a1a0c18e2d40473f0424383e1aa1eba9e}{jpl\+::operators\+::\+D\+IV}}
+\begin{DoxyCompactList}\small\item\em оператор возвращает частное двух аргументов \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operators_a3902b9ab073e239a629f52c22ce41486}\label{namespacejpl_1_1operators_a3902b9ab073e239a629f52c22ce41486}} 
+\mbox{\hyperlink{namespacejpl_1_1operators_a3902b9ab073e239a629f52c22ce41486}{jpl\+::operators\+::\+M\+OD}}
+\begin{DoxyCompactList}\small\item\em оператор возвращает остаток от деления первого аргумента на второй \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operators_a97e762d36325534bc66e18a10154f3d1}\label{namespacejpl_1_1operators_a97e762d36325534bc66e18a10154f3d1}} 
+\mbox{\hyperlink{namespacejpl_1_1operators_a97e762d36325534bc66e18a10154f3d1}{jpl\+::operators\+::\+M\+UL}}
+\begin{DoxyCompactList}\small\item\em оператор возвращает произведение двух аргументов \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operators_aa87ada5672fda5edd486153bea1a22df}\label{namespacejpl_1_1operators_aa87ada5672fda5edd486153bea1a22df}} 
+\mbox{\hyperlink{namespacejpl_1_1operators_aa87ada5672fda5edd486153bea1a22df}{jpl\+::operators\+::\+I\+NC}}
+\begin{DoxyCompactList}\small\item\em оператор возвращает аргумент, увеличенный на единицу \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operators_ad6332a39b5fb2373dfcd8c2ba9d2921d}\label{namespacejpl_1_1operators_ad6332a39b5fb2373dfcd8c2ba9d2921d}} 
+\mbox{\hyperlink{namespacejpl_1_1operators_ad6332a39b5fb2373dfcd8c2ba9d2921d}{jpl\+::operators\+::\+D\+EC}}
+\begin{DoxyCompactList}\small\item\em оператор возвращает аргумент, меньшеный на единицу \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operators_a991d2abe2a439df74e238a90fdb4fee8}\label{namespacejpl_1_1operators_a991d2abe2a439df74e238a90fdb4fee8}} 
+\mbox{\hyperlink{namespacejpl_1_1operators_a991d2abe2a439df74e238a90fdb4fee8}{jpl\+::operators\+::\+I\+NV}}
+\begin{DoxyCompactList}\small\item\em оператор возвращает аргумент, умноженный на минус один \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operators_a1a38983f84e3a3a2d7ef5ea2851ef53c}\label{namespacejpl_1_1operators_a1a38983f84e3a3a2d7ef5ea2851ef53c}} 
+\mbox{\hyperlink{namespacejpl_1_1operators_a1a38983f84e3a3a2d7ef5ea2851ef53c}{jpl\+::operators\+::\+E\+QL}}
+\begin{DoxyCompactList}\small\item\em оператор равенства. Возвращает 1, если оба операнда равны \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operators_a1db89aa702e7588555b901f63fd7f591}\label{namespacejpl_1_1operators_a1db89aa702e7588555b901f63fd7f591}} 
+\mbox{\hyperlink{namespacejpl_1_1operators_a1db89aa702e7588555b901f63fd7f591}{jpl\+::operators\+::\+N\+E\+QL}}
+\begin{DoxyCompactList}\small\item\em тоже, что и N\+OT E\+QL, но выполняется за одно обращение к АЛУ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operators_aa6e5f92b482bbb79a6453057f11c3742}\label{namespacejpl_1_1operators_aa6e5f92b482bbb79a6453057f11c3742}} 
+\mbox{\hyperlink{namespacejpl_1_1operators_aa6e5f92b482bbb79a6453057f11c3742}{jpl\+::operators\+::\+A\+ND}}
+\begin{DoxyCompactList}\small\item\em оператор возвращает результат применения логического И к аргументам (не путать с побитовым И) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operators_a5359e9f215d800d3fe536fda93e07284}\label{namespacejpl_1_1operators_a5359e9f215d800d3fe536fda93e07284}} 
+\mbox{\hyperlink{namespacejpl_1_1operators_a5359e9f215d800d3fe536fda93e07284}{jpl\+::operators\+::\+OR}}
+\begin{DoxyCompactList}\small\item\em оператор возвращает результат применения логического ИЛИ к аргументам (не путать с побитовым ИЛИ) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operators_aaed6acb13d054e80feb211fd22cf2591}\label{namespacejpl_1_1operators_aaed6acb13d054e80feb211fd22cf2591}} 
+\mbox{\hyperlink{namespacejpl_1_1operators_aaed6acb13d054e80feb211fd22cf2591}{jpl\+::operators\+::\+X\+OR}}
+\begin{DoxyCompactList}\small\item\em оператор возвращает результат применения логического ИСКЛЮЧАЮЩЕГО-\/ИЛИ к аргументам (не путать с побитовым ИСКЛЮЧАЮЩИМ-\/ИЛИ) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operators_a5c519ce1fb13d4ec39cfecbc05ffe39d}\label{namespacejpl_1_1operators_a5c519ce1fb13d4ec39cfecbc05ffe39d}} 
+\mbox{\hyperlink{namespacejpl_1_1operators_a5c519ce1fb13d4ec39cfecbc05ffe39d}{jpl\+::operators\+::\+N\+OT}}
+\begin{DoxyCompactList}\small\item\em оператор возвращает результат применения логического НЕ к аргументу (не путать с побитовым НЕ) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Файл содержит описание базовых математических операторов, которые можно использовать в АЛУ при проектировании эмулятора процессора 
+
+\begin{DoxyAuthor}{Автор}
+Jawa Prog 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Версия}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Дата}
+Декабрь 2020 года 
+\end{DoxyDate}

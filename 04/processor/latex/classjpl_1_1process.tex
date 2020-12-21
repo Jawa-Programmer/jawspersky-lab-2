@@ -1,0 +1,72 @@
+\hypertarget{classjpl_1_1process}{}\doxysection{Класс jpl\+::process}
+\label{classjpl_1_1process}\index{jpl::process@{jpl::process}}
+
+
+класс описателя процесса. Процесс автоматически создается в методе процессора run.  
+
+
+
+
+{\ttfamily \#include $<$processor.\+h$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classjpl_1_1process_a83a31fe902ab9f71255b418e31323c79}\label{classjpl_1_1process_a83a31fe902ab9f71255b418e31323c79}} 
+\mbox{\hyperlink{classjpl_1_1process_a83a31fe902ab9f71255b418e31323c79}{process}} ()
+\begin{DoxyCompactList}\small\item\em конструктор иницавлизирует процесс без программы \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1process_a15a2289b5b8ac8293c8368fefefba246}\label{classjpl_1_1process_a15a2289b5b8ac8293c8368fefefba246}} 
+\mbox{\hyperlink{classjpl_1_1process_a15a2289b5b8ac8293c8368fefefba246}{process}} (const \mbox{\hyperlink{classjpl_1_1progmem}{progmem}} \&prog\+\_\+)
+\begin{DoxyCompactList}\small\item\em конструктор иницавлизирует процесс указанной программой. счетчик устанавливается по метке start из памяти программы, если такой метки нет, то в 0. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1process_aea1f174bce866d6b6a1ef4c68dea479a}\label{classjpl_1_1process_aea1f174bce866d6b6a1ef4c68dea479a}} 
+const \mbox{\hyperlink{classjpl_1_1progmem}{progmem}} \& \mbox{\hyperlink{classjpl_1_1process_aea1f174bce866d6b6a1ef4c68dea479a}{get\+\_\+progmem}} () const
+\begin{DoxyCompactList}\small\item\em метод возвращает константную ссылку на память программ \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classjpl_1_1process_a359a4946785b5f2501cdbfd322c55154}{has\+\_\+next}} ()
+\item 
+\mbox{\Hypertarget{classjpl_1_1process_acc14cf7e643348a49efa76f704742b47}\label{classjpl_1_1process_acc14cf7e643348a49efa76f704742b47}} 
+void \mbox{\hyperlink{classjpl_1_1process_acc14cf7e643348a49efa76f704742b47}{set\+\_\+base}} (int b)
+\begin{DoxyCompactList}\small\item\em устанавливает смещение области памяти данного процесса в ОП (от этого зависит обращение к статическим переменным) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1process_a5f13369d61058d67c8c12ad4b6f64caf}\label{classjpl_1_1process_a5f13369d61058d67c8c12ad4b6f64caf}} 
+int \mbox{\hyperlink{classjpl_1_1process_a5f13369d61058d67c8c12ad4b6f64caf}{get\+\_\+base}} () const
+\begin{DoxyCompactList}\small\item\em возвращает смещение области данных данного процесса в ОП \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1process_a776e96f8d78d9199492ece4fc6da7857}\label{classjpl_1_1process_a776e96f8d78d9199492ece4fc6da7857}} 
+int \mbox{\hyperlink{classjpl_1_1process_a776e96f8d78d9199492ece4fc6da7857}{count}} () const
+\begin{DoxyCompactList}\small\item\em возвращает текущее значение счетчика команд \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1process_ae74c562c913b42239c7ce3534300436d}\label{classjpl_1_1process_ae74c562c913b42239c7ce3534300436d}} 
+void \mbox{\hyperlink{classjpl_1_1process_ae74c562c913b42239c7ce3534300436d}{inc}} ()
+\begin{DoxyCompactList}\small\item\em инкрементирует счетчик \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1process_a59bd848e7bbf73ef9e988ff743f5dfe7}\label{classjpl_1_1process_a59bd848e7bbf73ef9e988ff743f5dfe7}} 
+void \mbox{\hyperlink{classjpl_1_1process_a59bd848e7bbf73ef9e988ff743f5dfe7}{jump}} (int a)
+\begin{DoxyCompactList}\small\item\em устанавливает счетчик \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1process_a2a8b577a13c3c0c71287dbfead993f55}\label{classjpl_1_1process_a2a8b577a13c3c0c71287dbfead993f55}} 
+void \mbox{\hyperlink{classjpl_1_1process_a2a8b577a13c3c0c71287dbfead993f55}{push}} (\mbox{\hyperlink{namespacejpl_a6eac36f967442575ceec4981f5295996}{byte}} b)
+\begin{DoxyCompactList}\small\item\em помещает байт информации на стек \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1process_a4b0213b2e5e30e68c14cc93c2e922678}\label{classjpl_1_1process_a4b0213b2e5e30e68c14cc93c2e922678}} 
+\mbox{\hyperlink{namespacejpl_a6eac36f967442575ceec4981f5295996}{byte}} \mbox{\hyperlink{classjpl_1_1process_a4b0213b2e5e30e68c14cc93c2e922678}{pop}} ()
+\begin{DoxyCompactList}\small\item\em снимает байт инфомации со стека \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1process_a5f813c7ef78a0b069ef3a4b6972cc57a}\label{classjpl_1_1process_a5f813c7ef78a0b069ef3a4b6972cc57a}} 
+\mbox{\hyperlink{namespacejpl_a6eac36f967442575ceec4981f5295996}{byte}} \mbox{\hyperlink{classjpl_1_1process_a5f813c7ef78a0b069ef3a4b6972cc57a}{stack\+\_\+i}} (int i)
+\begin{DoxyCompactList}\small\item\em произвольный доступ к данным со стека (i -\/ отступ от вершины стека) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1process_a69069bfd02ae2ea29d7f6fca148085fd}\label{classjpl_1_1process_a69069bfd02ae2ea29d7f6fca148085fd}} 
+const \mbox{\hyperlink{classjpl_1_1command}{command}} \& \mbox{\hyperlink{classjpl_1_1process_a69069bfd02ae2ea29d7f6fca148085fd}{current}} () const
+\begin{DoxyCompactList}\small\item\em передает константный указатель на текущую команду для исполнения \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+класс описателя процесса. Процесс автоматически создается в методе процессора run. 
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classjpl_1_1process_a359a4946785b5f2501cdbfd322c55154}\label{classjpl_1_1process_a359a4946785b5f2501cdbfd322c55154}} 
+\index{jpl::process@{jpl::process}!has\_next@{has\_next}}
+\index{has\_next@{has\_next}!jpl::process@{jpl::process}}
+\doxysubsubsection{\texorpdfstring{has\_next()}{has\_next()}}
+{\footnotesize\ttfamily bool jpl\+::process\+::has\+\_\+next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Возвращает}
+true если еще есть команды для исполнения (значение в счетчике меньше чем количество команд). Иначе -\/ false 
+\end{DoxyReturn}
+
+
+Объявления и описания членов класса находятся в файле\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{processor_8h}{processor.\+h}}\end{DoxyCompactItemize}

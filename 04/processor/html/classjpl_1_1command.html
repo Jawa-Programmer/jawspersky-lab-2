@@ -1,0 +1,744 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Библиотека эмулятор процессора: Класс jpl::command</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Библиотека эмулятор процессора
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Библиотека предостовляет классы виртуальных устройст, исплользуя которые можно смоделировать ахритектуру и исполнить на ней код</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacejpl.html">jpl</a></li><li class="navelem"><a class="el" href="classjpl_1_1command.html">command</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="#friends">Друзья</a> &#124;
+<a href="classjpl_1_1command-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс jpl::command</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>класс команды процессора.  
+ <a href="classjpl_1_1command.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="command_8h_source.html">command.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a13c97316daf73fc2b36ea947dc7a7ae4"><td class="memItemLeft" align="right" valign="top"><a id="a13c97316daf73fc2b36ea947dc7a7ae4"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1command.html#a13c97316daf73fc2b36ea947dc7a7ae4">command</a> ()</td></tr>
+<tr class="memdesc:a13c97316daf73fc2b36ea947dc7a7ae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">конструктор по-умолчанию. необходим для возможности работы с vector. Попытка выполнить команду, созданную этим конструктором, приведет к выбрасыванию исключения std::logic_error. <br /></td></tr>
+<tr class="separator:a13c97316daf73fc2b36ea947dc7a7ae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf6800875e7ab9a8836de50728053c6b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1command.html#abf6800875e7ab9a8836de50728053c6b">command</a> (const <a class="el" href="classjpl_1_1operations_1_1base.html">operation</a> &amp;op_, const char *str, const <a class="el" href="classjpl_1_1operators_1_1base.html">operator_</a>*act_=nullptr)</td></tr>
+<tr class="memdesc:abf6800875e7ab9a8836de50728053c6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">конструктор для команды без операндов  <a href="classjpl_1_1command.html#abf6800875e7ab9a8836de50728053c6b">Подробнее...</a><br /></td></tr>
+<tr class="separator:abf6800875e7ab9a8836de50728053c6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62e6ee0d094438aa0576893ae3465990"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1command.html#a62e6ee0d094438aa0576893ae3465990">command</a> (const <a class="el" href="classjpl_1_1operations_1_1base.html">operation</a> &amp;op_, const char *str, const std::initializer_list&lt; <a class="el" href="classjpl_1_1operand.html">operand</a> * &gt; &amp;_args, const <a class="el" href="classjpl_1_1operators_1_1base.html">operator_</a>*act_=nullptr)</td></tr>
+<tr class="memdesc:a62e6ee0d094438aa0576893ae3465990"><td class="mdescLeft">&#160;</td><td class="mdescRight">конструктор для команды со списком операндов  <a href="classjpl_1_1command.html#a62e6ee0d094438aa0576893ae3465990">Подробнее...</a><br /></td></tr>
+<tr class="separator:a62e6ee0d094438aa0576893ae3465990"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1617b9d4fb0b8ceb180733cc58767ba"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1command.html#ab1617b9d4fb0b8ceb180733cc58767ba">command</a> (const <a class="el" href="classjpl_1_1command.html">command</a> &amp;cmd)</td></tr>
+<tr class="memdesc:ab1617b9d4fb0b8ceb180733cc58767ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">копирующий конструктор. Операнды так же копируюстя  <a href="classjpl_1_1command.html#ab1617b9d4fb0b8ceb180733cc58767ba">Подробнее...</a><br /></td></tr>
+<tr class="separator:ab1617b9d4fb0b8ceb180733cc58767ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74901d85ed0248a601848a2645779be3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1command.html#a74901d85ed0248a601848a2645779be3">command</a> (<a class="el" href="classjpl_1_1command.html">command</a> &amp;&amp;cmd)</td></tr>
+<tr class="memdesc:a74901d85ed0248a601848a2645779be3"><td class="mdescLeft">&#160;</td><td class="mdescRight">перемещающий конструктор.  <a href="classjpl_1_1command.html#a74901d85ed0248a601848a2645779be3">Подробнее...</a><br /></td></tr>
+<tr class="separator:a74901d85ed0248a601848a2645779be3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade1f91885b5c3e151eb54a403774ee5f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classjpl_1_1command.html">command</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1command.html#ade1f91885b5c3e151eb54a403774ee5f">operator=</a> (const <a class="el" href="classjpl_1_1command.html">command</a> &amp;)</td></tr>
+<tr class="memdesc:ade1f91885b5c3e151eb54a403774ee5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">копирующее присваивание  <a href="classjpl_1_1command.html#ade1f91885b5c3e151eb54a403774ee5f">Подробнее...</a><br /></td></tr>
+<tr class="separator:ade1f91885b5c3e151eb54a403774ee5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18ad8d4cfbdd2ec3088b688448600c6a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classjpl_1_1command.html">command</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1command.html#a18ad8d4cfbdd2ec3088b688448600c6a">operator=</a> (<a class="el" href="classjpl_1_1command.html">command</a> &amp;&amp;)</td></tr>
+<tr class="memdesc:a18ad8d4cfbdd2ec3088b688448600c6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">перемещающие присваивание.  <a href="classjpl_1_1command.html#a18ad8d4cfbdd2ec3088b688448600c6a">Подробнее...</a><br /></td></tr>
+<tr class="separator:a18ad8d4cfbdd2ec3088b688448600c6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1024a764578741b3ff9560ffbd822e50"><td class="memItemLeft" align="right" valign="top"><a id="a1024a764578741b3ff9560ffbd822e50"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1command.html#a1024a764578741b3ff9560ffbd822e50">~command</a> ()</td></tr>
+<tr class="memdesc:a1024a764578741b3ff9560ffbd822e50"><td class="mdescLeft">&#160;</td><td class="mdescRight">деструктор. Уничтожает объекты операндов, переданные в конструкторе <br /></td></tr>
+<tr class="separator:a1024a764578741b3ff9560ffbd822e50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07385e0585824d0161e627093e80ee76"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1command.html#a07385e0585824d0161e627093e80ee76">execute</a> (<a class="el" href="classjpl_1_1processor.html">processor</a> &amp;proc, long time) const</td></tr>
+<tr class="memdesc:a07385e0585824d0161e627093e80ee76"><td class="mdescLeft">&#160;</td><td class="mdescRight">выполняет команду с использованием ресурсов указанного процессора, считая что в данный момент переданное системное время (в тиках)  <a href="classjpl_1_1command.html#a07385e0585824d0161e627093e80ee76">Подробнее...</a><br /></td></tr>
+<tr class="separator:a07385e0585824d0161e627093e80ee76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef559165910a05a6f64a7689aba5e525"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1command.html#aef559165910a05a6f64a7689aba5e525">set_operation</a> (const <a class="el" href="classjpl_1_1operations_1_1base.html">operation</a> &amp;op_)</td></tr>
+<tr class="memdesc:aef559165910a05a6f64a7689aba5e525"><td class="mdescLeft">&#160;</td><td class="mdescRight">заменить операцию на переданную  <a href="classjpl_1_1command.html#aef559165910a05a6f64a7689aba5e525">Подробнее...</a><br /></td></tr>
+<tr class="separator:aef559165910a05a6f64a7689aba5e525"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae15410462d0326bbf6ff7e64cf138018"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1command.html#ae15410462d0326bbf6ff7e64cf138018">set_operator</a> (const <a class="el" href="classjpl_1_1operators_1_1base.html">operator_</a>*act_)</td></tr>
+<tr class="memdesc:ae15410462d0326bbf6ff7e64cf138018"><td class="mdescLeft">&#160;</td><td class="mdescRight">заменить оператор на переданный  <a href="classjpl_1_1command.html#ae15410462d0326bbf6ff7e64cf138018">Подробнее...</a><br /></td></tr>
+<tr class="separator:ae15410462d0326bbf6ff7e64cf138018"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1fb3766e62ed8d1e00213d371ab5b46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1command.html#ae1fb3766e62ed8d1e00213d371ab5b46">set_label</a> (const std::string &amp;lab)</td></tr>
+<tr class="memdesc:ae1fb3766e62ed8d1e00213d371ab5b46"><td class="mdescLeft">&#160;</td><td class="mdescRight">заменить метку на переданную  <a href="classjpl_1_1command.html#ae1fb3766e62ed8d1e00213d371ab5b46">Подробнее...</a><br /></td></tr>
+<tr class="separator:ae1fb3766e62ed8d1e00213d371ab5b46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad103e3ca89b9680062955ab1fccd03fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1command.html#ad103e3ca89b9680062955ab1fccd03fe">add_operand</a> (const <a class="el" href="classjpl_1_1operand.html">operand</a> &amp;arg)</td></tr>
+<tr class="memdesc:ad103e3ca89b9680062955ab1fccd03fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">добавить операнд в список операндов  <a href="classjpl_1_1command.html#ad103e3ca89b9680062955ab1fccd03fe">Подробнее...</a><br /></td></tr>
+<tr class="separator:ad103e3ca89b9680062955ab1fccd03fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff091e40ade6f01b6210855a8c37ae5a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1command.html#aff091e40ade6f01b6210855a8c37ae5a">remove_operand</a> (int num)</td></tr>
+<tr class="memdesc:aff091e40ade6f01b6210855a8c37ae5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">удалить операнд из списка операндов  <a href="classjpl_1_1command.html#aff091e40ade6f01b6210855a8c37ae5a">Подробнее...</a><br /></td></tr>
+<tr class="separator:aff091e40ade6f01b6210855a8c37ae5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a459ddf35d57f715384f587d99910fea1"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classjpl_1_1operations_1_1base.html">operation</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1command.html#a459ddf35d57f715384f587d99910fea1">get_operation</a> () const</td></tr>
+<tr class="memdesc:a459ddf35d57f715384f587d99910fea1"><td class="mdescLeft">&#160;</td><td class="mdescRight">возвращает константную ссылку на операцию  <a href="classjpl_1_1command.html#a459ddf35d57f715384f587d99910fea1">Подробнее...</a><br /></td></tr>
+<tr class="separator:a459ddf35d57f715384f587d99910fea1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b93030d26d38243ed826785f7edddcd"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classjpl_1_1operators_1_1base.html">operator_</a>*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1command.html#a0b93030d26d38243ed826785f7edddcd">get_operator</a> () const</td></tr>
+<tr class="memdesc:a0b93030d26d38243ed826785f7edddcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">возвращает константный указатель на оператор  <a href="classjpl_1_1command.html#a0b93030d26d38243ed826785f7edddcd">Подробнее...</a><br /></td></tr>
+<tr class="separator:a0b93030d26d38243ed826785f7edddcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d7bb47596f830e122fac86acc946791"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1command.html#a6d7bb47596f830e122fac86acc946791">get_label</a> () const</td></tr>
+<tr class="memdesc:a6d7bb47596f830e122fac86acc946791"><td class="mdescLeft">&#160;</td><td class="mdescRight">возвращает текстовое представление метки  <a href="classjpl_1_1command.html#a6d7bb47596f830e122fac86acc946791">Подробнее...</a><br /></td></tr>
+<tr class="separator:a6d7bb47596f830e122fac86acc946791"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4525ddcd77f911fa5aeeea9e51ec1100"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classjpl_1_1operand.html">operand</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1command.html#a4525ddcd77f911fa5aeeea9e51ec1100">get_operand</a> (int num) const</td></tr>
+<tr class="memdesc:a4525ddcd77f911fa5aeeea9e51ec1100"><td class="mdescLeft">&#160;</td><td class="mdescRight">возвращает операнд по его номеру  <a href="classjpl_1_1command.html#a4525ddcd77f911fa5aeeea9e51ec1100">Подробнее...</a><br /></td></tr>
+<tr class="separator:a4525ddcd77f911fa5aeeea9e51ec1100"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa555ac71903b1c724ce7e3205d987ac5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1command.html#aa555ac71903b1c724ce7e3205d987ac5">get_args_count</a> () const</td></tr>
+<tr class="memdesc:aa555ac71903b1c724ce7e3205d987ac5"><td class="mdescLeft">&#160;</td><td class="mdescRight">возвращает количество операндов у данного экземпляра команды  <a href="classjpl_1_1command.html#aa555ac71903b1c724ce7e3205d987ac5">Подробнее...</a><br /></td></tr>
+<tr class="separator:aa555ac71903b1c724ce7e3205d987ac5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Друзья</h2></td></tr>
+<tr class="memitem:ac6ad145f47d81fe07e070b17f87b5e3b"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1command.html#ac6ad145f47d81fe07e070b17f87b5e3b">operator&lt;&lt;</a> (std::ostream &amp;out, const <a class="el" href="classjpl_1_1command.html">command</a> &amp;cmd)</td></tr>
+<tr class="memdesc:ac6ad145f47d81fe07e070b17f87b5e3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">выводит текстовое представление данной команды в указанный поток. Перевод строки не осуществляется  <a href="classjpl_1_1command.html#ac6ad145f47d81fe07e070b17f87b5e3b">Подробнее...</a><br /></td></tr>
+<tr class="separator:ac6ad145f47d81fe07e070b17f87b5e3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>класс команды процессора. </p>
+</div><h2 class="groupheader">Конструктор(ы)</h2>
+<a id="abf6800875e7ab9a8836de50728053c6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf6800875e7ab9a8836de50728053c6b">&#9670;&nbsp;</a></span>command() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">jpl::command::command </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classjpl_1_1operations_1_1base.html">operation</a> &amp;&#160;</td>
+          <td class="paramname"><em>op_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classjpl_1_1operators_1_1base.html">operator_</a>*&#160;</td>
+          <td class="paramname"><em>act_</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>конструктор для команды без операндов </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">op_</td><td>ссылка на класс операции. Основные операции вынесены в файл <a class="el" href="operations_8h.html" title="Файл содержит описание базовых операций, на основе которых можно создавать команды.">operations.h</a>, пользовательские операции так же поддерживаются. </td></tr>
+    <tr><td class="paramname">str</td><td>текстовая метка команды. Используется при выводе команды в поток. Может быть nullptr. </td></tr>
+    <tr><td class="paramname">act</td><td>указатель на оператор. Оператор выполняет математическую операцию на АЛУ. Если команда адресована к УУ, то этот параметр должен быть nullptr (по-умолчанию) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a62e6ee0d094438aa0576893ae3465990"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62e6ee0d094438aa0576893ae3465990">&#9670;&nbsp;</a></span>command() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">jpl::command::command </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classjpl_1_1operations_1_1base.html">operation</a> &amp;&#160;</td>
+          <td class="paramname"><em>op_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::initializer_list&lt; <a class="el" href="classjpl_1_1operand.html">operand</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_args</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classjpl_1_1operators_1_1base.html">operator_</a>*&#160;</td>
+          <td class="paramname"><em>act_</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>конструктор для команды со списком операндов </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">op_</td><td>ссылка на класс операции. Основные операции вынесены в файл <a class="el" href="operations_8h.html" title="Файл содержит описание базовых операций, на основе которых можно создавать команды.">operations.h</a>, пользовательские операции так же поддерживаются. </td></tr>
+    <tr><td class="paramname">str</td><td>текстовая метка команды. Используется при выводе команды в поток. Может быть nullptr. </td></tr>
+    <tr><td class="paramname">_args</td><td>список указателей на операнды. ВАЖНО! следует использовать синтаксис {new operand(), ...} так как класс команды не создает копию объекта по ссылке. Все операнды удаляются в деструкторе </td></tr>
+    <tr><td class="paramname">act</td><td>указатель на оператор. Оператор выполняет математическую операцию на АЛУ. Если команда адресована к УУ, то этот параметр должен быть nullptr (по-умолчанию) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab1617b9d4fb0b8ceb180733cc58767ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1617b9d4fb0b8ceb180733cc58767ba">&#9670;&nbsp;</a></span>command() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">jpl::command::command </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classjpl_1_1command.html">command</a> &amp;&#160;</td>
+          <td class="paramname"><em>cmd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>копирующий конструктор. Операнды так же копируюстя </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td>команда, с которой необходимо снять копию </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a74901d85ed0248a601848a2645779be3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74901d85ed0248a601848a2645779be3">&#9670;&nbsp;</a></span>command() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">jpl::command::command </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classjpl_1_1command.html">command</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>cmd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>перемещающий конструктор. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td>команда, ресурсы которой необходимо перенести </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Методы</h2>
+<a id="ad103e3ca89b9680062955ab1fccd03fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad103e3ca89b9680062955ab1fccd03fe">&#9670;&nbsp;</a></span>add_operand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void jpl::command::add_operand </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classjpl_1_1operand.html">operand</a> &amp;&#160;</td>
+          <td class="paramname"><em>arg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>добавить операнд в список операндов </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">arg</td><td>операнд для добавления </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a07385e0585824d0161e627093e80ee76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07385e0585824d0161e627093e80ee76">&#9670;&nbsp;</a></span>execute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void jpl::command::execute </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classjpl_1_1processor.html">processor</a> &amp;&#160;</td>
+          <td class="paramname"><em>proc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>time</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>выполняет команду с использованием ресурсов указанного процессора, считая что в данный момент переданное системное время (в тиках) </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">proc</td><td>ссылка на процессор, на котором небходимо выполнить данную команду </td></tr>
+    <tr><td class="paramname">time</td><td>показание регистра таймера процессора. Необходимо для того, что бы была возможность симулировать длительность выполнения операций </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa555ac71903b1c724ce7e3205d987ac5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa555ac71903b1c724ce7e3205d987ac5">&#9670;&nbsp;</a></span>get_args_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int jpl::command::get_args_count </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>возвращает количество операндов у данного экземпляра команды </p>
+<dl class="section return"><dt>Возвращает</dt><dd>количество операндов </dd></dl>
+
+</div>
+</div>
+<a id="a6d7bb47596f830e122fac86acc946791"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d7bb47596f830e122fac86acc946791">&#9670;&nbsp;</a></span>get_label()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string&amp; jpl::command::get_label </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>возвращает текстовое представление метки </p>
+<dl class="section return"><dt>Возвращает</dt><dd>строка метка </dd></dl>
+
+</div>
+</div>
+<a id="a4525ddcd77f911fa5aeeea9e51ec1100"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4525ddcd77f911fa5aeeea9e51ec1100">&#9670;&nbsp;</a></span>get_operand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classjpl_1_1operand.html">operand</a>* jpl::command::get_operand </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>возвращает операнд по его номеру </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>номер операнда (нумерация с 0) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>константный указатель на операнд </dd></dl>
+
+</div>
+</div>
+<a id="a459ddf35d57f715384f587d99910fea1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a459ddf35d57f715384f587d99910fea1">&#9670;&nbsp;</a></span>get_operation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classjpl_1_1operations_1_1base.html">operation</a>&amp; jpl::command::get_operation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>возвращает константную ссылку на операцию </p>
+<dl class="section return"><dt>Возвращает</dt><dd>константная ссылка на операцию </dd></dl>
+
+</div>
+</div>
+<a id="a0b93030d26d38243ed826785f7edddcd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b93030d26d38243ed826785f7edddcd">&#9670;&nbsp;</a></span>get_operator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classjpl_1_1operators_1_1base.html">operator_</a>* jpl::command::get_operator </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>возвращает константный указатель на оператор </p>
+<dl class="section return"><dt>Возвращает</dt><dd>константный указатель на оператор </dd></dl>
+
+</div>
+</div>
+<a id="a18ad8d4cfbdd2ec3088b688448600c6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18ad8d4cfbdd2ec3088b688448600c6a">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classjpl_1_1command.html">command</a> &amp; jpl::command::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classjpl_1_1command.html">command</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>cmd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>перемещающие присваивание. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td>команда, ресурсы которой необходимо перенести </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>ссылка на себя </dd></dl>
+
+</div>
+</div>
+<a id="ade1f91885b5c3e151eb54a403774ee5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade1f91885b5c3e151eb54a403774ee5f">&#9670;&nbsp;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classjpl_1_1command.html">command</a> &amp; jpl::command::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classjpl_1_1command.html">command</a> &amp;&#160;</td>
+          <td class="paramname"><em>cmd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>копирующее присваивание </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td>команда, с которой необходимо снять копию </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>ссылка на себя </dd></dl>
+
+</div>
+</div>
+<a id="aff091e40ade6f01b6210855a8c37ae5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff091e40ade6f01b6210855a8c37ae5a">&#9670;&nbsp;</a></span>remove_operand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void jpl::command::remove_operand </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>удалить операнд из списка операндов </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>номер операнда (нумерация начинается с 0) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae1fb3766e62ed8d1e00213d371ab5b46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1fb3766e62ed8d1e00213d371ab5b46">&#9670;&nbsp;</a></span>set_label()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void jpl::command::set_label </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>lab</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>заменить метку на переданную </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lab</td><td>новая метка </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aef559165910a05a6f64a7689aba5e525"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef559165910a05a6f64a7689aba5e525">&#9670;&nbsp;</a></span>set_operation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void jpl::command::set_operation </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classjpl_1_1operations_1_1base.html">operation</a> &amp;&#160;</td>
+          <td class="paramname"><em>op_</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>заменить операцию на переданную </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">op_</td><td>новая операция </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae15410462d0326bbf6ff7e64cf138018"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae15410462d0326bbf6ff7e64cf138018">&#9670;&nbsp;</a></span>set_operator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void jpl::command::set_operator </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classjpl_1_1operators_1_1base.html">operator_</a>*&#160;</td>
+          <td class="paramname"><em>act_</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>заменить оператор на переданный </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">act_</td><td>новый оператор </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Документация по друзьям класса и функциям, относящимся к классу</h2>
+<a id="ac6ad145f47d81fe07e070b17f87b5e3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6ad145f47d81fe07e070b17f87b5e3b">&#9670;&nbsp;</a></span>operator&lt;&lt;</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream&amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classjpl_1_1command.html">command</a> &amp;&#160;</td>
+          <td class="paramname"><em>cmd</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>выводит текстовое представление данной команды в указанный поток. Перевод строки не осуществляется </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td>ссылка на поток </td></tr>
+    <tr><td class="paramname">cmd</td><td>константная ссылка на команду, которую необходимо вывести в поток </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>ссылка на переданный поток </dd></dl>
+
+</div>
+</div>
+<hr/>Объявления и описания членов классов находятся в файлах:<ul>
+<li><a class="el" href="command_8h_source.html">command.h</a></li>
+<li>processor.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

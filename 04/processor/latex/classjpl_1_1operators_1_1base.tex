@@ -1,0 +1,48 @@
+\hypertarget{classjpl_1_1operators_1_1base}{}\doxysection{Класс jpl\+::operators\+::base}
+\label{classjpl_1_1operators_1_1base}\index{jpl::operators::base@{jpl::operators::base}}
+
+
+базовый класс математического оператора. Является функтором. Любой поддерживаемый АЛУ оператор является экземпляром потомка данного класса  
+
+
+
+
+{\ttfamily \#include $<$operators.\+hpp$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classjpl_1_1operators_1_1base_a7f7524b859bcd0cd105e9cb9302dbaa7}\label{classjpl_1_1operators_1_1base_a7f7524b859bcd0cd105e9cb9302dbaa7}} 
+virtual std\+::ostream \& \mbox{\hyperlink{classjpl_1_1operators_1_1base_a7f7524b859bcd0cd105e9cb9302dbaa7}{print}} (std\+::ostream \&) const =0
+\begin{DoxyCompactList}\small\item\em выводит в поток текстовое название оператора \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{namespacejpl_a6eac36f967442575ceec4981f5295996}{byte}} \mbox{\hyperlink{classjpl_1_1operators_1_1base_afa4c582e16e3d131b2898fc9f0342cb2}{operator()}} (const std\+::initializer\+\_\+list$<$ \mbox{\hyperlink{namespacejpl_a6eac36f967442575ceec4981f5295996}{byte}} $>$ \&args) const =0
+\begin{DoxyCompactList}\small\item\em производит вычисления над переданными аргументами, возвращает результат вычислений. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+базовый класс математического оператора. Является функтором. Любой поддерживаемый АЛУ оператор является экземпляром потомка данного класса 
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classjpl_1_1operators_1_1base_afa4c582e16e3d131b2898fc9f0342cb2}\label{classjpl_1_1operators_1_1base_afa4c582e16e3d131b2898fc9f0342cb2}} 
+\index{jpl::operators::base@{jpl::operators::base}!operator()@{operator()}}
+\index{operator()@{operator()}!jpl::operators::base@{jpl::operators::base}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{namespacejpl_a6eac36f967442575ceec4981f5295996}{byte}} jpl\+::operators\+::base\+::operator() (\begin{DoxyParamCaption}\item[{const std\+::initializer\+\_\+list$<$ \mbox{\hyperlink{namespacejpl_a6eac36f967442575ceec4981f5295996}{byte}} $>$ \&}]{args }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+производит вычисления над переданными аргументами, возвращает результат вычислений. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em args} & список аргументов \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+результат вычисления 
+\end{DoxyReturn}
+
+
+Объявления и описания членов класса находятся в файле\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{operators_8hpp}{operators.\+hpp}}\end{DoxyCompactItemize}

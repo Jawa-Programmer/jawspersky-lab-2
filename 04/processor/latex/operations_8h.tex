@@ -1,0 +1,86 @@
+\hypertarget{operations_8h}{}\doxysection{Файл operations.\+h}
+\label{operations_8h}\index{operations.h@{operations.h}}
+
+
+Файл содержит описание базовых операций, на основе которых можно создавать команды.  
+
+
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include \char`\"{}types.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}operators.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}operands.\+h\char`\"{}}\newline
+\doxysubsection*{Классы}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classjpl_1_1operations_1_1base}{jpl\+::operations\+::base}}
+\begin{DoxyCompactList}\small\item\em базовый класс операции. Определяет поведение контроллера. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Пространства имен}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacejpl}{jpl}}
+\begin{DoxyCompactList}\small\item\em пространство имен Jawa Programmer Library. \end{DoxyCompactList}\item 
+ \mbox{\hyperlink{namespacejpl_1_1operations}{jpl\+::operations}}
+\begin{DoxyCompactList}\small\item\em это пространстро имён содержит глобальные константы, определяющие базовые операции \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Переменные}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacejpl_1_1operations_a853f66697192d94e58137215ba9b09d2}\label{namespacejpl_1_1operations_a853f66697192d94e58137215ba9b09d2}} 
+\mbox{\hyperlink{namespacejpl_1_1operations_a853f66697192d94e58137215ba9b09d2}{jpl\+::operations\+::\+A\+L\+LC}}
+\begin{DoxyCompactList}\small\item\em Одна из базовых операций. Просит ОП выделить новый блок из кучи, результат помещается в первый операнд. Если присутсвует второй операнд, его значение интерпретируется как размер выделяемого блока в байтах \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operations_ac220b975334b8e58e621cee38ff68c62}\label{namespacejpl_1_1operations_ac220b975334b8e58e621cee38ff68c62}} 
+\mbox{\hyperlink{namespacejpl_1_1operations_ac220b975334b8e58e621cee38ff68c62}{jpl\+::operations\+::\+F\+R\+EE}}
+\begin{DoxyCompactList}\small\item\em Одна из базовых операций. Просит ОП вернуть блок памяти с указанным адресом в кучу. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operations_a88d2213cab91807491bcc891b2b7cb69}\label{namespacejpl_1_1operations_a88d2213cab91807491bcc891b2b7cb69}} 
+\mbox{\hyperlink{namespacejpl_1_1operations_a88d2213cab91807491bcc891b2b7cb69}{jpl\+::operations\+::\+J\+U\+MP}}
+\begin{DoxyCompactList}\small\item\em Одна из базовых операций. Если задан один операнд, то совершается безусловный переход. Операнд интерпретируется как номер инструкции. Если здано два операнда, то в случае истинности первого операнда происходит переход по второму, иначе -\/ переход к следующей инструкции. Если задано три операнда, то в случае истинности первого операнда происходит переход по второму, иначе -\/ переход по третьему \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operations_a78d8639a05727a7152f35b3862774d99}\label{namespacejpl_1_1operations_a78d8639a05727a7152f35b3862774d99}} 
+\mbox{\hyperlink{namespacejpl_1_1operations_a78d8639a05727a7152f35b3862774d99}{jpl\+::operations\+::\+P\+U\+SH}}
+\begin{DoxyCompactList}\small\item\em Одна из базовых операций. Помещает переданный параметром аргумент на стек процесса \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operations_a17a4c2add30050da409dbe0bf75d9947}\label{namespacejpl_1_1operations_a17a4c2add30050da409dbe0bf75d9947}} 
+\mbox{\hyperlink{namespacejpl_1_1operations_a17a4c2add30050da409dbe0bf75d9947}{jpl\+::operations\+::\+P\+OP}}
+\begin{DoxyCompactList}\small\item\em Одна из базовых операций. Изимает данные с вершины стека процесса и помещает в переданный аргумент \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operations_a9a6b0851550bff276053e29e2d034590}\label{namespacejpl_1_1operations_a9a6b0851550bff276053e29e2d034590}} 
+\mbox{\hyperlink{namespacejpl_1_1operations_a9a6b0851550bff276053e29e2d034590}{jpl\+::operations\+::\+P\+U\+S\+HR}}
+\begin{DoxyCompactList}\small\item\em Одна из базовых операций. Помещает состояние всех регистров блока регистров процессора на вершину стека процесса (первый регистр в помещается первым) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operations_a8952d71942eae627114ae3d3cf7b29b0}\label{namespacejpl_1_1operations_a8952d71942eae627114ae3d3cf7b29b0}} 
+\mbox{\hyperlink{namespacejpl_1_1operations_a8952d71942eae627114ae3d3cf7b29b0}{jpl\+::operations\+::\+P\+E\+EK}}
+\begin{DoxyCompactList}\small\item\em Одна из базовых операций. Помещает в первый операнд содержимое стека с отступом от вершины, равным второму операнду (по умолчанию 0) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operations_a1e4dee25848d2df153324ddab954cf94}\label{namespacejpl_1_1operations_a1e4dee25848d2df153324ddab954cf94}} 
+\mbox{\hyperlink{namespacejpl_1_1operations_a1e4dee25848d2df153324ddab954cf94}{jpl\+::operations\+::\+P\+O\+PR}}
+\begin{DoxyCompactList}\small\item\em Одна из базовых операций. Переносит значения с вершины стека процесса в регисты процессора (так, что вершина стека станет последним регистром) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operations_a1d22fad3f47b23b1e07e15346af9273f}\label{namespacejpl_1_1operations_a1d22fad3f47b23b1e07e15346af9273f}} 
+\mbox{\hyperlink{namespacejpl_1_1operations_a1d22fad3f47b23b1e07e15346af9273f}{jpl\+::operations\+::\+C\+A\+LL}}
+\begin{DoxyCompactList}\small\item\em Одна из базовых операций. Выполняет переход по переданному параметром адресу. При этом на вершину стека процесса помещается адрес возврата \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operations_ad93d8ff1b377c77009f4bb7eebb64f82}\label{namespacejpl_1_1operations_ad93d8ff1b377c77009f4bb7eebb64f82}} 
+\mbox{\hyperlink{namespacejpl_1_1operations_ad93d8ff1b377c77009f4bb7eebb64f82}{jpl\+::operations\+::\+R\+ET}}
+\begin{DoxyCompactList}\small\item\em Одна из базовых операций. Выполняет переход к инструкции, адрес которой лежит на стеке процесса. Необязательный аргумент сообщает, сколько позиций необходимо снять со стека (например, если стек использовался для передачи аргументов) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operations_ac66a3efb6e76882c13db05a5c2b3b284}\label{namespacejpl_1_1operations_ac66a3efb6e76882c13db05a5c2b3b284}} 
+\mbox{\hyperlink{namespacejpl_1_1operations_ac66a3efb6e76882c13db05a5c2b3b284}{jpl\+::operations\+::\+V\+AR}}
+\begin{DoxyCompactList}\small\item\em Фиктивная операция. Используется компилятором для выделения памяти под статические переменные программы. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operations_a7764053b6c32343a38842f00757798e3}\label{namespacejpl_1_1operations_a7764053b6c32343a38842f00757798e3}} 
+\mbox{\hyperlink{namespacejpl_1_1operations_a7764053b6c32343a38842f00757798e3}{jpl\+::operations\+::\+U\+N\+A\+RY}}
+\begin{DoxyCompactList}\small\item\em Одна из базовых операций. Производит вычисления унарных операторов на АЛУ. Результат помещает в операнд. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operations_aacc2c1690d93fe7ffc62b95a6591df2b}\label{namespacejpl_1_1operations_aacc2c1690d93fe7ffc62b95a6591df2b}} 
+\mbox{\hyperlink{namespacejpl_1_1operations_aacc2c1690d93fe7ffc62b95a6591df2b}{jpl\+::operations\+::\+B\+I\+N\+A\+RY}}
+\begin{DoxyCompactList}\small\item\em Одна из базовых операций. Производит вычисления бинарных операторов на АЛУ. Результат помещает в первый операнд. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operations_a81c7f4ff2a021a995dd98d3ef29af175}\label{namespacejpl_1_1operations_a81c7f4ff2a021a995dd98d3ef29af175}} 
+\mbox{\hyperlink{namespacejpl_1_1operations_a81c7f4ff2a021a995dd98d3ef29af175}{jpl\+::operations\+::\+S\+ET}}
+\begin{DoxyCompactList}\small\item\em Одна из базовых операций. Копирует фактические данные второго операнда и помещает их в первый. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_1_1operations_ac645fbf8b38bd774a74f109bd16d2ca9}\label{namespacejpl_1_1operations_ac645fbf8b38bd774a74f109bd16d2ca9}} 
+\mbox{\hyperlink{namespacejpl_1_1operations_ac645fbf8b38bd774a74f109bd16d2ca9}{jpl\+::operations\+::\+N\+O\+NE}}
+\begin{DoxyCompactList}\small\item\em Абстрактная операция. Используется как заглушка. Исполнение данной оперцаии вызывает исключение \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Файл содержит описание базовых операций, на основе которых можно создавать команды. 
+
+\begin{DoxyAuthor}{Автор}
+Jawa Prog 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Версия}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Дата}
+Декабрь 2020 года 
+\end{DoxyDate}

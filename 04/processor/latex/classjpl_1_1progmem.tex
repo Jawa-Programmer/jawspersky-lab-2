@@ -1,0 +1,133 @@
+\hypertarget{classjpl_1_1progmem}{}\doxysection{Класс jpl\+::progmem}
+\label{classjpl_1_1progmem}\index{jpl::progmem@{jpl::progmem}}
+
+
+класс памяти программ. Хранит основную информацию о программе (последовательность инструкций, словарь \char`\"{}метка\char`\"{}-\/\char`\"{}число\char`\"{}, количство статически выделяемой памяти)  
+
+
+
+
+{\ttfamily \#include $<$processor.\+h$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classjpl_1_1progmem_a796ffbab5aa8d547f9460fc83f28073f}{insert}} (const \mbox{\hyperlink{classjpl_1_1command}{command}} \&cmd, int p=-\/1)
+\begin{DoxyCompactList}\small\item\em --- P\+R\+O\+G\+M\+EM ---/// \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classjpl_1_1progmem_abb73cff68851632fe6efd43f9758ee68}{erase}} (int nm)
+\item 
+const \mbox{\hyperlink{classjpl_1_1command}{command}} \& \mbox{\hyperlink{classjpl_1_1progmem_ab3b52abeaf0b9286969d47019b498e29}{operator\mbox{[}$\,$\mbox{]}}} (int i) const
+\item 
+\mbox{\Hypertarget{classjpl_1_1progmem_a470eadfd1ac06b3fc9c516f621110f4a}\label{classjpl_1_1progmem_a470eadfd1ac06b3fc9c516f621110f4a}} 
+void \mbox{\hyperlink{classjpl_1_1progmem_a470eadfd1ac06b3fc9c516f621110f4a}{clear}} ()
+\begin{DoxyCompactList}\small\item\em очищает память программ. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1progmem_abbf0359b7fbe2c6be8ffb2e2d1cb62aa}\label{classjpl_1_1progmem_abbf0359b7fbe2c6be8ffb2e2d1cb62aa}} 
+int \mbox{\hyperlink{classjpl_1_1progmem_abbf0359b7fbe2c6be8ffb2e2d1cb62aa}{size}} () const
+\begin{DoxyCompactList}\small\item\em возвращает количество команд в памяти программ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1progmem_a6641fccf0c482dad2225042831ae5f4c}\label{classjpl_1_1progmem_a6641fccf0c482dad2225042831ae5f4c}} 
+int \mbox{\hyperlink{classjpl_1_1progmem_a6641fccf0c482dad2225042831ae5f4c}{get\+\_\+weight}} () const
+\begin{DoxyCompactList}\small\item\em возвращает вес программы (необходимое под статические переменные место) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacejpl_a6eac36f967442575ceec4981f5295996}{byte}} \mbox{\hyperlink{classjpl_1_1progmem_a5ce3a4196a8a2ab0f1426074685ed426}{unname}} (const std\+::string \&var) const
+\item 
+void \mbox{\hyperlink{classjpl_1_1progmem_ae652c02033cba34379b2e1fb26133d0c}{set\+\_\+name}} (const std\+::string \&var, const int \&adr)
+\item 
+void \mbox{\hyperlink{classjpl_1_1progmem_a26d2d43b7dd56489c5a27e518918a01c}{remove\+\_\+name}} (const std\+::string \&var)
+\end{DoxyCompactItemize}
+\doxysubsection*{Друзья}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classjpl_1_1progmem_a09bd20c0fbb146a6b7e21a759c8f5c0d}\label{classjpl_1_1progmem_a09bd20c0fbb146a6b7e21a759c8f5c0d}} 
+std\+::ostream \& \mbox{\hyperlink{classjpl_1_1progmem_a09bd20c0fbb146a6b7e21a759c8f5c0d}{operator$<$$<$}} (std\+::ostream \&, const \mbox{\hyperlink{classjpl_1_1progmem}{progmem}} \&)
+\begin{DoxyCompactList}\small\item\em вывод в поток исходного текста программы \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+класс памяти программ. Хранит основную информацию о программе (последовательность инструкций, словарь \char`\"{}метка\char`\"{}-\/\char`\"{}число\char`\"{}, количство статически выделяемой памяти) 
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classjpl_1_1progmem_abb73cff68851632fe6efd43f9758ee68}\label{classjpl_1_1progmem_abb73cff68851632fe6efd43f9758ee68}} 
+\index{jpl::progmem@{jpl::progmem}!erase@{erase}}
+\index{erase@{erase}!jpl::progmem@{jpl::progmem}}
+\doxysubsubsection{\texorpdfstring{erase()}{erase()}}
+{\footnotesize\ttfamily void jpl\+::progmem\+::erase (\begin{DoxyParamCaption}\item[{int}]{nm }\end{DoxyParamCaption})}
+
+метод удаляет команду по переданной позиции. При необходимости значение веса инкрементируется. 
+\begin{DoxyParams}{Аргументы}
+{\em nm} & номер команды в программе \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1progmem_a796ffbab5aa8d547f9460fc83f28073f}\label{classjpl_1_1progmem_a796ffbab5aa8d547f9460fc83f28073f}} 
+\index{jpl::progmem@{jpl::progmem}!insert@{insert}}
+\index{insert@{insert}!jpl::progmem@{jpl::progmem}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily void jpl\+::progmem\+::insert (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classjpl_1_1command}{command}} \&}]{cmd,  }\item[{int}]{p = {\ttfamily -\/1} }\end{DoxyParamCaption})}
+
+
+
+--- P\+R\+O\+G\+M\+EM ---/// 
+
+метод вставляет команду на переданную позицию. Если число меньше нуля, то вставка идет в конец 
+\begin{DoxyParams}{Аргументы}
+{\em cmd} & команда для вставки \\
+\hline
+{\em p} & = -\/1 позиция для вставки. Любое отрицательное значение приводит к вставке в конец программы. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1progmem_ab3b52abeaf0b9286969d47019b498e29}\label{classjpl_1_1progmem_ab3b52abeaf0b9286969d47019b498e29}} 
+\index{jpl::progmem@{jpl::progmem}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!jpl::progmem@{jpl::progmem}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classjpl_1_1command}{command}}\& jpl\+::progmem\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+оператор возвращает команду по ее номеру. При необходимости значение веса инкрементируется. 
+\begin{DoxyParams}{Аргументы}
+{\em i} & позиция команды в памяти програм \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+константная ссылка на команду 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classjpl_1_1progmem_a26d2d43b7dd56489c5a27e518918a01c}\label{classjpl_1_1progmem_a26d2d43b7dd56489c5a27e518918a01c}} 
+\index{jpl::progmem@{jpl::progmem}!remove\_name@{remove\_name}}
+\index{remove\_name@{remove\_name}!jpl::progmem@{jpl::progmem}}
+\doxysubsubsection{\texorpdfstring{remove\_name()}{remove\_name()}}
+{\footnotesize\ttfamily void jpl\+::progmem\+::remove\+\_\+name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{var }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+удаляет указанную метку или имя переменного из словаря. 
+\begin{DoxyParams}{Аргументы}
+{\em var} & строка. Метка или имя переменного \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1progmem_ae652c02033cba34379b2e1fb26133d0c}\label{classjpl_1_1progmem_ae652c02033cba34379b2e1fb26133d0c}} 
+\index{jpl::progmem@{jpl::progmem}!set\_name@{set\_name}}
+\index{set\_name@{set\_name}!jpl::progmem@{jpl::progmem}}
+\doxysubsubsection{\texorpdfstring{set\_name()}{set\_name()}}
+{\footnotesize\ttfamily void jpl\+::progmem\+::set\+\_\+name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{var,  }\item[{const int \&}]{adr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+устанавливает новое фактическое значение метки или имени переменного 
+\begin{DoxyParams}{Аргументы}
+{\em var} & строка. Метка или имя переменного \\
+\hline
+{\em adr} & новое фактическое значение \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1progmem_a5ce3a4196a8a2ab0f1426074685ed426}\label{classjpl_1_1progmem_a5ce3a4196a8a2ab0f1426074685ed426}} 
+\index{jpl::progmem@{jpl::progmem}!unname@{unname}}
+\index{unname@{unname}!jpl::progmem@{jpl::progmem}}
+\doxysubsubsection{\texorpdfstring{unname()}{unname()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacejpl_a6eac36f967442575ceec4981f5295996}{byte}} jpl\+::progmem\+::unname (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{var }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+возвращает фактическое значение метки или имени переменного 
+\begin{DoxyParams}{Аргументы}
+{\em var} & строка. Метка или имя переменного \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+фактическое значение (адрес команды или данных) 
+\end{DoxyReturn}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{processor_8h}{processor.\+h}}\item 
+processor.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,52 @@
+\hypertarget{classjpl_1_1operations_1_1base}{}\doxysection{Класс jpl\+::operations\+::base}
+\label{classjpl_1_1operations_1_1base}\index{jpl::operations::base@{jpl::operations::base}}
+
+
+базовый класс операции. Определяет поведение контроллера.  
+
+
+
+
+{\ttfamily \#include $<$operations.\+h$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classjpl_1_1operations_1_1base_ad431ba4de489fe232d27684095823456}\label{classjpl_1_1operations_1_1base_ad431ba4de489fe232d27684095823456}} 
+virtual \mbox{\hyperlink{namespacejpl_a8f9423c363d0d3ef87c408d510fd90ac}{O\+P\+E\+R\+A\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{classjpl_1_1operations_1_1base_ad431ba4de489fe232d27684095823456}{type}} () const
+\begin{DoxyCompactList}\small\item\em возвращает тип операции. используется для внутреннего пользования. При определении производных операций, эту функцию переопределять не рекомендуется \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1operations_1_1base_af4faafe50fd7f41200abfd351af45fa5}\label{classjpl_1_1operations_1_1base_af4faafe50fd7f41200abfd351af45fa5}} 
+virtual \mbox{\hyperlink{namespacejpl_a33048375400995b60ea37a939940e975}{E\+X\+E\+C\+U\+T\+OR}} \mbox{\hyperlink{classjpl_1_1operations_1_1base_af4faafe50fd7f41200abfd351af45fa5}{executor}} () const =0
+\begin{DoxyCompactList}\small\item\em сообщает ИУ, стоит ли передать команду в АЛУ или исполнить ее самому. При определении собственных операций, использущих АЛУ, учитывайте, что если команда не будет содержать оператор, или оператор не будет в списке поддерживаемых команд хотя бы одного АЛУ, то УУ уйдет в бесконечный цикл, так как не сможет выполнить данную команду и будет пытаться найти подходящее АЛУ снова и снова. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1operations_1_1base_a8638c7dadc3f3a34cf310d99425621c6}\label{classjpl_1_1operations_1_1base_a8638c7dadc3f3a34cf310d99425621c6}} 
+virtual const char $\ast$ \mbox{\hyperlink{classjpl_1_1operations_1_1base_a8638c7dadc3f3a34cf310d99425621c6}{lab}} () const =0
+\begin{DoxyCompactList}\small\item\em возвращает текстовое название операции. Для операций, которые предпологают выполнение на АЛУ (\mbox{\hyperlink{classjpl_1_1operations_1_1base_af4faafe50fd7f41200abfd351af45fa5}{executor()}} вернул E\+\_\+\+A\+LU) может возвращается nullptr. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classjpl_1_1operations_1_1base_acab709c7b2046d5f8ac27d8d59846679}{operator()}} (\mbox{\hyperlink{classjpl_1_1processor}{processor}} \&proc, const \mbox{\hyperlink{classjpl_1_1command}{command}} \&cmd, long time) const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+базовый класс операции. Определяет поведение контроллера. 
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classjpl_1_1operations_1_1base_acab709c7b2046d5f8ac27d8d59846679}\label{classjpl_1_1operations_1_1base_acab709c7b2046d5f8ac27d8d59846679}} 
+\index{jpl::operations::base@{jpl::operations::base}!operator()@{operator()}}
+\index{operator()@{operator()}!jpl::operations::base@{jpl::operations::base}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily virtual void jpl\+::operations\+::base\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classjpl_1_1processor}{processor}} \&}]{proc,  }\item[{const \mbox{\hyperlink{classjpl_1_1command}{command}} \&}]{cmd,  }\item[{long}]{time }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+данный оператор производит фактичское исполнение команды и вносит соответсвующие изменения в регистры процессора. ВАЖНО! При определении собственных операций для УУ, не забывайте увеличивать значение счётчика команды на единицу (или, в зависимости от функционала, совершать переход в любую другую область программы). Операции, выполняемые на АЛУ, не требуют инкремента счёчика, это происходит автоматически. 
+\begin{DoxyParams}{Аргументы}
+{\em proc} & ссылка на процессора \\
+\hline
+{\em cmd} & ссылка на команду \\
+\hline
+{\em time} & текущее системное время ~\newline
+ \\
+\hline
+\end{DoxyParams}
+
+
+Объявления и описания членов класса находятся в файле\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{operations_8h}{operations.\+h}}\end{DoxyCompactItemize}

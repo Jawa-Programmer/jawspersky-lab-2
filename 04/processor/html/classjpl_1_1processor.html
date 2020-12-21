@@ -1,0 +1,479 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Библиотека эмулятор процессора: Класс jpl::processor</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Библиотека эмулятор процессора
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Библиотека предостовляет классы виртуальных устройст, исплользуя которые можно смоделировать ахритектуру и исполнить на ней код</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacejpl.html">jpl</a></li><li class="navelem"><a class="el" href="classjpl_1_1processor.html">processor</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="classjpl_1_1processor-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс jpl::processor</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>класс процессора. Процессор определяется набором АЛУ, блоком регистров и указателем на память.  
+ <a href="classjpl_1_1processor.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="processor_8h_source.html">processor.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:ab7741193dddb6b0735001d677bf56083"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1processor.html#ab7741193dddb6b0735001d677bf56083">processor</a> (const <a class="el" href="classjpl_1_1_a_l_u.html">ALU</a> &amp;alu, int regs_, <a class="el" href="classjpl_1_1_r_a_m.html">RAM</a> *ram_=nullptr)</td></tr>
+<tr class="memdesc:ab7741193dddb6b0735001d677bf56083"><td class="mdescLeft">&#160;</td><td class="mdescRight">конструктор процессора. Инициализация одним АЛУ, количеством регистров и указателем на ОП.  <a href="classjpl_1_1processor.html#ab7741193dddb6b0735001d677bf56083">Подробнее...</a><br /></td></tr>
+<tr class="separator:ab7741193dddb6b0735001d677bf56083"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f5380adbc90f8de2856f0050365e8e7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1processor.html#a1f5380adbc90f8de2856f0050365e8e7">processor</a> (const std::vector&lt; <a class="el" href="classjpl_1_1_a_l_u.html">ALU</a> &gt; &amp;alus_, int regs_, <a class="el" href="classjpl_1_1_r_a_m.html">RAM</a> *ram_=nullptr)</td></tr>
+<tr class="memdesc:a1f5380adbc90f8de2856f0050365e8e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">конструктор процессора. Инициализация набором АЛУ, количеством регистров и указателем на ОП.  <a href="classjpl_1_1processor.html#a1f5380adbc90f8de2856f0050365e8e7">Подробнее...</a><br /></td></tr>
+<tr class="separator:a1f5380adbc90f8de2856f0050365e8e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad67219c04c765c70f59ddfceb8621add"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1processor.html#ad67219c04c765c70f59ddfceb8621add">processor</a> (std::vector&lt; <a class="el" href="classjpl_1_1_a_l_u.html">ALU</a> &gt; &amp;&amp;alus_, int regs_, <a class="el" href="classjpl_1_1_r_a_m.html">RAM</a> *ram_=nullptr)</td></tr>
+<tr class="memdesc:ad67219c04c765c70f59ddfceb8621add"><td class="mdescLeft">&#160;</td><td class="mdescRight">конструктор процессора. Инициализация набором АЛУ, количеством регистров и указателем на ОП.  <a href="classjpl_1_1processor.html#ad67219c04c765c70f59ddfceb8621add">Подробнее...</a><br /></td></tr>
+<tr class="separator:ad67219c04c765c70f59ddfceb8621add"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae27a3f91dfa204e987ec9166716a1227"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1processor.html#ae27a3f91dfa204e987ec9166716a1227">run</a> (const <a class="el" href="classjpl_1_1progmem.html">progmem</a> &amp;<a class="el" href="classjpl_1_1progmem.html">progmem</a>)</td></tr>
+<tr class="memdesc:ae27a3f91dfa204e987ec9166716a1227"><td class="mdescLeft">&#160;</td><td class="mdescRight">начинает выполнение команды.  <a href="classjpl_1_1processor.html#ae27a3f91dfa204e987ec9166716a1227">Подробнее...</a><br /></td></tr>
+<tr class="separator:ae27a3f91dfa204e987ec9166716a1227"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99b7c326964d73a70c2aba26aa87418a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1processor.html#a99b7c326964d73a70c2aba26aa87418a">is_free</a> (const <a class="el" href="classjpl_1_1operand.html">operand</a> &amp;op) const</td></tr>
+<tr class="memdesc:a99b7c326964d73a70c2aba26aa87418a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверяет, является ли данный операнд заблокирован каким-либо АЛУ  <a href="classjpl_1_1processor.html#a99b7c326964d73a70c2aba26aa87418a">Подробнее...</a><br /></td></tr>
+<tr class="separator:a99b7c326964d73a70c2aba26aa87418a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80d001b742f7ada2f2e744748fe4c8b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structjpl_1_1slot.html">slot</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1processor.html#a80d001b742f7ada2f2e744748fe4c8b9">get_slot</a> (const <a class="el" href="classjpl_1_1operand.html">operand</a> &amp;op)</td></tr>
+<tr class="memdesc:a80d001b742f7ada2f2e744748fe4c8b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">возвращает слот памяти, на который ссылается операнд (содержит рекурсию, так как <a class="el" href="classjpl_1_1reg__operand.html" title="класс операнда - указатель на регистр">reg_operand</a> и <a class="el" href="classjpl_1_1ram__operand.html" title="класс операнда - указатель на ячейку в ОП">ram_operand</a> могут хранить адреса в других операндах)  <a href="classjpl_1_1processor.html#a80d001b742f7ada2f2e744748fe4c8b9">Подробнее...</a><br /></td></tr>
+<tr class="separator:a80d001b742f7ada2f2e744748fe4c8b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a790f73ef9f6c5e44c3ae684480704aa8"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structjpl_1_1slot.html">slot</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1processor.html#a790f73ef9f6c5e44c3ae684480704aa8">get_slot</a> (const <a class="el" href="classjpl_1_1operand.html">operand</a> &amp;op) const</td></tr>
+<tr class="memdesc:a790f73ef9f6c5e44c3ae684480704aa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">возвращает слот памяти, на который ссылается операнд, в режиме "только для чтения" (содержит рекурсию, так как <a class="el" href="classjpl_1_1reg__operand.html" title="класс операнда - указатель на регистр">reg_operand</a> и <a class="el" href="classjpl_1_1ram__operand.html" title="класс операнда - указатель на ячейку в ОП">ram_operand</a> могут хранить адреса в других операндах)  <a href="classjpl_1_1processor.html#a790f73ef9f6c5e44c3ae684480704aa8">Подробнее...</a><br /></td></tr>
+<tr class="separator:a790f73ef9f6c5e44c3ae684480704aa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a914d7097e551e2b48c730cce268f97fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacejpl.html#a6eac36f967442575ceec4981f5295996">byte</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1processor.html#a914d7097e551e2b48c730cce268f97fd">get_value</a> (const <a class="el" href="classjpl_1_1operand.html">operand</a> &amp;op) const</td></tr>
+<tr class="memdesc:a914d7097e551e2b48c730cce268f97fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">возвращает фактическое значение переданного операнда (содержит рекурсию, так как <a class="el" href="classjpl_1_1reg__operand.html" title="класс операнда - указатель на регистр">reg_operand</a> и <a class="el" href="classjpl_1_1ram__operand.html" title="класс операнда - указатель на ячейку в ОП">ram_operand</a> могут хранить адреса в других операндах)  <a href="classjpl_1_1processor.html#a914d7097e551e2b48c730cce268f97fd">Подробнее...</a><br /></td></tr>
+<tr class="separator:a914d7097e551e2b48c730cce268f97fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a648cc4d3b77c6bc32284a25a37a9c0cc"><td class="memItemLeft" align="right" valign="top"><a id="a648cc4d3b77c6bc32284a25a37a9c0cc"></a>
+<a class="el" href="classjpl_1_1process.html">process</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1processor.html#a648cc4d3b77c6bc32284a25a37a9c0cc">get_process</a> ()</td></tr>
+<tr class="memdesc:a648cc4d3b77c6bc32284a25a37a9c0cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">возвращает ссылку на описатель исполняемого процесса <br /></td></tr>
+<tr class="separator:a648cc4d3b77c6bc32284a25a37a9c0cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75478996cd43f4b20f41a8f22323b053"><td class="memItemLeft" align="right" valign="top"><a id="a75478996cd43f4b20f41a8f22323b053"></a>
+const <a class="el" href="classjpl_1_1process.html">process</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1processor.html#a75478996cd43f4b20f41a8f22323b053">get_process</a> () const</td></tr>
+<tr class="memdesc:a75478996cd43f4b20f41a8f22323b053"><td class="mdescLeft">&#160;</td><td class="mdescRight">возвращает константную ссылку на описатель исполняемого процесса <br /></td></tr>
+<tr class="separator:a75478996cd43f4b20f41a8f22323b053"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb572b74b167192ace83a05c4170ffb3"><td class="memItemLeft" align="right" valign="top"><a id="aeb572b74b167192ace83a05c4170ffb3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1processor.html#aeb572b74b167192ace83a05c4170ffb3">add_alu</a> (const <a class="el" href="classjpl_1_1_a_l_u.html">ALU</a> &amp;alu)</td></tr>
+<tr class="memdesc:aeb572b74b167192ace83a05c4170ffb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">добавляет экземпляр АЛУ в набор АЛУ процессора <br /></td></tr>
+<tr class="separator:aeb572b74b167192ace83a05c4170ffb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a243c19aec796541f5332665942634fb9"><td class="memItemLeft" align="right" valign="top"><a id="a243c19aec796541f5332665942634fb9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1processor.html#a243c19aec796541f5332665942634fb9">add_alu</a> (<a class="el" href="classjpl_1_1_a_l_u.html">ALU</a> &amp;&amp;alu)</td></tr>
+<tr class="memdesc:a243c19aec796541f5332665942634fb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">добавляет экземпляр АЛУ в набор АЛУ процессора, используя семантику перемещения АЛУ <br /></td></tr>
+<tr class="separator:a243c19aec796541f5332665942634fb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa30181b5fffffa4ca06a35338a7593e3"><td class="memItemLeft" align="right" valign="top"><a id="aa30181b5fffffa4ca06a35338a7593e3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1processor.html#aa30181b5fffffa4ca06a35338a7593e3">remove_alu</a> (int a)</td></tr>
+<tr class="memdesc:aa30181b5fffffa4ca06a35338a7593e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">удаляет АЛУ из набора АЛУ процессора по номеру <br /></td></tr>
+<tr class="separator:aa30181b5fffffa4ca06a35338a7593e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ac48d832e5d27371e668bd54d7a968f"><td class="memItemLeft" align="right" valign="top"><a id="a9ac48d832e5d27371e668bd54d7a968f"></a>
+<a class="el" href="classjpl_1_1_a_l_u.html">ALU</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1processor.html#a9ac48d832e5d27371e668bd54d7a968f">edit_alu</a> (int a)</td></tr>
+<tr class="memdesc:a9ac48d832e5d27371e668bd54d7a968f"><td class="mdescLeft">&#160;</td><td class="mdescRight">возвращает АЛУ по номеру для возможности редактирования <br /></td></tr>
+<tr class="separator:a9ac48d832e5d27371e668bd54d7a968f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c65bebc554db2d2e88db7a701235896"><td class="memItemLeft" align="right" valign="top"><a id="a8c65bebc554db2d2e88db7a701235896"></a>
+auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1processor.html#a8c65bebc554db2d2e88db7a701235896">al_begin</a> ()</td></tr>
+<tr class="memdesc:a8c65bebc554db2d2e88db7a701235896"><td class="mdescLeft">&#160;</td><td class="mdescRight">возвращает итератор на начало вектора АЛУ <br /></td></tr>
+<tr class="separator:a8c65bebc554db2d2e88db7a701235896"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26c8258fc6246d7389d66b07d1ce949c"><td class="memItemLeft" align="right" valign="top"><a id="a26c8258fc6246d7389d66b07d1ce949c"></a>
+auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1processor.html#a26c8258fc6246d7389d66b07d1ce949c">al_end</a> () const</td></tr>
+<tr class="memdesc:a26c8258fc6246d7389d66b07d1ce949c"><td class="mdescLeft">&#160;</td><td class="mdescRight">возвращает итератор на конец вектора АЛУ <br /></td></tr>
+<tr class="separator:a26c8258fc6246d7389d66b07d1ce949c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6d6e443d0f677b69454ed33c29c91fd"><td class="memItemLeft" align="right" valign="top"><a id="af6d6e443d0f677b69454ed33c29c91fd"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1processor.html#af6d6e443d0f677b69454ed33c29c91fd">reg_count</a> () const</td></tr>
+<tr class="memdesc:af6d6e443d0f677b69454ed33c29c91fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">возвраащет общее количество регистров процессора <br /></td></tr>
+<tr class="separator:af6d6e443d0f677b69454ed33c29c91fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1747b414ff2138c623207d29dd49b823"><td class="memItemLeft" align="right" valign="top"><a id="a1747b414ff2138c623207d29dd49b823"></a>
+<a class="el" href="structjpl_1_1slot.html">slot</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1processor.html#a1747b414ff2138c623207d29dd49b823">reg_access</a> (<a class="el" href="namespacejpl.html#a6eac36f967442575ceec4981f5295996">byte</a> i)</td></tr>
+<tr class="memdesc:a1747b414ff2138c623207d29dd49b823"><td class="mdescLeft">&#160;</td><td class="mdescRight">предостовляет доступ к указанному регистру из блока регистров процессора <br /></td></tr>
+<tr class="separator:a1747b414ff2138c623207d29dd49b823"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d8934787b691398fd10fd88c8accefe"><td class="memItemLeft" align="right" valign="top"><a id="a5d8934787b691398fd10fd88c8accefe"></a>
+const <a class="el" href="structjpl_1_1slot.html">slot</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1processor.html#a5d8934787b691398fd10fd88c8accefe">read_reg</a> (<a class="el" href="namespacejpl.html#a6eac36f967442575ceec4981f5295996">byte</a> i) const</td></tr>
+<tr class="memdesc:a5d8934787b691398fd10fd88c8accefe"><td class="mdescLeft">&#160;</td><td class="mdescRight">предостовляет доступ к указанному регистру из блока регистров процессора только для чтения <br /></td></tr>
+<tr class="separator:a5d8934787b691398fd10fd88c8accefe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1629e922cf19362a6d703a7b716dfc66"><td class="memItemLeft" align="right" valign="top"><a id="a1629e922cf19362a6d703a7b716dfc66"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1processor.html#a1629e922cf19362a6d703a7b716dfc66">set_RAM</a> (<a class="el" href="classjpl_1_1_r_a_m.html">RAM</a> *ram_)</td></tr>
+<tr class="memdesc:a1629e922cf19362a6d703a7b716dfc66"><td class="mdescLeft">&#160;</td><td class="mdescRight">утанавливает указатель на ОП <br /></td></tr>
+<tr class="separator:a1629e922cf19362a6d703a7b716dfc66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8b67d362b09e6f0fdfa583bd44ef91f"><td class="memItemLeft" align="right" valign="top"><a id="aa8b67d362b09e6f0fdfa583bd44ef91f"></a>
+<a class="el" href="classjpl_1_1_r_a_m.html">RAM</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1processor.html#aa8b67d362b09e6f0fdfa583bd44ef91f">get_RAM</a> () const</td></tr>
+<tr class="memdesc:aa8b67d362b09e6f0fdfa583bd44ef91f"><td class="mdescLeft">&#160;</td><td class="mdescRight">возвращает указатель на ОП, котоырый был установлен в данном экземпляре процессора. <br /></td></tr>
+<tr class="separator:aa8b67d362b09e6f0fdfa583bd44ef91f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>класс процессора. Процессор определяется набором АЛУ, блоком регистров и указателем на память. </p>
+</div><h2 class="groupheader">Конструктор(ы)</h2>
+<a id="ab7741193dddb6b0735001d677bf56083"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7741193dddb6b0735001d677bf56083">&#9670;&nbsp;</a></span>processor() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">jpl::processor::processor </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classjpl_1_1_a_l_u.html">ALU</a> &amp;&#160;</td>
+          <td class="paramname"><em>alu</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>regs_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classjpl_1_1_r_a_m.html">RAM</a> *&#160;</td>
+          <td class="paramname"><em>ram_</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>конструктор процессора. Инициализация одним АЛУ, количеством регистров и указателем на ОП. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">alu</td><td>экземпляр класса АЛУ </td></tr>
+    <tr><td class="paramname">regs_</td><td>количество регистров в блоке регистров процессора </td></tr>
+    <tr><td class="paramname">ram_</td><td>указатель на экземпляр оперативной памяти </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1f5380adbc90f8de2856f0050365e8e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f5380adbc90f8de2856f0050365e8e7">&#9670;&nbsp;</a></span>processor() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">jpl::processor::processor </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classjpl_1_1_a_l_u.html">ALU</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>alus_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>regs_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classjpl_1_1_r_a_m.html">RAM</a> *&#160;</td>
+          <td class="paramname"><em>ram_</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>конструктор процессора. Инициализация набором АЛУ, количеством регистров и указателем на ОП. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">alus_</td><td>вектор экземпляров АЛУ </td></tr>
+    <tr><td class="paramname">regs_</td><td>количество регистров в блоке регистров процессора </td></tr>
+    <tr><td class="paramname">ram_</td><td>указатель на экземпляр оперативной памяти </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad67219c04c765c70f59ddfceb8621add"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad67219c04c765c70f59ddfceb8621add">&#9670;&nbsp;</a></span>processor() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">jpl::processor::processor </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classjpl_1_1_a_l_u.html">ALU</a> &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>alus_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>regs_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classjpl_1_1_r_a_m.html">RAM</a> *&#160;</td>
+          <td class="paramname"><em>ram_</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>конструктор процессора. Инициализация набором АЛУ, количеством регистров и указателем на ОП. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">alus_</td><td>вектор экземпляров АЛУ </td></tr>
+    <tr><td class="paramname">regs_</td><td>количество регистров в блоке регистров процессора </td></tr>
+    <tr><td class="paramname">ram_</td><td>указатель на экземпляр оперативной памяти </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Методы</h2>
+<a id="a80d001b742f7ada2f2e744748fe4c8b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80d001b742f7ada2f2e744748fe4c8b9">&#9670;&nbsp;</a></span>get_slot() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structjpl_1_1slot.html">slot</a> &amp; jpl::processor::get_slot </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classjpl_1_1operand.html">operand</a> &amp;&#160;</td>
+          <td class="paramname"><em>op</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>возвращает слот памяти, на который ссылается операнд (содержит рекурсию, так как <a class="el" href="classjpl_1_1reg__operand.html" title="класс операнда - указатель на регистр">reg_operand</a> и <a class="el" href="classjpl_1_1ram__operand.html" title="класс операнда - указатель на ячейку в ОП">ram_operand</a> могут хранить адреса в других операндах) </p>
+<dl class="exception"><dt>Исключения</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::logic_error</td><td>если была произведена попытка получить слот памяти для <a class="el" href="classjpl_1_1label__operand.html" title="класс операнда метки.">label_operand</a> или <a class="el" href="classjpl_1_1const__operand.html" title="класс константного операнда">const_operand</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">op</td><td>ссылка на операнд </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>ссылку на слот памяти slot </dd></dl>
+
+</div>
+</div>
+<a id="a790f73ef9f6c5e44c3ae684480704aa8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a790f73ef9f6c5e44c3ae684480704aa8">&#9670;&nbsp;</a></span>get_slot() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="structjpl_1_1slot.html">slot</a> &amp; jpl::processor::get_slot </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classjpl_1_1operand.html">operand</a> &amp;&#160;</td>
+          <td class="paramname"><em>op</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>возвращает слот памяти, на который ссылается операнд, в режиме "только для чтения" (содержит рекурсию, так как <a class="el" href="classjpl_1_1reg__operand.html" title="класс операнда - указатель на регистр">reg_operand</a> и <a class="el" href="classjpl_1_1ram__operand.html" title="класс операнда - указатель на ячейку в ОП">ram_operand</a> могут хранить адреса в других операндах) </p>
+<dl class="exception"><dt>Исключения</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::logic_error</td><td>если была произведена попытка получить слот памяти для <a class="el" href="classjpl_1_1label__operand.html" title="класс операнда метки.">label_operand</a> или <a class="el" href="classjpl_1_1const__operand.html" title="класс константного операнда">const_operand</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">op</td><td>ссылка на операнд </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>константную ссылку на слот памяти slot </dd></dl>
+
+</div>
+</div>
+<a id="a914d7097e551e2b48c730cce268f97fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a914d7097e551e2b48c730cce268f97fd">&#9670;&nbsp;</a></span>get_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacejpl.html#a6eac36f967442575ceec4981f5295996">byte</a> jpl::processor::get_value </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classjpl_1_1operand.html">operand</a> &amp;&#160;</td>
+          <td class="paramname"><em>op</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>возвращает фактическое значение переданного операнда (содержит рекурсию, так как <a class="el" href="classjpl_1_1reg__operand.html" title="класс операнда - указатель на регистр">reg_operand</a> и <a class="el" href="classjpl_1_1ram__operand.html" title="класс операнда - указатель на ячейку в ОП">ram_operand</a> могут хранить адреса в других операндах) </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">op</td><td>ссылка на операнд </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>константную ссылку на слот памяти slot </dd></dl>
+
+</div>
+</div>
+<a id="a99b7c326964d73a70c2aba26aa87418a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99b7c326964d73a70c2aba26aa87418a">&#9670;&nbsp;</a></span>is_free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool jpl::processor::is_free </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classjpl_1_1operand.html">operand</a> &amp;&#160;</td>
+          <td class="paramname"><em>op</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Проверяет, является ли данный операнд заблокирован каким-либо АЛУ </p>
+<p>&mdash; processor &mdash;///</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">op</td><td>ссылка на операнд </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>true, если операнд свободен, false если его заблокировало какое-либо АЛУ </dd></dl>
+
+</div>
+</div>
+<a id="ae27a3f91dfa204e987ec9166716a1227"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae27a3f91dfa204e987ec9166716a1227">&#9670;&nbsp;</a></span>run()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void jpl::processor::run </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classjpl_1_1progmem.html">progmem</a> &amp;&#160;</td>
+          <td class="paramname"><em>progmem</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>начинает выполнение команды. </p>
+<p>При необходимости запустить выполнение метода в отдельном потоке можно использовать подобную команду: std::thread thr(<a class="el" href="classjpl_1_1processor.html#ae27a3f91dfa204e987ec9166716a1227" title="начинает выполнение команды.">processor::run</a>, std::ref(proc), std::ref(prog)); где proc - экземпляр класса процессора, а prog - экземпляр класса progmem </p><dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">progmem</td><td>ссылка на память программ </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>Объявления и описания членов классов находятся в файлах:<ul>
+<li><a class="el" href="processor_8h_source.html">processor.h</a></li>
+<li>processor.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

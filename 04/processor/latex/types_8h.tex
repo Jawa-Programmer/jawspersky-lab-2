@@ -1,0 +1,71 @@
+\hypertarget{types_8h}{}\doxysection{Файл types.\+h}
+\label{types_8h}\index{types.h@{types.h}}
+
+
+Файл содержит предварительные определения всех типов библиотеки  
+
+
+{\ttfamily \#include $<$string$>$}\newline
+\doxysubsection*{Классы}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structjpl_1_1slot}{jpl\+::slot}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Пространства имен}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacejpl}{jpl}}
+\begin{DoxyCompactList}\small\item\em пространство имен Jawa Programmer Library. \end{DoxyCompactList}\item 
+ \mbox{\hyperlink{namespacejpl_1_1operations}{jpl\+::operations}}
+\begin{DoxyCompactList}\small\item\em это пространстро имён содержит глобальные константы, определяющие базовые операции \end{DoxyCompactList}\item 
+ \mbox{\hyperlink{namespacejpl_1_1operators}{jpl\+::operators}}
+\begin{DoxyCompactList}\small\item\em пространство имён содержит базовые математические операторы. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Определения типов}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacejpl_a6eac36f967442575ceec4981f5295996}\label{namespacejpl_a6eac36f967442575ceec4981f5295996}} 
+typedef uint16\+\_\+t \mbox{\hyperlink{namespacejpl_a6eac36f967442575ceec4981f5295996}{jpl\+::byte}}
+\begin{DoxyCompactList}\small\item\em минимальноадресуемая единица памяти в структуре процессора. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_ad184eaa6b9a578af74333cdfd1fffb50}\label{namespacejpl_ad184eaa6b9a578af74333cdfd1fffb50}} 
+typedef operations\+::base {\bfseries jpl\+::operation}
+\item 
+\mbox{\Hypertarget{namespacejpl_afb10fe3d3b1e66dd2b3333c360ccd6a4}\label{namespacejpl_afb10fe3d3b1e66dd2b3333c360ccd6a4}} 
+typedef operators\+::base {\bfseries jpl\+::operator\+\_\+}
+\end{DoxyCompactItemize}
+\doxysubsection*{Перечисления}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacejpl_a8f9423c363d0d3ef87c408d510fd90ac}{jpl\+::\+O\+P\+E\+R\+A\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}} \{ \mbox{\hyperlink{namespacejpl_a8f9423c363d0d3ef87c408d510fd90aca4bda3bedbe7d9195e4c0981966d289c9}{jpl\+::\+O\+P\+\_\+\+V\+AR}}, 
+\mbox{\hyperlink{namespacejpl_a8f9423c363d0d3ef87c408d510fd90acaffafda55934879af7a77d3de8fda6147}{jpl\+::\+O\+P\+\_\+\+E\+X\+T\+ER}}, 
+\mbox{\hyperlink{namespacejpl_a8f9423c363d0d3ef87c408d510fd90aca156dff4d722d1da8e1d428d5a184c08f}{jpl\+::\+O\+P\+\_\+\+N\+O\+NE}}
+ \}
+\begin{DoxyCompactList}\small\item\em тип операции. используется для внутреннего пользования. При создании своего типа операции, следует использовать O\+P\+\_\+\+E\+X\+T\+ER. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{namespacejpl_a33048375400995b60ea37a939940e975}{jpl\+::\+E\+X\+E\+C\+U\+T\+OR}} \{ \mbox{\hyperlink{namespacejpl_a33048375400995b60ea37a939940e975a7d99bfc8878b2e7c1f9625cac10fec3d}{jpl\+::\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}}, 
+\mbox{\hyperlink{namespacejpl_a33048375400995b60ea37a939940e975a9a8483c771aa816b6655e1e596c47190}{jpl\+::\+E\+\_\+\+A\+LU}}
+ \}
+\begin{DoxyCompactList}\small\item\em устройство, на котором выполняется операция \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06}{jpl\+::\+O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE}} \{ \mbox{\hyperlink{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06a3c1e5f3aaf2b3ede2d736bc1e6d5e471}{jpl\+::\+O\+P\+R\+\_\+\+C\+O\+N\+ST}}, 
+\mbox{\hyperlink{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06a890494ecdb4f0e714b609597602f4f39}{jpl\+::\+O\+P\+R\+\_\+\+L\+A\+B\+EL}}, 
+\mbox{\hyperlink{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06ae4e72e613b1f4eb5818c32957211410e}{jpl\+::\+O\+P\+R\+\_\+\+R\+EG}}, 
+\mbox{\hyperlink{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06ad6713e48c73d1f1987962df3532100f0}{jpl\+::\+O\+P\+R\+\_\+\+R\+AM}}
+ \}
+\begin{DoxyCompactList}\small\item\em тип операнда \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{namespacejpl_a43140c6cc341e869869d36ac64f24b0f}{jpl\+::is\+\_\+valid\+\_\+name}} (const std\+::string \&lab)
+\begin{DoxyCompactList}\small\item\em проверяет, соответсвует ли переданная строка формату имени переменной (содержит только буквы латинского алфавита и цифры. начинается с буквы) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Файл содержит предварительные определения всех типов библиотеки 
+
+\begin{DoxyAuthor}{Автор}
+Jawa Prog 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Версия}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Дата}
+Декабрь 2020 года 
+\end{DoxyDate}

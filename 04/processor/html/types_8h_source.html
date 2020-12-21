@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Библиотека эмулятор процессора: Исходный файл types.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Библиотека эмулятор процессора
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Библиотека предостовляет классы виртуальных устройст, исплользуя которые можно смоделировать ахритектуру и исполнить на ней код</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">types.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="types_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef JPL_TYPES_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define JPL_TYPES_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacejpl.html">jpl</a></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespacejpl.html#a43140c6cc341e869869d36ac64f24b0f">is_valid_name</a>(<span class="keyword">const</span> std::string&amp; lab);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="namespacejpl.html#a8f9423c363d0d3ef87c408d510fd90ac">   26</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="namespacejpl.html#a8f9423c363d0d3ef87c408d510fd90ac">OPERATION_TYPE</a> {</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="namespacejpl.html#a8f9423c363d0d3ef87c408d510fd90aca4bda3bedbe7d9195e4c0981966d289c9">   27</a></span>&#160;        <a class="code" href="namespacejpl.html#a8f9423c363d0d3ef87c408d510fd90aca4bda3bedbe7d9195e4c0981966d289c9">OP_VAR</a>, </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="namespacejpl.html#a8f9423c363d0d3ef87c408d510fd90acaffafda55934879af7a77d3de8fda6147">   28</a></span>&#160;        <a class="code" href="namespacejpl.html#a8f9423c363d0d3ef87c408d510fd90acaffafda55934879af7a77d3de8fda6147">OP_EXTER</a>, </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="namespacejpl.html#a8f9423c363d0d3ef87c408d510fd90aca156dff4d722d1da8e1d428d5a184c08f">OP_NONE</a> </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="namespacejpl.html#a8f9423c363d0d3ef87c408d510fd90aca156dff4d722d1da8e1d428d5a184c08f">   30</a></span>&#160;        };</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="namespacejpl.html#a33048375400995b60ea37a939940e975">   32</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="namespacejpl.html#a33048375400995b60ea37a939940e975">EXECUTOR</a> {</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="namespacejpl.html#a33048375400995b60ea37a939940e975a7d99bfc8878b2e7c1f9625cac10fec3d">   33</a></span>&#160;        <a class="code" href="namespacejpl.html#a33048375400995b60ea37a939940e975a7d99bfc8878b2e7c1f9625cac10fec3d">E_CONTROLLER</a>, </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="namespacejpl.html#a33048375400995b60ea37a939940e975a9a8483c771aa816b6655e1e596c47190">E_ALU</a> </div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="namespacejpl.html#a33048375400995b60ea37a939940e975a9a8483c771aa816b6655e1e596c47190">   35</a></span>&#160;        };</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="namespacejpl.html#acd748a0d5a186f9cb9051c64e868fe06">   37</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="namespacejpl.html#acd748a0d5a186f9cb9051c64e868fe06">OPERAND_TYPE</a> {</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="namespacejpl.html#acd748a0d5a186f9cb9051c64e868fe06a3c1e5f3aaf2b3ede2d736bc1e6d5e471">   38</a></span>&#160;        <a class="code" href="namespacejpl.html#acd748a0d5a186f9cb9051c64e868fe06a3c1e5f3aaf2b3ede2d736bc1e6d5e471">OPR_CONST</a>, </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="namespacejpl.html#acd748a0d5a186f9cb9051c64e868fe06a890494ecdb4f0e714b609597602f4f39">   39</a></span>&#160;        <a class="code" href="namespacejpl.html#acd748a0d5a186f9cb9051c64e868fe06a890494ecdb4f0e714b609597602f4f39">OPR_LABEL</a>, </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="namespacejpl.html#acd748a0d5a186f9cb9051c64e868fe06ae4e72e613b1f4eb5818c32957211410e">   40</a></span>&#160;        <a class="code" href="namespacejpl.html#acd748a0d5a186f9cb9051c64e868fe06ae4e72e613b1f4eb5818c32957211410e">OPR_REG</a>, </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="namespacejpl.html#acd748a0d5a186f9cb9051c64e868fe06ad6713e48c73d1f1987962df3532100f0">OPR_RAM</a> </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="namespacejpl.html#acd748a0d5a186f9cb9051c64e868fe06ad6713e48c73d1f1987962df3532100f0">   42</a></span>&#160;        };</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="namespacejpl.html#a6eac36f967442575ceec4981f5295996">   45</a></span>&#160;    <span class="keyword">typedef</span> uint16_t <a class="code" href="namespacejpl.html#a6eac36f967442575ceec4981f5295996">byte</a>; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">// прототипы классов</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">class </span><a class="code" href="classjpl_1_1command.html">command</a>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">class </span><a class="code" href="classjpl_1_1operand.html">operand</a>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">class </span><a class="code" href="classjpl_1_1controller.html">controller</a>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">class </span><a class="code" href="classjpl_1_1_a_l_u.html">ALU</a>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">class </span><a class="code" href="classjpl_1_1registers__block.html">registers_block</a>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">class </span><a class="code" href="classjpl_1_1_r_a_m.html">RAM</a>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">class </span><a class="code" href="classjpl_1_1progmem.html">progmem</a>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">class </span><a class="code" href="classjpl_1_1processor.html">processor</a>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">class </span><a class="code" href="classjpl_1_1process.html">process</a>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    </div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="structjpl_1_1slot.html">   68</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structjpl_1_1slot.html">slot</a> {<span class="keyword">const</span> <a class="code" href="classjpl_1_1_a_l_u.html">ALU</a> *locker = <span class="keyword">nullptr</span>; <span class="keywordtype">byte</span> data = 0;};</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">namespace </span>operations {<span class="keyword">class </span>base;}</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">typedef</span> operations::base operation;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">namespace </span>operators {<span class="keyword">class </span>base;}</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">typedef</span> operators::base operator_;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;}</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#endif</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclassjpl_1_1command_html"><div class="ttname"><a href="classjpl_1_1command.html">jpl::command</a></div><div class="ttdoc">класс команды процессора.</div><div class="ttdef"><b>Definition:</b> command.h:22</div></div>
+<div class="ttc" id="anamespacejpl_html_a33048375400995b60ea37a939940e975"><div class="ttname"><a href="namespacejpl.html#a33048375400995b60ea37a939940e975">jpl::EXECUTOR</a></div><div class="ttdeci">EXECUTOR</div><div class="ttdoc">устройство, на котором выполняется операция</div><div class="ttdef"><b>Definition:</b> types.h:32</div></div>
+<div class="ttc" id="anamespacejpl_html_acd748a0d5a186f9cb9051c64e868fe06ad6713e48c73d1f1987962df3532100f0"><div class="ttname"><a href="namespacejpl.html#acd748a0d5a186f9cb9051c64e868fe06ad6713e48c73d1f1987962df3532100f0">jpl::OPR_RAM</a></div><div class="ttdeci">@ OPR_RAM</div><div class="ttdoc">данные в ОП</div><div class="ttdef"><b>Definition:</b> types.h:41</div></div>
+<div class="ttc" id="anamespacejpl_html_acd748a0d5a186f9cb9051c64e868fe06a3c1e5f3aaf2b3ede2d736bc1e6d5e471"><div class="ttname"><a href="namespacejpl.html#acd748a0d5a186f9cb9051c64e868fe06a3c1e5f3aaf2b3ede2d736bc1e6d5e471">jpl::OPR_CONST</a></div><div class="ttdeci">@ OPR_CONST</div><div class="ttdoc">константа</div><div class="ttdef"><b>Definition:</b> types.h:38</div></div>
+<div class="ttc" id="aclassjpl_1_1progmem_html"><div class="ttname"><a href="classjpl_1_1progmem.html">jpl::progmem</a></div><div class="ttdoc">класс памяти программ. Хранит основную информацию о программе (последовательность инструкций,...</div><div class="ttdef"><b>Definition:</b> processor.h:124</div></div>
+<div class="ttc" id="anamespacejpl_html_acd748a0d5a186f9cb9051c64e868fe06"><div class="ttname"><a href="namespacejpl.html#acd748a0d5a186f9cb9051c64e868fe06">jpl::OPERAND_TYPE</a></div><div class="ttdeci">OPERAND_TYPE</div><div class="ttdoc">тип операнда</div><div class="ttdef"><b>Definition:</b> types.h:37</div></div>
+<div class="ttc" id="anamespacejpl_html_a43140c6cc341e869869d36ac64f24b0f"><div class="ttname"><a href="namespacejpl.html#a43140c6cc341e869869d36ac64f24b0f">jpl::is_valid_name</a></div><div class="ttdeci">bool is_valid_name(const std::string &amp;lab)</div><div class="ttdoc">проверяет, соответсвует ли переданная строка формату имени переменной (содержит только буквы латинско...</div><div class="ttdef"><b>Definition:</b> processor.cpp:7</div></div>
+<div class="ttc" id="aclassjpl_1_1process_html"><div class="ttname"><a href="classjpl_1_1process.html">jpl::process</a></div><div class="ttdoc">класс описателя процесса. Процесс автоматически создается в методе процессора run.</div><div class="ttdef"><b>Definition:</b> processor.h:180</div></div>
+<div class="ttc" id="anamespacejpl_html_acd748a0d5a186f9cb9051c64e868fe06a890494ecdb4f0e714b609597602f4f39"><div class="ttname"><a href="namespacejpl.html#acd748a0d5a186f9cb9051c64e868fe06a890494ecdb4f0e714b609597602f4f39">jpl::OPR_LABEL</a></div><div class="ttdeci">@ OPR_LABEL</div><div class="ttdoc">переменная (метка)</div><div class="ttdef"><b>Definition:</b> types.h:39</div></div>
+<div class="ttc" id="anamespacejpl_html_a8f9423c363d0d3ef87c408d510fd90aca4bda3bedbe7d9195e4c0981966d289c9"><div class="ttname"><a href="namespacejpl.html#a8f9423c363d0d3ef87c408d510fd90aca4bda3bedbe7d9195e4c0981966d289c9">jpl::OP_VAR</a></div><div class="ttdeci">@ OP_VAR</div><div class="ttdoc">операция статического выделения. Обрабатывается обособленно, на этапе компиляции</div><div class="ttdef"><b>Definition:</b> types.h:27</div></div>
+<div class="ttc" id="anamespacejpl_html_a8f9423c363d0d3ef87c408d510fd90acaffafda55934879af7a77d3de8fda6147"><div class="ttname"><a href="namespacejpl.html#a8f9423c363d0d3ef87c408d510fd90acaffafda55934879af7a77d3de8fda6147">jpl::OP_EXTER</a></div><div class="ttdeci">@ OP_EXTER</div><div class="ttdoc">тип обычной операции.</div><div class="ttdef"><b>Definition:</b> types.h:28</div></div>
+<div class="ttc" id="aclassjpl_1_1operand_html"><div class="ttname"><a href="classjpl_1_1operand.html">jpl::operand</a></div><div class="ttdoc">абстрактный класс описателя операнда</div><div class="ttdef"><b>Definition:</b> operands.h:19</div></div>
+<div class="ttc" id="aclassjpl_1_1_a_l_u_html"><div class="ttname"><a href="classjpl_1_1_a_l_u.html">jpl::ALU</a></div><div class="ttdoc">Арифметико-Логическое Устройство. Выполняет переданные команды, если используемые операторы принадлеж...</div><div class="ttdef"><b>Definition:</b> processor.h:47</div></div>
+<div class="ttc" id="anamespacejpl_html_acd748a0d5a186f9cb9051c64e868fe06ae4e72e613b1f4eb5818c32957211410e"><div class="ttname"><a href="namespacejpl.html#acd748a0d5a186f9cb9051c64e868fe06ae4e72e613b1f4eb5818c32957211410e">jpl::OPR_REG</a></div><div class="ttdeci">@ OPR_REG</div><div class="ttdoc">данные в регистре процессора</div><div class="ttdef"><b>Definition:</b> types.h:40</div></div>
+<div class="ttc" id="anamespacejpl_html_a6eac36f967442575ceec4981f5295996"><div class="ttname"><a href="namespacejpl.html#a6eac36f967442575ceec4981f5295996">jpl::byte</a></div><div class="ttdeci">uint16_t byte</div><div class="ttdoc">минимальноадресуемая единица памяти в структуре процессора.</div><div class="ttdef"><b>Definition:</b> types.h:45</div></div>
+<div class="ttc" id="anamespacejpl_html"><div class="ttname"><a href="namespacejpl.html">jpl</a></div><div class="ttdoc">пространство имен Jawa Programmer Library.</div><div class="ttdef"><b>Definition:</b> command.h:18</div></div>
+<div class="ttc" id="aclassjpl_1_1registers__block_html"><div class="ttname"><a href="classjpl_1_1registers__block.html">jpl::registers_block</a></div><div class="ttdoc">класс блока регистров процессора.</div><div class="ttdef"><b>Definition:</b> memory.h:23</div></div>
+<div class="ttc" id="astructjpl_1_1slot_html"><div class="ttname"><a href="structjpl_1_1slot.html">jpl::slot</a></div><div class="ttdef"><b>Definition:</b> types.h:68</div></div>
+<div class="ttc" id="anamespacejpl_html_a8f9423c363d0d3ef87c408d510fd90aca156dff4d722d1da8e1d428d5a184c08f"><div class="ttname"><a href="namespacejpl.html#a8f9423c363d0d3ef87c408d510fd90aca156dff4d722d1da8e1d428d5a184c08f">jpl::OP_NONE</a></div><div class="ttdeci">@ OP_NONE</div><div class="ttdoc">тип обстрактной операции, генерируемый command конструктором по умолчанию. Не должен быть вызван для ...</div><div class="ttdef"><b>Definition:</b> types.h:29</div></div>
+<div class="ttc" id="anamespacejpl_html_a8f9423c363d0d3ef87c408d510fd90ac"><div class="ttname"><a href="namespacejpl.html#a8f9423c363d0d3ef87c408d510fd90ac">jpl::OPERATION_TYPE</a></div><div class="ttdeci">OPERATION_TYPE</div><div class="ttdoc">тип операции. используется для внутреннего пользования. При создании своего типа операции,...</div><div class="ttdef"><b>Definition:</b> types.h:26</div></div>
+<div class="ttc" id="aclassjpl_1_1controller_html"><div class="ttname"><a href="classjpl_1_1controller.html">jpl::controller</a></div><div class="ttdoc">Устройство Управления (УУ).</div><div class="ttdef"><b>Definition:</b> processor.h:33</div></div>
+<div class="ttc" id="aclassjpl_1_1_r_a_m_html"><div class="ttname"><a href="classjpl_1_1_r_a_m.html">jpl::RAM</a></div><div class="ttdoc">класс оперативной памяти</div><div class="ttdef"><b>Definition:</b> memory.h:67</div></div>
+<div class="ttc" id="anamespacejpl_html_a33048375400995b60ea37a939940e975a7d99bfc8878b2e7c1f9625cac10fec3d"><div class="ttname"><a href="namespacejpl.html#a33048375400995b60ea37a939940e975a7d99bfc8878b2e7c1f9625cac10fec3d">jpl::E_CONTROLLER</a></div><div class="ttdeci">@ E_CONTROLLER</div><div class="ttdoc">операция исполняется сразу на УУ</div><div class="ttdef"><b>Definition:</b> types.h:33</div></div>
+<div class="ttc" id="anamespacejpl_html_a33048375400995b60ea37a939940e975a9a8483c771aa816b6655e1e596c47190"><div class="ttname"><a href="namespacejpl.html#a33048375400995b60ea37a939940e975a9a8483c771aa816b6655e1e596c47190">jpl::E_ALU</a></div><div class="ttdeci">@ E_ALU</div><div class="ttdoc">в процессе выполнения операции УУ вызывает АЛУ для исполнения некоторой части работы</div><div class="ttdef"><b>Definition:</b> types.h:34</div></div>
+<div class="ttc" id="aclassjpl_1_1processor_html"><div class="ttname"><a href="classjpl_1_1processor.html">jpl::processor</a></div><div class="ttdoc">класс процессора. Процессор определяется набором АЛУ, блоком регистров и указателем на память.</div><div class="ttdef"><b>Definition:</b> processor.h:235</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

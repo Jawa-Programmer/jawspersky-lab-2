@@ -1,7 +1,7 @@
 #ifndef LOAD_FROM_FILE_H
 #define LOAD_FROM_FILE_H
-#include "processor.h"
-#include <map>
+#include "processor/processor.h"
+#include <unordered_map>
 #include <iterator>
 #include <sstream>
 
@@ -11,10 +11,11 @@ namespace jpl
 	namespace local
 	{
 		std::unordered_set<std::string> labels;
+		std::unordered_map<std::string, std::string> defines;
 		
 		struct operation_ {const operation *tp; const operator_ *op;};
 		
-		std::map<std::string, operation_> DCTR = 
+		std::unordered_map<std::string, operation_> DCTR = 
 		{
 			{"ALLC", {&operations::ALLC, nullptr}},
 			{"VAR", {&operations::VAR, nullptr}},
@@ -41,12 +42,15 @@ namespace jpl
 			{"AND", {&operations::BINARY, &operators::AND}},
 			{"OR", {&operations::BINARY, &operators::OR}},
 			{"XOR", {&operations::BINARY, &operators::XOR}},
-			{"NOT", {&operations::UNARY, &operators::NOT}}
+			{"NOT", {&operations::UNARY, &operators::NOT}},
+			{"EQL", {&operations::BINARY, &operators::EQL}},
+			{"NEQL", {&operations::BINARY, &operators::NEQL}},
 		};
 		
 		operand* op_from_string(const std::string& str)
 		{		
 			if(str[0] == '('){return new reg_operand(*op_from_string(str.substr(1)));}
+			if(str[0] == '\''){if(str[2]!='\'')throw std::logic_error("syntax error. Incorrect literal constant"); return new const_operand((byte)str[1]);}
 			else if(str[0] == '['){return new ram_operand(*op_from_string(str.substr(1)));}
 			else if(str[0] == '*'){return new label_operand(str.substr(1), 0, true);}
 			else if(isdigit(str[0])){return new const_operand(std::stoi(str));}
@@ -101,17 +105,28 @@ namespace jpl
 		prog.clear();
 		local::labels.clear();
 		local::labels.insert("end"); // указатель по-умолчанию. По "стандарту" моего языка, "end" является меткой конца программы. То есть JUMP end или CALL end значит закончить исполнение программы немедленно.
-		std::stringstream iost; // костыль - мы делаем копию исходного кода программы, так как в общем поиск в потоке не возможен, но для правильной интерпретации меток необходимо делать два захода на чтение кода - в первый заход читаются только метки, во второй заход читается весь код.		
+		std::stringstream iost; // костыль - мы делаем копию исходного кода программы, так как в общем поиск в потоке не возможен, но для правильной интерпретации меток необходимо делать два захода на чтение кода - в первый заход читаются только метки и директивы, во второй заход читается весь код.		
 		{
 			std::string line;
-			int i = 0;
 			while(getline(in, line))
 			{
+				line = line.substr(0, line.find(';')); // позволит писать комментарий с середины строки
+				
+				auto fnd = line.find("#define"); // дериктива ассемблеру. Меняет все появления первого слова на второе
+				if(fnd != std::string::npos)
+				{
+						line = line.substr(fnd+7);
+						std::istringstream iss(line);
+						std::string a, b;
+						iss >> a >> b;
+						local::defines[a] = b;
+						continue;
+				}
+				
 				iost << line << std::endl;
-				auto fnd = line.find(":");
+				fnd = line.find(":");
 				if(fnd != std::string::npos)
 					local::labels.insert(line.substr(0, fnd));
-				i++;
 			}			
 		}
 		
@@ -120,14 +135,19 @@ namespace jpl
 		std::string llb; bool prw = false; // для случая, когда метка соит на строке перед строкой команды
 		while(getline(iost, line))
 		{
-			line = line.substr(0, line.find(';')); // позволит писать комментарий с середины строки
-			if(line.length() == 0) continue;
-			
+			if(line.length() == 0) continue;			
 			std::vector<std::string> line_n; 
 			std::istringstream iss(line);
 			std::copy(std::istream_iterator<std::string>(iss), std::istream_iterator<std::string>(), std::back_inserter(line_n));
 			
 			if(line_n.size() == 0) continue;
+			
+			for(int i=0; i < line_n.size(); ++i) // заменяем слова согласно директивам define
+			{
+				auto fond = local::defines.find(line_n[i]);
+				if(fond != local::defines.end())
+					line_n[i] = fond->second;
+			}
 			
 			std::string lab;
 			

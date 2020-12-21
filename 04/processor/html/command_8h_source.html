@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Библиотека эмулятор процессора: Исходный файл command.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Библиотека эмулятор процессора
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Библиотека предостовляет классы виртуальных устройст, исплользуя которые можно смоделировать ахритектуру и исполнить на ней код</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">command.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="command_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef JPL_COMMAND_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define JPL_COMMAND_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="types_8h.html">types.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="operands_8h.html">operands.h</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="namespacejpl.html">   17</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacejpl.html">jpl</a></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classjpl_1_1command.html">   21</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classjpl_1_1command.html">command</a></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keyword">const</span> <a class="code" href="classjpl_1_1operations_1_1base.html">operation</a> *op;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        std::string label;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        std::vector&lt;operand*&gt; args;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keyword">const</span> <a class="code" href="classjpl_1_1operators_1_1base.html">operator_</a> *act;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="classjpl_1_1command.html#a13c97316daf73fc2b36ea947dc7a7ae4">command</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="classjpl_1_1command.html#a13c97316daf73fc2b36ea947dc7a7ae4">command</a>(<span class="keyword">const</span> <a class="code" href="classjpl_1_1operations_1_1base.html">operation</a> &amp;op_, <span class="keyword">const</span> <span class="keywordtype">char</span>* str, <span class="keyword">const</span> <a class="code" href="classjpl_1_1operators_1_1base.html">operator_</a> *act_ = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <a class="code" href="classjpl_1_1command.html#a13c97316daf73fc2b36ea947dc7a7ae4">command</a>(<span class="keyword">const</span> <a class="code" href="classjpl_1_1operations_1_1base.html">operation</a> &amp;op_, <span class="keyword">const</span> <span class="keywordtype">char</span>* str, <span class="keyword">const</span> std::initializer_list&lt;operand*&gt; &amp;_args, <span class="keyword">const</span> <a class="code" href="classjpl_1_1operators_1_1base.html">operator_</a> *act_ = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <a class="code" href="classjpl_1_1command.html#a13c97316daf73fc2b36ea947dc7a7ae4">command</a>(<span class="keyword">const</span> <a class="code" href="classjpl_1_1command.html">command</a>&amp; cmd);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <a class="code" href="classjpl_1_1command.html#a13c97316daf73fc2b36ea947dc7a7ae4">command</a>(<a class="code" href="classjpl_1_1command.html">command</a>&amp;&amp; cmd);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <a class="code" href="classjpl_1_1command.html">command</a>&amp; <a class="code" href="classjpl_1_1command.html#ade1f91885b5c3e151eb54a403774ee5f">operator=</a>(<span class="keyword">const</span> <a class="code" href="classjpl_1_1command.html">command</a>&amp;);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <a class="code" href="classjpl_1_1command.html">command</a>&amp; <a class="code" href="classjpl_1_1command.html#ade1f91885b5c3e151eb54a403774ee5f">operator=</a>(<a class="code" href="classjpl_1_1command.html">command</a>&amp;&amp;);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <a class="code" href="classjpl_1_1command.html#a1024a764578741b3ff9560ffbd822e50">~command</a>();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classjpl_1_1command.html#a07385e0585824d0161e627093e80ee76">execute</a>(<a class="code" href="classjpl_1_1processor.html">processor</a> &amp;proc, <span class="keywordtype">long</span> time) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classjpl_1_1command.html#aef559165910a05a6f64a7689aba5e525">set_operation</a>(<span class="keyword">const</span> <a class="code" href="classjpl_1_1operations_1_1base.html">operation</a> &amp;op_);</div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="classjpl_1_1command.html#ae15410462d0326bbf6ff7e64cf138018">   92</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classjpl_1_1command.html#ae15410462d0326bbf6ff7e64cf138018">set_operator</a>(<span class="keyword">const</span> <a class="code" href="classjpl_1_1operators_1_1base.html">operator_</a> *act_){act = act_;}       </div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="classjpl_1_1command.html#ae1fb3766e62ed8d1e00213d371ab5b46">   97</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classjpl_1_1command.html#ae1fb3766e62ed8d1e00213d371ab5b46">set_label</a>(<span class="keyword">const</span> std::string &amp;lab) {label = lab;}</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classjpl_1_1command.html#ad103e3ca89b9680062955ab1fccd03fe">add_operand</a>(<span class="keyword">const</span> <a class="code" href="classjpl_1_1operand.html">operand</a>&amp; arg);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classjpl_1_1command.html#aff091e40ade6f01b6210855a8c37ae5a">remove_operand</a>(<span class="keywordtype">int</span> num);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        </div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="classjpl_1_1command.html#a459ddf35d57f715384f587d99910fea1">  113</a></span>&#160;        <span class="keyword">const</span> <a class="code" href="classjpl_1_1operations_1_1base.html">operation</a>&amp; <a class="code" href="classjpl_1_1command.html#a459ddf35d57f715384f587d99910fea1">get_operation</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> *op;}</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        </div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="classjpl_1_1command.html#a0b93030d26d38243ed826785f7edddcd">  119</a></span>&#160;        <span class="keyword">const</span> <a class="code" href="classjpl_1_1operators_1_1base.html">operator_</a>* <a class="code" href="classjpl_1_1command.html#a0b93030d26d38243ed826785f7edddcd">get_operator</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> act;}</div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="classjpl_1_1command.html#a6d7bb47596f830e122fac86acc946791">  124</a></span>&#160;        <span class="keyword">const</span> std::string&amp; <a class="code" href="classjpl_1_1command.html#a6d7bb47596f830e122fac86acc946791">get_label</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> label;}        </div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="classjpl_1_1command.html#a4525ddcd77f911fa5aeeea9e51ec1100">  130</a></span>&#160;        <span class="keyword">const</span> <a class="code" href="classjpl_1_1operand.html">operand</a>* <a class="code" href="classjpl_1_1command.html#a4525ddcd77f911fa5aeeea9e51ec1100">get_operand</a>(<span class="keywordtype">int</span> num)<span class="keyword"> const </span>{<span class="keywordflow">if</span>(num &lt; 0|| num &gt;= args.size()) <span class="keywordflow">throw</span> std::logic_error(<span class="stringliteral">&quot;out bounds&quot;</span>); <span class="keywordflow">return</span> args[num];}    </div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="classjpl_1_1command.html#aa555ac71903b1c724ce7e3205d987ac5">  135</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classjpl_1_1command.html#aa555ac71903b1c724ce7e3205d987ac5">get_args_count</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> args.size();}</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        <span class="keyword">friend</span> std::ostream&amp; <a class="code" href="classjpl_1_1command.html#ac6ad145f47d81fe07e070b17f87b5e3b">operator&lt;&lt;</a>(std::ostream &amp;out, <span class="keyword">const</span> <a class="code" href="classjpl_1_1command.html">command</a>&amp; cmd);</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    };  </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;}</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="preprocessor">#endif</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclassjpl_1_1command_html"><div class="ttname"><a href="classjpl_1_1command.html">jpl::command</a></div><div class="ttdoc">класс команды процессора.</div><div class="ttdef"><b>Definition:</b> command.h:22</div></div>
+<div class="ttc" id="aclassjpl_1_1command_html_a459ddf35d57f715384f587d99910fea1"><div class="ttname"><a href="classjpl_1_1command.html#a459ddf35d57f715384f587d99910fea1">jpl::command::get_operation</a></div><div class="ttdeci">const operation &amp; get_operation() const</div><div class="ttdoc">возвращает константную ссылку на операцию</div><div class="ttdef"><b>Definition:</b> command.h:113</div></div>
+<div class="ttc" id="atypes_8h_html"><div class="ttname"><a href="types_8h.html">types.h</a></div><div class="ttdoc">Файл содержит предварительные определения всех типов библиотеки</div></div>
+<div class="ttc" id="aclassjpl_1_1command_html_a4525ddcd77f911fa5aeeea9e51ec1100"><div class="ttname"><a href="classjpl_1_1command.html#a4525ddcd77f911fa5aeeea9e51ec1100">jpl::command::get_operand</a></div><div class="ttdeci">const operand * get_operand(int num) const</div><div class="ttdoc">возвращает операнд по его номеру</div><div class="ttdef"><b>Definition:</b> command.h:130</div></div>
+<div class="ttc" id="aclassjpl_1_1command_html_ac6ad145f47d81fe07e070b17f87b5e3b"><div class="ttname"><a href="classjpl_1_1command.html#ac6ad145f47d81fe07e070b17f87b5e3b">jpl::command::operator&lt;&lt;</a></div><div class="ttdeci">friend std::ostream &amp; operator&lt;&lt;(std::ostream &amp;out, const command &amp;cmd)</div><div class="ttdoc">выводит текстовое представление данной команды в указанный поток. Перевод строки не осуществляется</div><div class="ttdef"><b>Definition:</b> processor.cpp:119</div></div>
+<div class="ttc" id="aclassjpl_1_1command_html_ad103e3ca89b9680062955ab1fccd03fe"><div class="ttname"><a href="classjpl_1_1command.html#ad103e3ca89b9680062955ab1fccd03fe">jpl::command::add_operand</a></div><div class="ttdeci">void add_operand(const operand &amp;arg)</div><div class="ttdoc">добавить операнд в список операндов</div><div class="ttdef"><b>Definition:</b> processor.cpp:85</div></div>
+<div class="ttc" id="aclassjpl_1_1command_html_a1024a764578741b3ff9560ffbd822e50"><div class="ttname"><a href="classjpl_1_1command.html#a1024a764578741b3ff9560ffbd822e50">jpl::command::~command</a></div><div class="ttdeci">~command()</div><div class="ttdoc">деструктор. Уничтожает объекты операндов, переданные в конструкторе</div><div class="ttdef"><b>Definition:</b> processor.cpp:49</div></div>
+<div class="ttc" id="aclassjpl_1_1operators_1_1base_html"><div class="ttname"><a href="classjpl_1_1operators_1_1base.html">jpl::operators::base</a></div><div class="ttdoc">базовый класс математического оператора. Является функтором. Любой поддерживаемый АЛУ оператор являет...</div><div class="ttdef"><b>Definition:</b> operators.hpp:23</div></div>
+<div class="ttc" id="aclassjpl_1_1operations_1_1base_html"><div class="ttname"><a href="classjpl_1_1operations_1_1base.html">jpl::operations::base</a></div><div class="ttdoc">базовый класс операции. Определяет поведение контроллера.</div><div class="ttdef"><b>Definition:</b> operations.h:50</div></div>
+<div class="ttc" id="aclassjpl_1_1command_html_aef559165910a05a6f64a7689aba5e525"><div class="ttname"><a href="classjpl_1_1command.html#aef559165910a05a6f64a7689aba5e525">jpl::command::set_operation</a></div><div class="ttdeci">void set_operation(const operation &amp;op_)</div><div class="ttdoc">заменить операцию на переданную</div><div class="ttdef"><b>Definition:</b> processor.cpp:20</div></div>
+<div class="ttc" id="aclassjpl_1_1command_html_ade1f91885b5c3e151eb54a403774ee5f"><div class="ttname"><a href="classjpl_1_1command.html#ade1f91885b5c3e151eb54a403774ee5f">jpl::command::operator=</a></div><div class="ttdeci">command &amp; operator=(const command &amp;)</div><div class="ttdoc">копирующее присваивание</div><div class="ttdef"><b>Definition:</b> processor.cpp:55</div></div>
+<div class="ttc" id="aclassjpl_1_1operand_html"><div class="ttname"><a href="classjpl_1_1operand.html">jpl::operand</a></div><div class="ttdoc">абстрактный класс описателя операнда</div><div class="ttdef"><b>Definition:</b> operands.h:19</div></div>
+<div class="ttc" id="aclassjpl_1_1command_html_aa555ac71903b1c724ce7e3205d987ac5"><div class="ttname"><a href="classjpl_1_1command.html#aa555ac71903b1c724ce7e3205d987ac5">jpl::command::get_args_count</a></div><div class="ttdeci">int get_args_count() const</div><div class="ttdoc">возвращает количество операндов у данного экземпляра команды</div><div class="ttdef"><b>Definition:</b> command.h:135</div></div>
+<div class="ttc" id="aclassjpl_1_1command_html_a0b93030d26d38243ed826785f7edddcd"><div class="ttname"><a href="classjpl_1_1command.html#a0b93030d26d38243ed826785f7edddcd">jpl::command::get_operator</a></div><div class="ttdeci">const operator_* get_operator() const</div><div class="ttdoc">возвращает константный указатель на оператор</div><div class="ttdef"><b>Definition:</b> command.h:119</div></div>
+<div class="ttc" id="aclassjpl_1_1command_html_aff091e40ade6f01b6210855a8c37ae5a"><div class="ttname"><a href="classjpl_1_1command.html#aff091e40ade6f01b6210855a8c37ae5a">jpl::command::remove_operand</a></div><div class="ttdeci">void remove_operand(int num)</div><div class="ttdoc">удалить операнд из списка операндов</div><div class="ttdef"><b>Definition:</b> processor.cpp:88</div></div>
+<div class="ttc" id="anamespacejpl_html"><div class="ttname"><a href="namespacejpl.html">jpl</a></div><div class="ttdoc">пространство имен Jawa Programmer Library.</div><div class="ttdef"><b>Definition:</b> command.h:18</div></div>
+<div class="ttc" id="aclassjpl_1_1command_html_ae15410462d0326bbf6ff7e64cf138018"><div class="ttname"><a href="classjpl_1_1command.html#ae15410462d0326bbf6ff7e64cf138018">jpl::command::set_operator</a></div><div class="ttdeci">void set_operator(const operator_*act_)</div><div class="ttdoc">заменить оператор на переданный</div><div class="ttdef"><b>Definition:</b> command.h:92</div></div>
+<div class="ttc" id="aoperands_8h_html"><div class="ttname"><a href="operands_8h.html">operands.h</a></div><div class="ttdoc">Файл содержит описание операндов, которые могут использоваться для передачи параметров в командах</div></div>
+<div class="ttc" id="aclassjpl_1_1command_html_a6d7bb47596f830e122fac86acc946791"><div class="ttname"><a href="classjpl_1_1command.html#a6d7bb47596f830e122fac86acc946791">jpl::command::get_label</a></div><div class="ttdeci">const std::string &amp; get_label() const</div><div class="ttdoc">возвращает текстовое представление метки</div><div class="ttdef"><b>Definition:</b> command.h:124</div></div>
+<div class="ttc" id="aclassjpl_1_1command_html_ae1fb3766e62ed8d1e00213d371ab5b46"><div class="ttname"><a href="classjpl_1_1command.html#ae1fb3766e62ed8d1e00213d371ab5b46">jpl::command::set_label</a></div><div class="ttdeci">void set_label(const std::string &amp;lab)</div><div class="ttdoc">заменить метку на переданную</div><div class="ttdef"><b>Definition:</b> command.h:97</div></div>
+<div class="ttc" id="aclassjpl_1_1command_html_a13c97316daf73fc2b36ea947dc7a7ae4"><div class="ttname"><a href="classjpl_1_1command.html#a13c97316daf73fc2b36ea947dc7a7ae4">jpl::command::command</a></div><div class="ttdeci">command()</div><div class="ttdoc">конструктор по-умолчанию. необходим для возможности работы с vector. Попытка выполнить команду,...</div><div class="ttdef"><b>Definition:</b> processor.cpp:17</div></div>
+<div class="ttc" id="aclassjpl_1_1processor_html"><div class="ttname"><a href="classjpl_1_1processor.html">jpl::processor</a></div><div class="ttdoc">класс процессора. Процессор определяется набором АЛУ, блоком регистров и указателем на память.</div><div class="ttdef"><b>Definition:</b> processor.h:235</div></div>
+<div class="ttc" id="aclassjpl_1_1command_html_a07385e0585824d0161e627093e80ee76"><div class="ttname"><a href="classjpl_1_1command.html#a07385e0585824d0161e627093e80ee76">jpl::command::execute</a></div><div class="ttdeci">void execute(processor &amp;proc, long time) const</div><div class="ttdoc">выполняет команду с использованием ресурсов указанного процессора, считая что в данный момент передан...</div><div class="ttdef"><b>Definition:</b> processor.cpp:92</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

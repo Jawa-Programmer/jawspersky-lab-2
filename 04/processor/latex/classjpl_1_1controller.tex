@@ -1,0 +1,48 @@
+\hypertarget{classjpl_1_1controller}{}\doxysection{Класс jpl\+::controller}
+\label{classjpl_1_1controller}\index{jpl::controller@{jpl::controller}}
+
+
+Устройство Управления (УУ).  
+
+
+
+
+{\ttfamily \#include $<$processor.\+h$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classjpl_1_1controller_acef93f6e168ca714f53ff97160874a0b}{on\+\_\+tick}} (\mbox{\hyperlink{classjpl_1_1processor}{processor}} \&)
+\begin{DoxyCompactList}\small\item\em функция выполняет один полный цикл работы процессора. То есть посылает сигнал такта на все АЛУ, пытается выполнить очередную команду из памяти программы. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Устройство Управления (УУ). 
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classjpl_1_1controller_acef93f6e168ca714f53ff97160874a0b}\label{classjpl_1_1controller_acef93f6e168ca714f53ff97160874a0b}} 
+\index{jpl::controller@{jpl::controller}!on\_tick@{on\_tick}}
+\index{on\_tick@{on\_tick}!jpl::controller@{jpl::controller}}
+\doxysubsubsection{\texorpdfstring{on\_tick()}{on\_tick()}}
+{\footnotesize\ttfamily bool jpl\+::controller\+::on\+\_\+tick (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classjpl_1_1processor}{processor}} \&}]{proc }\end{DoxyParamCaption})}
+
+
+
+функция выполняет один полный цикл работы процессора. То есть посылает сигнал такта на все АЛУ, пытается выполнить очередную команду из памяти программы. 
+
+--- controller ---///
+
+
+\begin{DoxyParams}{Аргументы}
+{\em ссылка} & на процессор \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+возвращает true, если еще есть команды в памяти програм. 
+\end{DoxyReturn}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{processor_8h}{processor.\+h}}\item 
+processor.\+cpp\end{DoxyCompactItemize}

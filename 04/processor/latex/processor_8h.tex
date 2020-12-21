@@ -1,0 +1,51 @@
+\hypertarget{processor_8h}{}\doxysection{Файл processor.\+h}
+\label{processor_8h}\index{processor.h@{processor.h}}
+
+
+основной заголовок библиотеки эмулятора процессора. Содежит объявление, собственно, класса процессора  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$exception$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+set$>$}\newline
+{\ttfamily \#include $<$initializer\+\_\+list$>$}\newline
+{\ttfamily \#include \char`\"{}../../dictionary/dictionary.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}types.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}operands.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}memory.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}command.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}operators.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}operations.\+h\char`\"{}}\newline
+\doxysubsection*{Классы}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classjpl_1_1controller}{jpl\+::controller}}
+\begin{DoxyCompactList}\small\item\em Устройство Управления (УУ). \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classjpl_1_1_a_l_u}{jpl\+::\+A\+LU}}
+\begin{DoxyCompactList}\small\item\em Арифметико-\/Логическое Устройство. Выполняет переданные команды, если используемые операторы принадлежат списку поддерживаемых данным АЛУ \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classjpl_1_1progmem}{jpl\+::progmem}}
+\begin{DoxyCompactList}\small\item\em класс памяти программ. Хранит основную информацию о программе (последовательность инструкций, словарь \char`\"{}метка\char`\"{}-\/\char`\"{}число\char`\"{}, количство статически выделяемой памяти) \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classjpl_1_1process}{jpl\+::process}}
+\begin{DoxyCompactList}\small\item\em класс описателя процесса. Процесс автоматически создается в методе процессора run. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classjpl_1_1processor}{jpl\+::processor}}
+\begin{DoxyCompactList}\small\item\em класс процессора. Процессор определяется набором АЛУ, блоком регистров и указателем на память. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Пространства имен}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacejpl}{jpl}}
+\begin{DoxyCompactList}\small\item\em пространство имен Jawa Programmer Library. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+основной заголовок библиотеки эмулятора процессора. Содежит объявление, собственно, класса процессора 
+
+\begin{DoxyAuthor}{Автор}
+Jawa Prog 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Версия}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Дата}
+Декабрь 2020 года 
+\end{DoxyDate}

@@ -1,0 +1,149 @@
+\hypertarget{classjpl_1_1ram__operand}{}\doxysection{Класс jpl\+::ram\+\_\+operand}
+\label{classjpl_1_1ram__operand}\index{jpl::ram\_operand@{jpl::ram\_operand}}
+
+
+класс операнда -\/ указатель на ячейку в ОП  
+
+
+
+
+{\ttfamily \#include $<$operands.\+h$>$}
+
+Граф наследования\+:jpl\+::ram\+\_\+operand\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classjpl_1_1ram__operand}
+\end{center}
+\end{figure}
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classjpl_1_1ram__operand_a199eac11943fb9280f1292f4865ff80e}{ram\+\_\+operand}} (const \mbox{\hyperlink{classjpl_1_1operand}{operand}} \&adr\+\_\+)
+\item 
+\mbox{\hyperlink{classjpl_1_1ram__operand_a096ab053603cc2eca681e615334ae336}{ram\+\_\+operand}} (const \mbox{\hyperlink{classjpl_1_1label__operand}{label\+\_\+operand}} \&adr\+\_\+)
+\begin{DoxyCompactList}\small\item\em --- \mbox{\hyperlink{classjpl_1_1ram__operand}{ram\+\_\+operand}} ---/// \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classjpl_1_1operand}{operand}} \& \mbox{\hyperlink{classjpl_1_1ram__operand_a8b5024fefcfc13de2e1eeb742b1eb0cf}{value}} () const
+\item 
+virtual \mbox{\hyperlink{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06}{O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{classjpl_1_1ram__operand_a8ec9d1c0c57374bab81b2fd0f1e5f561}{type}} () const override
+\begin{DoxyCompactList}\small\item\em возвращает тип операнда \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classjpl_1_1ram__operand_af31fa2cc028cd125ad6d91eda2f56062}{is\+\_\+label}} () const
+\item 
+virtual \mbox{\hyperlink{classjpl_1_1operand}{operand}} $\ast$ \mbox{\hyperlink{classjpl_1_1ram__operand_a02db071ecae229bcf77820a70999d916}{copy}} () const override
+\begin{DoxyCompactList}\small\item\em возвращает указатель на точную копию данного экземпляра \end{DoxyCompactList}\item 
+virtual std\+::ostream \& \mbox{\hyperlink{classjpl_1_1ram__operand_adafcbce1421b2b843152285215660e76}{print}} (std\+::ostream \&) const override
+\begin{DoxyCompactList}\small\item\em вывод в поток текстового представления операнда \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+класс операнда -\/ указатель на ячейку в ОП 
+
+\doxysubsection{Конструктор(ы)}
+\mbox{\Hypertarget{classjpl_1_1ram__operand_a199eac11943fb9280f1292f4865ff80e}\label{classjpl_1_1ram__operand_a199eac11943fb9280f1292f4865ff80e}} 
+\index{jpl::ram\_operand@{jpl::ram\_operand}!ram\_operand@{ram\_operand}}
+\index{ram\_operand@{ram\_operand}!jpl::ram\_operand@{jpl::ram\_operand}}
+\doxysubsubsection{\texorpdfstring{ram\_operand()}{ram\_operand()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily jpl\+::ram\+\_\+operand\+::ram\+\_\+operand (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classjpl_1_1operand}{operand}} \&}]{adr\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+конструктор инициализирует операнд. 
+\begin{DoxyParams}{Аргументы}
+{\em adr\+\_\+} & операнд, в котором хранится адрес ОП \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1ram__operand_a096ab053603cc2eca681e615334ae336}\label{classjpl_1_1ram__operand_a096ab053603cc2eca681e615334ae336}} 
+\index{jpl::ram\_operand@{jpl::ram\_operand}!ram\_operand@{ram\_operand}}
+\index{ram\_operand@{ram\_operand}!jpl::ram\_operand@{jpl::ram\_operand}}
+\doxysubsubsection{\texorpdfstring{ram\_operand()}{ram\_operand()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily jpl\+::ram\+\_\+operand\+::ram\+\_\+operand (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classjpl_1_1label__operand}{label\+\_\+operand}} \&}]{adr\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+--- \mbox{\hyperlink{classjpl_1_1ram__operand}{ram\+\_\+operand}} ---/// 
+
+конструктор инициализирует операнд. 
+\begin{DoxyParams}{Аргументы}
+{\em adr\+\_\+} & метка, хранящая адрес статической переменной \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classjpl_1_1ram__operand_a02db071ecae229bcf77820a70999d916}\label{classjpl_1_1ram__operand_a02db071ecae229bcf77820a70999d916}} 
+\index{jpl::ram\_operand@{jpl::ram\_operand}!copy@{copy}}
+\index{copy@{copy}!jpl::ram\_operand@{jpl::ram\_operand}}
+\doxysubsubsection{\texorpdfstring{copy()}{copy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classjpl_1_1operand}{operand}} $\ast$ jpl\+::ram\+\_\+operand\+::copy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+возвращает указатель на точную копию данного экземпляра 
+
+\begin{DoxyReturn}{Возвращает}
+указатель на компию 
+\end{DoxyReturn}
+
+
+Замещает \mbox{\hyperlink{classjpl_1_1operand_a16e5db84aae8d271ab7916deb1311c3e}{jpl\+::operand}}.
+
+\mbox{\Hypertarget{classjpl_1_1ram__operand_af31fa2cc028cd125ad6d91eda2f56062}\label{classjpl_1_1ram__operand_af31fa2cc028cd125ad6d91eda2f56062}} 
+\index{jpl::ram\_operand@{jpl::ram\_operand}!is\_label@{is\_label}}
+\index{is\_label@{is\_label}!jpl::ram\_operand@{jpl::ram\_operand}}
+\doxysubsubsection{\texorpdfstring{is\_label()}{is\_label()}}
+{\footnotesize\ttfamily bool jpl\+::ram\+\_\+operand\+::is\+\_\+label (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Возвращает}
+флаг is\+\_\+lab 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classjpl_1_1ram__operand_adafcbce1421b2b843152285215660e76}\label{classjpl_1_1ram__operand_adafcbce1421b2b843152285215660e76}} 
+\index{jpl::ram\_operand@{jpl::ram\_operand}!print@{print}}
+\index{print@{print}!jpl::ram\_operand@{jpl::ram\_operand}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily std\+::ostream \& jpl\+::ram\+\_\+operand\+::print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+вывод в поток текстового представления операнда 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em ссылка} & на поток \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+ссылка на поток 
+\end{DoxyReturn}
+
+
+Замещает \mbox{\hyperlink{classjpl_1_1operand_a179e28da31b42fa617f7c35908581d35}{jpl\+::operand}}.
+
+\mbox{\Hypertarget{classjpl_1_1ram__operand_a8ec9d1c0c57374bab81b2fd0f1e5f561}\label{classjpl_1_1ram__operand_a8ec9d1c0c57374bab81b2fd0f1e5f561}} 
+\index{jpl::ram\_operand@{jpl::ram\_operand}!type@{type}}
+\index{type@{type}!jpl::ram\_operand@{jpl::ram\_operand}}
+\doxysubsubsection{\texorpdfstring{type()}{type()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06}{O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE}} jpl\+::ram\+\_\+operand\+::type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+возвращает тип операнда 
+
+\begin{DoxyReturn}{Возвращает}
+тип операнда (O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE) 
+\end{DoxyReturn}
+
+
+Замещает \mbox{\hyperlink{classjpl_1_1operand_ad9d49492d693134e9b3fb10859d62ede}{jpl\+::operand}}.
+
+\mbox{\Hypertarget{classjpl_1_1ram__operand_a8b5024fefcfc13de2e1eeb742b1eb0cf}\label{classjpl_1_1ram__operand_a8b5024fefcfc13de2e1eeb742b1eb0cf}} 
+\index{jpl::ram\_operand@{jpl::ram\_operand}!value@{value}}
+\index{value@{value}!jpl::ram\_operand@{jpl::ram\_operand}}
+\doxysubsubsection{\texorpdfstring{value()}{value()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classjpl_1_1operand}{operand}}\& jpl\+::ram\+\_\+operand\+::value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Возвращает}
+операнд, храняций адрес данного операнда в ОП 
+\end{DoxyReturn}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{operands_8h}{operands.\+h}}\item 
+operands.\+cpp\end{DoxyCompactItemize}

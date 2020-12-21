@@ -1,0 +1,136 @@
+\hypertarget{classjpl_1_1label__operand}{}\doxysection{Класс jpl\+::label\+\_\+operand}
+\label{classjpl_1_1label__operand}\index{jpl::label\_operand@{jpl::label\_operand}}
+
+
+класс операнда метки.  
+
+
+
+
+{\ttfamily \#include $<$operands.\+h$>$}
+
+Граф наследования\+:jpl\+::label\+\_\+operand\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classjpl_1_1label__operand}
+\end{center}
+\end{figure}
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classjpl_1_1label__operand_a81bb84f0ba6a26a6a382af64d6e228e2}{label\+\_\+operand}} (const std\+::string \&lab, int off=0, bool unnamed=false)
+\begin{DoxyCompactList}\small\item\em Конструктор. Проверяет соответсвие строки стандарту языка (от одного до 8 латинских букв) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1label__operand_acde7d15759ae2e3e19e6f1c2ee2f562d}\label{classjpl_1_1label__operand_acde7d15759ae2e3e19e6f1c2ee2f562d}} 
+const std\+::string \& \mbox{\hyperlink{classjpl_1_1label__operand_acde7d15759ae2e3e19e6f1c2ee2f562d}{value}} () const
+\begin{DoxyCompactList}\small\item\em возвращает текстовую метку \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1label__operand_ac42a1368b769780b13e9d1fbccde4237}\label{classjpl_1_1label__operand_ac42a1368b769780b13e9d1fbccde4237}} 
+int \mbox{\hyperlink{classjpl_1_1label__operand_ac42a1368b769780b13e9d1fbccde4237}{get\+\_\+offset}} () const
+\begin{DoxyCompactList}\small\item\em возвращает смещение \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06}{O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{classjpl_1_1label__operand_aa1ab7653112728ebb290a6efbcfa615f}{type}} () const override
+\begin{DoxyCompactList}\small\item\em возвращает тип операнда \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1label__operand_aee2b998d09047c71c82288b2bf4fe8b2}\label{classjpl_1_1label__operand_aee2b998d09047c71c82288b2bf4fe8b2}} 
+bool \mbox{\hyperlink{classjpl_1_1label__operand_aee2b998d09047c71c82288b2bf4fe8b2}{is\+\_\+unnamed}} () const
+\begin{DoxyCompactList}\small\item\em возвращает флаг unnamed. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classjpl_1_1label__operand}{label\+\_\+operand}} $\ast$ \mbox{\hyperlink{classjpl_1_1label__operand_a6bc6cb9b4a113515189885b47f04697d}{copy}} () const override
+\begin{DoxyCompactList}\small\item\em возвращает указатель на точную копию данного экземпляра \end{DoxyCompactList}\item 
+virtual std\+::ostream \& \mbox{\hyperlink{classjpl_1_1label__operand_a841333c606a91566443a0a5217cf539e}{print}} (std\+::ostream \&) const override
+\begin{DoxyCompactList}\small\item\em вывод в поток текстового представления операнда \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+класс операнда метки. 
+
+метки заносятся в словарь при сборке программы. Если метка означает метку перехода, то в словарь заносится инструкция, перед которой стоит метка. Если метка является именем переменной, то в метке хранится относительный адрес статической переменной в ОП. 
+
+\doxysubsection{Конструктор(ы)}
+\mbox{\Hypertarget{classjpl_1_1label__operand_a81bb84f0ba6a26a6a382af64d6e228e2}\label{classjpl_1_1label__operand_a81bb84f0ba6a26a6a382af64d6e228e2}} 
+\index{jpl::label\_operand@{jpl::label\_operand}!label\_operand@{label\_operand}}
+\index{label\_operand@{label\_operand}!jpl::label\_operand@{jpl::label\_operand}}
+\doxysubsubsection{\texorpdfstring{label\_operand()}{label\_operand()}}
+{\footnotesize\ttfamily jpl\+::label\+\_\+operand\+::label\+\_\+operand (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{lab,  }\item[{int}]{off = {\ttfamily 0},  }\item[{bool}]{unnamed = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Конструктор. Проверяет соответсвие строки стандарту языка (от одного до 8 латинских букв) 
+
+--- \mbox{\hyperlink{classjpl_1_1label__operand}{label\+\_\+operand}} ---///
+
+
+\begin{DoxyExceptions}{Исключения}
+{\em std\+::logic\+\_\+error} & если lab не соответсвует стандарту языка (от одного до 8 латинских букв) \\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyParams}{Аргументы}
+{\em lab} & текстовая метка \\
+\hline
+{\em off} & числовое смещение (по умолчанию 0) \\
+\hline
+{\em unnamed} & флаг того, что метка разименована (при выводе отображается $\ast$lab вместо lab) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classjpl_1_1label__operand_a6bc6cb9b4a113515189885b47f04697d}\label{classjpl_1_1label__operand_a6bc6cb9b4a113515189885b47f04697d}} 
+\index{jpl::label\_operand@{jpl::label\_operand}!copy@{copy}}
+\index{copy@{copy}!jpl::label\_operand@{jpl::label\_operand}}
+\doxysubsubsection{\texorpdfstring{copy()}{copy()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classjpl_1_1label__operand}{label\+\_\+operand}}$\ast$ jpl\+::label\+\_\+operand\+::copy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+возвращает указатель на точную копию данного экземпляра 
+
+\begin{DoxyReturn}{Возвращает}
+указатель на компию 
+\end{DoxyReturn}
+
+
+Замещает \mbox{\hyperlink{classjpl_1_1operand_a16e5db84aae8d271ab7916deb1311c3e}{jpl\+::operand}}.
+
+\mbox{\Hypertarget{classjpl_1_1label__operand_a841333c606a91566443a0a5217cf539e}\label{classjpl_1_1label__operand_a841333c606a91566443a0a5217cf539e}} 
+\index{jpl::label\_operand@{jpl::label\_operand}!print@{print}}
+\index{print@{print}!jpl::label\_operand@{jpl::label\_operand}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily std\+::ostream \& jpl\+::label\+\_\+operand\+::print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+вывод в поток текстового представления операнда 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em ссылка} & на поток \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+ссылка на поток 
+\end{DoxyReturn}
+
+
+Замещает \mbox{\hyperlink{classjpl_1_1operand_a179e28da31b42fa617f7c35908581d35}{jpl\+::operand}}.
+
+\mbox{\Hypertarget{classjpl_1_1label__operand_aa1ab7653112728ebb290a6efbcfa615f}\label{classjpl_1_1label__operand_aa1ab7653112728ebb290a6efbcfa615f}} 
+\index{jpl::label\_operand@{jpl::label\_operand}!type@{type}}
+\index{type@{type}!jpl::label\_operand@{jpl::label\_operand}}
+\doxysubsubsection{\texorpdfstring{type()}{type()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06}{O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE}} jpl\+::label\+\_\+operand\+::type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+возвращает тип операнда 
+
+\begin{DoxyReturn}{Возвращает}
+тип операнда (O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE) 
+\end{DoxyReturn}
+
+
+Замещает \mbox{\hyperlink{classjpl_1_1operand_ad9d49492d693134e9b3fb10859d62ede}{jpl\+::operand}}.
+
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{operands_8h}{operands.\+h}}\item 
+operands.\+cpp\end{DoxyCompactItemize}

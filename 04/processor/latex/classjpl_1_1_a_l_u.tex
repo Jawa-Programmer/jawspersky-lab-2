@@ -1,0 +1,230 @@
+\hypertarget{classjpl_1_1_a_l_u}{}\doxysection{Класс jpl\+::A\+LU}
+\label{classjpl_1_1_a_l_u}\index{jpl::ALU@{jpl::ALU}}
+
+
+Арифметико-\/Логическое Устройство. Выполняет переданные команды, если используемые операторы принадлежат списку поддерживаемых данным АЛУ  
+
+
+
+
+{\ttfamily \#include $<$processor.\+h$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classjpl_1_1_a_l_u_a7fcca4cd32a590a98231a39e4eb9684b}{A\+LU}} (uint64\+\_\+t dur\+\_\+)
+\begin{DoxyCompactList}\small\item\em конструктор инициализирует АЛУ с указанным временем выполнения операции и пустым списком поддерживаемых операторов \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classjpl_1_1_a_l_u_a783de45f01b02ef10a0804b152a28486}{A\+LU}} (uint64\+\_\+t dur\+\_\+, std\+::vector$<$ const \mbox{\hyperlink{classjpl_1_1operators_1_1base}{operator\+\_\+}}$\ast$$>$ cmds)
+\begin{DoxyCompactList}\small\item\em конструктор инициализирует АЛУ с указанными временем выполнения операции и списком поддерживаемых операторов \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classjpl_1_1_a_l_u_a3c30f7a60b1804551072e6fcedcf1175}{operator()}} (\mbox{\hyperlink{classjpl_1_1processor}{processor}} \&, const \mbox{\hyperlink{classjpl_1_1command}{command}} \&, int)
+\begin{DoxyCompactList}\small\item\em оператор проверяет, возможно ли сейчас приступить к выполнению данной команды. Если так, то указатель на команду сохраняется в АЛУ для последующего исполнения. При этом, все операнды команды блокируются на время исполнения. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classjpl_1_1_a_l_u_affdb91d87c1b63d97c8e331117476c8b}{operator()}} (\mbox{\hyperlink{classjpl_1_1processor}{processor}} \&, int)
+\begin{DoxyCompactList}\small\item\em передает такт в АЛУ. Если $<$время принятия команды к исполнению$>$ + $<$время исполнения одной команды$>$ меньше или равно переданному системному времени, то прошлая команда выполняется, ее операнды разблокируются и АЛУ становится доступен для принятия новых команд. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classjpl_1_1_a_l_u_a58bb224fda32b7819309399e8bacb7af}{lock}} (\mbox{\hyperlink{classjpl_1_1processor}{processor}} \&proc, const \mbox{\hyperlink{classjpl_1_1operand}{operand}} \&op)
+\begin{DoxyCompactList}\small\item\em метод пытается заблокировать операнд. Владельцем блокировки выступает экземпляр АЛУ. Константные операнды пропускаются \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classjpl_1_1_a_l_u_ad5b962e4f98cba3bfffbeb4ec7586163}{unlock}} (\mbox{\hyperlink{classjpl_1_1processor}{processor}} \&proc, const \mbox{\hyperlink{classjpl_1_1operand}{operand}} \&op)
+\begin{DoxyCompactList}\small\item\em метод пытается снять блокировку с операнда. Константные операнды пропускаются \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classjpl_1_1_a_l_u_a4b3ff79dc6bcb78f22710ab9e57c6415}{add\+\_\+operator}} (const \mbox{\hyperlink{classjpl_1_1operators_1_1base}{operator\+\_\+}}$\ast$op)
+\begin{DoxyCompactList}\small\item\em метод добавляет новый оператор в набор поддерживаемых операторов \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classjpl_1_1_a_l_u_a8c2363f7fc308c5cb15f84d5ff1c59da}{remove\+\_\+operator}} (const \mbox{\hyperlink{classjpl_1_1operators_1_1base}{operator\+\_\+}}$\ast$op)
+\begin{DoxyCompactList}\small\item\em метод удаляет оператор из набора поддерживаемых операторов \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classjpl_1_1_a_l_u_a8287ae57e8d7872fcb9062d528d3de6b}{is\+\_\+running}} () const
+\begin{DoxyCompactList}\small\item\em метод возвращает флаг состояния АЛУ \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classjpl_1_1_a_l_u_a5fe899221892d7aeb4bd7b7ccbba4f4e}{is\+\_\+available}} (const \mbox{\hyperlink{classjpl_1_1operators_1_1base}{operator\+\_\+}}\&op) const
+\begin{DoxyCompactList}\small\item\em метод проверяет, поддерживается ли переданный оператор \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Арифметико-\/Логическое Устройство. Выполняет переданные команды, если используемые операторы принадлежат списку поддерживаемых данным АЛУ 
+
+\doxysubsection{Конструктор(ы)}
+\mbox{\Hypertarget{classjpl_1_1_a_l_u_a7fcca4cd32a590a98231a39e4eb9684b}\label{classjpl_1_1_a_l_u_a7fcca4cd32a590a98231a39e4eb9684b}} 
+\index{jpl::ALU@{jpl::ALU}!ALU@{ALU}}
+\index{ALU@{ALU}!jpl::ALU@{jpl::ALU}}
+\doxysubsubsection{\texorpdfstring{ALU()}{ALU()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily jpl\+::\+A\+L\+U\+::\+A\+LU (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{dur\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+конструктор инициализирует АЛУ с указанным временем выполнения операции и пустым списком поддерживаемых операторов 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em dur\+\_\+} & количество тиков, требуемое на выполнение одного оператора ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1_a_l_u_a783de45f01b02ef10a0804b152a28486}\label{classjpl_1_1_a_l_u_a783de45f01b02ef10a0804b152a28486}} 
+\index{jpl::ALU@{jpl::ALU}!ALU@{ALU}}
+\index{ALU@{ALU}!jpl::ALU@{jpl::ALU}}
+\doxysubsubsection{\texorpdfstring{ALU()}{ALU()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily jpl\+::\+A\+L\+U\+::\+A\+LU (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{dur\+\_\+,  }\item[{std\+::vector$<$ const \mbox{\hyperlink{classjpl_1_1operators_1_1base}{operator\+\_\+}}$\ast$$>$}]{cmds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+конструктор инициализирует АЛУ с указанными временем выполнения операции и списком поддерживаемых операторов 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em dur\+\_\+} & количество тиков, требуемое на выполнение одного оператора ~\newline
+ \\
+\hline
+{\em cmds} & вектор константных ссылок на объекты операторы. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classjpl_1_1_a_l_u_a4b3ff79dc6bcb78f22710ab9e57c6415}\label{classjpl_1_1_a_l_u_a4b3ff79dc6bcb78f22710ab9e57c6415}} 
+\index{jpl::ALU@{jpl::ALU}!add\_operator@{add\_operator}}
+\index{add\_operator@{add\_operator}!jpl::ALU@{jpl::ALU}}
+\doxysubsubsection{\texorpdfstring{add\_operator()}{add\_operator()}}
+{\footnotesize\ttfamily void jpl\+::\+A\+L\+U\+::add\+\_\+operator (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classjpl_1_1operators_1_1base}{operator\+\_\+}}$\ast$}]{op }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+метод добавляет новый оператор в набор поддерживаемых операторов 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em op} & константный указатель на оператор \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1_a_l_u_a5fe899221892d7aeb4bd7b7ccbba4f4e}\label{classjpl_1_1_a_l_u_a5fe899221892d7aeb4bd7b7ccbba4f4e}} 
+\index{jpl::ALU@{jpl::ALU}!is\_available@{is\_available}}
+\index{is\_available@{is\_available}!jpl::ALU@{jpl::ALU}}
+\doxysubsubsection{\texorpdfstring{is\_available()}{is\_available()}}
+{\footnotesize\ttfamily bool jpl\+::\+A\+L\+U\+::is\+\_\+available (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classjpl_1_1operators_1_1base}{operator\+\_\+}}\&}]{op }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+метод проверяет, поддерживается ли переданный оператор 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em op} & константный указатель на оператор \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+true, если указатель на переданный оператор содержится в наборе поддерживаемых операторов. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classjpl_1_1_a_l_u_a8287ae57e8d7872fcb9062d528d3de6b}\label{classjpl_1_1_a_l_u_a8287ae57e8d7872fcb9062d528d3de6b}} 
+\index{jpl::ALU@{jpl::ALU}!is\_running@{is\_running}}
+\index{is\_running@{is\_running}!jpl::ALU@{jpl::ALU}}
+\doxysubsubsection{\texorpdfstring{is\_running()}{is\_running()}}
+{\footnotesize\ttfamily bool jpl\+::\+A\+L\+U\+::is\+\_\+running (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+метод возвращает флаг состояния АЛУ 
+
+\begin{DoxyReturn}{Возвращает}
+true, если АЛУ выполняет какую-\/либо команду. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classjpl_1_1_a_l_u_a58bb224fda32b7819309399e8bacb7af}\label{classjpl_1_1_a_l_u_a58bb224fda32b7819309399e8bacb7af}} 
+\index{jpl::ALU@{jpl::ALU}!lock@{lock}}
+\index{lock@{lock}!jpl::ALU@{jpl::ALU}}
+\doxysubsubsection{\texorpdfstring{lock()}{lock()}}
+{\footnotesize\ttfamily bool jpl\+::\+A\+L\+U\+::lock (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classjpl_1_1processor}{processor}} \&}]{proc,  }\item[{const \mbox{\hyperlink{classjpl_1_1operand}{operand}} \&}]{op }\end{DoxyParamCaption})}
+
+
+
+метод пытается заблокировать операнд. Владельцем блокировки выступает экземпляр АЛУ. Константные операнды пропускаются 
+
+--- \mbox{\hyperlink{classjpl_1_1_a_l_u}{A\+LU}} ---///
+
+
+\begin{DoxyParams}{Аргументы}
+{\em proc} & ссылка на процессор \\
+\hline
+{\em op} & ссылка на операнд. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+true, если блокировка прошла успешно, или предыдущая блокировка наложена этим же АЛУ. false, если операнд уже заблокирован другим АЛУ. Для константных операндов (в т.\+ч. и для меток) метод всегда возвращает true 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classjpl_1_1_a_l_u_a3c30f7a60b1804551072e6fcedcf1175}\label{classjpl_1_1_a_l_u_a3c30f7a60b1804551072e6fcedcf1175}} 
+\index{jpl::ALU@{jpl::ALU}!operator()@{operator()}}
+\index{operator()@{operator()}!jpl::ALU@{jpl::ALU}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool jpl\+::\+A\+L\+U\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classjpl_1_1processor}{processor}} \&}]{proc,  }\item[{const \mbox{\hyperlink{classjpl_1_1command}{command}} \&}]{cmd\+\_\+n,  }\item[{int}]{time }\end{DoxyParamCaption})}
+
+
+
+оператор проверяет, возможно ли сейчас приступить к выполнению данной команды. Если так, то указатель на команду сохраняется в АЛУ для последующего исполнения. При этом, все операнды команды блокируются на время исполнения. 
+
+Команда принимается к исполнению, если выполнение предыдущей команды уже завершено, содержащийся в новой комаде оператор поддерживается АЛУ и если все операнды команды были успешны заблокированы данным АЛУ. 
+\begin{DoxyParams}{Аргументы}
+{\em proc} & ссылка на процессор \\
+\hline
+{\em cmd\+\_\+n} & ссылка на описатель команды \\
+\hline
+{\em time} & системное время \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+возвращает true, если команда принята к исполнению. Иначе false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classjpl_1_1_a_l_u_affdb91d87c1b63d97c8e331117476c8b}\label{classjpl_1_1_a_l_u_affdb91d87c1b63d97c8e331117476c8b}} 
+\index{jpl::ALU@{jpl::ALU}!operator()@{operator()}}
+\index{operator()@{operator()}!jpl::ALU@{jpl::ALU}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool jpl\+::\+A\+L\+U\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classjpl_1_1processor}{processor}} \&}]{proc,  }\item[{int}]{time }\end{DoxyParamCaption})}
+
+
+
+передает такт в АЛУ. Если $<$время принятия команды к исполнению$>$ + $<$время исполнения одной команды$>$ меньше или равно переданному системному времени, то прошлая команда выполняется, ее операнды разблокируются и АЛУ становится доступен для принятия новых команд. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em proc} & ссылка на процессор \\
+\hline
+{\em системное} & время \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+true, если сейчас нет исполняемой команды (или она была завершена во время текущего вызова). Если выполнение команды не завершено, то возвращается false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classjpl_1_1_a_l_u_a8c2363f7fc308c5cb15f84d5ff1c59da}\label{classjpl_1_1_a_l_u_a8c2363f7fc308c5cb15f84d5ff1c59da}} 
+\index{jpl::ALU@{jpl::ALU}!remove\_operator@{remove\_operator}}
+\index{remove\_operator@{remove\_operator}!jpl::ALU@{jpl::ALU}}
+\doxysubsubsection{\texorpdfstring{remove\_operator()}{remove\_operator()}}
+{\footnotesize\ttfamily void jpl\+::\+A\+L\+U\+::remove\+\_\+operator (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classjpl_1_1operators_1_1base}{operator\+\_\+}}$\ast$}]{op }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+метод удаляет оператор из набора поддерживаемых операторов 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em op} & константный указатель на оператор \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1_a_l_u_ad5b962e4f98cba3bfffbeb4ec7586163}\label{classjpl_1_1_a_l_u_ad5b962e4f98cba3bfffbeb4ec7586163}} 
+\index{jpl::ALU@{jpl::ALU}!unlock@{unlock}}
+\index{unlock@{unlock}!jpl::ALU@{jpl::ALU}}
+\doxysubsubsection{\texorpdfstring{unlock()}{unlock()}}
+{\footnotesize\ttfamily void jpl\+::\+A\+L\+U\+::unlock (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classjpl_1_1processor}{processor}} \&}]{proc,  }\item[{const \mbox{\hyperlink{classjpl_1_1operand}{operand}} \&}]{op }\end{DoxyParamCaption})}
+
+
+
+метод пытается снять блокировку с операнда. Константные операнды пропускаются 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em proc} & ссылка на процессор \\
+\hline
+{\em op} & ссылка на операнд. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Исключения}
+{\em std\+::logic\+\_\+error()} & если данное АЛУ не является владельцем блокировки, которую пытается снять \\
+\hline
+\end{DoxyExceptions}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{processor_8h}{processor.\+h}}\item 
+processor.\+cpp\end{DoxyCompactItemize}

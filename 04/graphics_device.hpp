@@ -16,12 +16,13 @@
 
 #include <GL/freeglut.h>
 
-#include "types.h"
-#include "operands.h"
+#include "processor/types.h"
+#include "processor/operands.h"
 
 namespace jpl 
 {
 	class GTX1050;
+	class Keyboard;
 	
 	namespace gd
 	{	
@@ -32,26 +33,70 @@ namespace jpl
 			/// ссылка на графическое устройство, к которому необходимо применить комманду
 			GTX1050 &gd;
 			public:
-			GDO(GTX1050 &gtx) : gd(gtx) {req = {4,5,6,7};}
+			GDO(GTX1050 &gtx) : gd(gtx) {}
 			virtual EXECUTOR executor() const override {return E_CONTROLLER;}
 			virtual const char* lab() const override {return "GDO";}
 			virtual void operator()(processor &proc, const command& cmd, long time) const override;
 		};
+		/// операция, выполняющая команды взаимодействия с клавиатурой
+		class KBD : public operation
+		{
+			private:
+			/// ссылка на клавиатуру, к которой необходимо применить комманду
+			Keyboard &kb;
+			public:
+			KBD(Keyboard &kbd) : kb(kbd) {}
+			virtual EXECUTOR executor() const override {return E_CONTROLLER;}
+			virtual const char* lab() const override {return "KBD";}
+			virtual void operator()(processor &proc, const command& cmd, long time) const override;
+		};
 	}
+	
+	/// класс описатель клавиатуры. Хранит очередь нажатий клавиш.
+	class Keyboard
+	{
+		static std::mutex m_kb;
+		struct kpair {int mod; unsigned char key;};
+		struct spkpair {int mod; int key;};
+		std::queue<kpair> keys;
+		std::queue<spkpair> spkeys;
+		
+		gd::KBD kbd;
+		
+		public:
+		Keyboard() : kbd(*this){};
+		void push_key(int mod, unsigned char key){if(key==0)return; m_kb.lock(); keys.push({mod, key}); m_kb.unlock(); }
+		void push_spkey(int mod, int spkey){if(spkey==0)return;m_kb.lock(); spkeys.push({mod, spkey}); m_kb.unlock();}
+		
+		kpair pop_key(){m_kb.lock(); kpair ret = keys.front();  keys.pop(); m_kb.unlock();  return ret;}
+		spkpair pop_spkey(){m_kb.lock(); spkpair ret = spkeys.front(); spkeys.pop(); m_kb.unlock(); return ret; }
+		
+		bool has_keys() const {m_kb.lock(); bool ret = !keys.empty(); m_kb.unlock();return ret;}
+		bool has_spkeys() const {m_kb.lock(); bool ret = !spkeys.empty(); m_kb.unlock();return ret;}
+		
+		const gd::KBD* get_operation() const {return &kbd;}
+	};
+	std::mutex Keyboard::m_kb;
+	
 	namespace {
 		std::mutex m_init; // защищает glut от попытки создать два окна из разных потоков в одно время
-		struct key_pair{bool act; unsigned char key;};
+		std::mutex m_drw; // защищает от попытки рисовать в два окна одновременно
 		struct cmd {int i; std::vector<int> args;};
-		std::unordered_map<int, key_pair> pairs;
+		std::unordered_map<int, Keyboard*> kboards;
 		void onPress(unsigned char ch, int x, int y)
 		{
-			pairs[glutGetWindow()] = {true, ch};
+			kboards[glutGetWindow()]->push_key(glutGetModifiers(), ch);
+		}
+		void onSpPress(int ch, int x, int y)
+		{
+			kboards[glutGetWindow()]->push_spkey(glutGetModifiers(), ch);
 		}
 	}
 	
 	
 	
 	/// графическое устройство. Выполняет инициализацию и контроль над окном glut, предостовляет простой интерфейс рисования примитивов через openGL
+	/// Так же предоставляет доступ к объекту клавиатуры, в котором хранится последовательность нажатых клавиш
 	class GTX1050 {
 		private:		
 		GLint Width = 128, Height = 64;		
@@ -60,6 +105,8 @@ namespace jpl
 		bool run;
 		std::thread *thr;
 		std::queue<cmd> commands;
+		Keyboard kboard;
+		
 		void loop(){
 			m_init.lock();
 			glutInitDisplayMode(GLUT_RGB);
@@ -79,14 +126,17 @@ namespace jpl
 			glPointSize(2);
 			
 			glEnable(GL_POINT_SMOOTH);
-			glutKeyboardFunc(onPress);
-			glutDisplayFunc([]()->void{});
 			
+			kboards[window] = &kboard;
+			
+			glutKeyboardFunc(onPress);
+			glutSpecialFunc(onSpPress);
+			glutDisplayFunc([]()->void{});
 			m_init.unlock();			
 			while(run)
 			{
-				glutSetWindow(window);
-				
+				m_drw.lock();
+				glutSetWindow(window);				
 				while(!commands.empty())
 				{
 					cmd com = commands.front();
@@ -115,16 +165,9 @@ namespace jpl
 						break;
 					
 					}
-				}
-				
+				}				
 				glutMainLoopEvent();
-				auto f = pairs.find(window);
-				if(f != pairs.end() && f->second.act)
-				{
-					f->second.act = false;
-					// код обработки нажатия. Вероятно, теперь придется писать аналог вектора прерываний :)
-					//std::cerr << "u pressed: " << f->second.key << std::endl; 
-				}
+				m_drw.unlock();
 				std::this_thread::sleep_for(std::chrono::milliseconds(100));
 			}
 		}
@@ -137,7 +180,7 @@ namespace jpl
 			m_init.lock();
 			m_init.unlock();
 		}
-		~GTX1050(){glutSetWindow(window); run = false; glutDestroyWindow(window); thr->join(); delete thr;}
+		~GTX1050(){close();}
 		void close(){glutSetWindow(window); run = false; glutDestroyWindow(window); thr->join(); delete thr;}
 		void begin(int mode) const {glutSetWindow(window); glBegin(mode);}
 		void end() const {glutSetWindow(window); glEnd();}		
@@ -156,37 +199,79 @@ namespace jpl
 			commands.push({cm, args});
 		}
 		
+		Keyboard& get_keyboard() {return kboard;}
+		
 		const gd::GDO* get_operation() const {return &_opr;}
 	};
 	
 	namespace gd 
 	{
 		void GDO::operator()(processor &proc, const command& cmd, long time) const {
+			proc.get_RAM()->lock_read();
 			byte com = proc.get_value(*cmd.get_operand(0));
-			std::vector<int> args(4);
-			
+			proc.get_RAM()->unlock_read();
+			std::vector<int> args(4);			
 			switch(com) // в качестве единственного параметра инструкция получает тип операции на графическом устройстве. Остальные параметры читаются напрямую из регистров процессора
 			{
 				case 0x00: // очистить экран. в регистрах 4, 5, 6 лежат RGB компоненты фонового цвета
+				if(!(proc.is_free(reg_operand(const_operand(4))) && proc.is_free(reg_operand(const_operand(5))) && proc.is_free(reg_operand(const_operand(6))))) return; // если нужные регистры еще заняты, то мы не переводим регистр команд. В следующей итерации попытка будет повторена
 					args = {proc.read_reg(4).data, proc.read_reg(5).data, proc.read_reg(6).data};
 				break;
 				case 0x01: // установить цвет кисти. в регистрах 4, 5, 6, 7 лежат RGBA компоненты цвета
+					if(!(proc.is_free(reg_operand(const_operand(4))) && proc.is_free(reg_operand(const_operand(5))) && proc.is_free(reg_operand(const_operand(6)))&& proc.is_free(reg_operand(const_operand(7))))) return;
 					args = {proc.read_reg(4).data, proc.read_reg(5).data, proc.read_reg(6).data, proc.read_reg(7).data};
 				break;
 				case 0x02:	// начать отрисовку примитива. в регистре 4 лежит тип примитива (0 - точка, 1 - линия, 2 - замкнутая линия, 3 - цепочка линий, 4 - треугольник, 5 - цепочка треугольников, 
 							// 6 - треугольник-вейер, 7 - квадраты, 8 - цепочка квадратов, 9 - произвольный многоугольник с заливкой)
+					if(!(proc.is_free(reg_operand(const_operand(4))))) return;
 					args = {proc.read_reg(4).data};
 				break;
 				/*case 0x03:	// закончить отрисовку примитива. не требует аргументов.
 				break;*/
 				case 0x04:	// ввести вершину. в регистрах 4 и 5 лежат x и y координаты.
+					if(!(proc.is_free(reg_operand(const_operand(4)) )&& proc.is_free(reg_operand(const_operand(5))))) return;
 					args = {proc.read_reg(4).data, proc.read_reg(5).data};
 				break;
 				/*case 0x05:	// перенести изображение из буфера на экран. не требует аргументов.
 				break;*/
-			}
+			}			
 			gd.add_command(com, args);
 			proc.get_process().inc();
+		}
+		void KBD::operator()(processor &proc, const command& cmd, long time) const {
+			proc.get_RAM()->lock_read();
+			byte com = proc.get_value(*cmd.get_operand(0));
+			proc.get_RAM()->unlock_read();
+			switch(com)
+			{
+				case 0x00: // проверить, находится ли в буфере клавиатуры информация о нажатой символьной клавише. Результат проверки помещается в регистр процессора под номером 3
+					if(!(proc.is_free(reg_operand(const_operand(3))))) return; // нужный регистр занят, ожидаем освобождения
+					proc.reg_access(3).data = kb.has_keys();
+				break;
+				case 0x01: // проверить, находится ли в буфере клавиатуры информация о нажатой спец. клавише (на подобии стрелок, delete, home, F1-F12 и так далее). Результат проверки помещается в регистр процессора под номером 3
+					if(!(proc.is_free(reg_operand(const_operand(3))))) return; // нужный регистр занят, ожидаем освобождения
+					proc.reg_access(3).data = kb.has_spkeys();				
+				break;
+				case 0x02: // считывает символ с буфера клавиатуры и помещает в регистр 3. В регистр 2 помещается информация об модификаторе (ALT CTRL SHIFT). Если буфер пуст, то процессор будет ожидать, пока пользователь не нажмет клавишу.
+					if(!kb.has_keys()) return; // если клавиша не нажата, то ожидаем нажатия
+					if(!(proc.is_free(reg_operand(const_operand(3))) && proc.is_free(reg_operand(const_operand(2))))) return; // нужный регистр занят, ожидаем освобождения
+					{
+						auto key = kb.pop_key();
+						proc.reg_access(3).data	= key.key;
+						proc.reg_access(2).data	= key.mod;
+					}
+				break;
+				case 0x03: // то же, что и 0x02, но для специальных клавиш
+					if(!kb.has_spkeys()) return; // если клавиша не нажата, то ожидаем нажатия
+					if(!(proc.is_free(reg_operand(const_operand(3))) && proc.is_free(reg_operand(const_operand(2))))) return; // нужный регистр занят, ожидаем освобождения
+					{
+						auto key = kb.pop_spkey();
+						proc.reg_access(3).data	= key.key;
+						proc.reg_access(2).data	= key.mod;
+					}
+				break;
+			}
+			proc.get_process().inc(); //раз досрочного return не было, значит команды исполнились и можно перевести счетчик команд на 1 вперед
 		}
 	}
 }

@@ -1,0 +1,507 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Библиотека эмулятор процессора: Класс jpl::ALU</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Библиотека эмулятор процессора
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Библиотека предостовляет классы виртуальных устройст, исплользуя которые можно смоделировать ахритектуру и исполнить на ней код</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacejpl.html">jpl</a></li><li class="navelem"><a class="el" href="classjpl_1_1_a_l_u.html">ALU</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="classjpl_1_1_a_l_u-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс jpl::ALU</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Арифметико-Логическое Устройство. Выполняет переданные команды, если используемые операторы принадлежат списку поддерживаемых данным АЛУ  
+ <a href="classjpl_1_1_a_l_u.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="processor_8h_source.html">processor.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a7fcca4cd32a590a98231a39e4eb9684b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1_a_l_u.html#a7fcca4cd32a590a98231a39e4eb9684b">ALU</a> (uint64_t dur_)</td></tr>
+<tr class="memdesc:a7fcca4cd32a590a98231a39e4eb9684b"><td class="mdescLeft">&#160;</td><td class="mdescRight">конструктор инициализирует АЛУ с указанным временем выполнения операции и пустым списком поддерживаемых операторов  <a href="classjpl_1_1_a_l_u.html#a7fcca4cd32a590a98231a39e4eb9684b">Подробнее...</a><br /></td></tr>
+<tr class="separator:a7fcca4cd32a590a98231a39e4eb9684b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a783de45f01b02ef10a0804b152a28486"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1_a_l_u.html#a783de45f01b02ef10a0804b152a28486">ALU</a> (uint64_t dur_, std::vector&lt; const <a class="el" href="classjpl_1_1operators_1_1base.html">operator_</a>*&gt; cmds)</td></tr>
+<tr class="memdesc:a783de45f01b02ef10a0804b152a28486"><td class="mdescLeft">&#160;</td><td class="mdescRight">конструктор инициализирует АЛУ с указанными временем выполнения операции и списком поддерживаемых операторов  <a href="classjpl_1_1_a_l_u.html#a783de45f01b02ef10a0804b152a28486">Подробнее...</a><br /></td></tr>
+<tr class="separator:a783de45f01b02ef10a0804b152a28486"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c30f7a60b1804551072e6fcedcf1175"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1_a_l_u.html#a3c30f7a60b1804551072e6fcedcf1175">operator()</a> (<a class="el" href="classjpl_1_1processor.html">processor</a> &amp;, const <a class="el" href="classjpl_1_1command.html">command</a> &amp;, int)</td></tr>
+<tr class="memdesc:a3c30f7a60b1804551072e6fcedcf1175"><td class="mdescLeft">&#160;</td><td class="mdescRight">оператор проверяет, возможно ли сейчас приступить к выполнению данной команды. Если так, то указатель на команду сохраняется в АЛУ для последующего исполнения. При этом, все операнды команды блокируются на время исполнения.  <a href="classjpl_1_1_a_l_u.html#a3c30f7a60b1804551072e6fcedcf1175">Подробнее...</a><br /></td></tr>
+<tr class="separator:a3c30f7a60b1804551072e6fcedcf1175"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affdb91d87c1b63d97c8e331117476c8b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1_a_l_u.html#affdb91d87c1b63d97c8e331117476c8b">operator()</a> (<a class="el" href="classjpl_1_1processor.html">processor</a> &amp;, int)</td></tr>
+<tr class="memdesc:affdb91d87c1b63d97c8e331117476c8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">передает такт в АЛУ. Если &lt;время принятия команды к исполнению&gt; + &lt;время исполнения одной команды&gt; меньше или равно переданному системному времени, то прошлая команда выполняется, ее операнды разблокируются и АЛУ становится доступен для принятия новых команд.  <a href="classjpl_1_1_a_l_u.html#affdb91d87c1b63d97c8e331117476c8b">Подробнее...</a><br /></td></tr>
+<tr class="separator:affdb91d87c1b63d97c8e331117476c8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58bb224fda32b7819309399e8bacb7af"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1_a_l_u.html#a58bb224fda32b7819309399e8bacb7af">lock</a> (<a class="el" href="classjpl_1_1processor.html">processor</a> &amp;proc, const <a class="el" href="classjpl_1_1operand.html">operand</a> &amp;op)</td></tr>
+<tr class="memdesc:a58bb224fda32b7819309399e8bacb7af"><td class="mdescLeft">&#160;</td><td class="mdescRight">метод пытается заблокировать операнд. Владельцем блокировки выступает экземпляр АЛУ. Константные операнды пропускаются  <a href="classjpl_1_1_a_l_u.html#a58bb224fda32b7819309399e8bacb7af">Подробнее...</a><br /></td></tr>
+<tr class="separator:a58bb224fda32b7819309399e8bacb7af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5b962e4f98cba3bfffbeb4ec7586163"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1_a_l_u.html#ad5b962e4f98cba3bfffbeb4ec7586163">unlock</a> (<a class="el" href="classjpl_1_1processor.html">processor</a> &amp;proc, const <a class="el" href="classjpl_1_1operand.html">operand</a> &amp;op)</td></tr>
+<tr class="memdesc:ad5b962e4f98cba3bfffbeb4ec7586163"><td class="mdescLeft">&#160;</td><td class="mdescRight">метод пытается снять блокировку с операнда. Константные операнды пропускаются  <a href="classjpl_1_1_a_l_u.html#ad5b962e4f98cba3bfffbeb4ec7586163">Подробнее...</a><br /></td></tr>
+<tr class="separator:ad5b962e4f98cba3bfffbeb4ec7586163"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b3ff79dc6bcb78f22710ab9e57c6415"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1_a_l_u.html#a4b3ff79dc6bcb78f22710ab9e57c6415">add_operator</a> (const <a class="el" href="classjpl_1_1operators_1_1base.html">operator_</a>*op)</td></tr>
+<tr class="memdesc:a4b3ff79dc6bcb78f22710ab9e57c6415"><td class="mdescLeft">&#160;</td><td class="mdescRight">метод добавляет новый оператор в набор поддерживаемых операторов  <a href="classjpl_1_1_a_l_u.html#a4b3ff79dc6bcb78f22710ab9e57c6415">Подробнее...</a><br /></td></tr>
+<tr class="separator:a4b3ff79dc6bcb78f22710ab9e57c6415"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c2363f7fc308c5cb15f84d5ff1c59da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1_a_l_u.html#a8c2363f7fc308c5cb15f84d5ff1c59da">remove_operator</a> (const <a class="el" href="classjpl_1_1operators_1_1base.html">operator_</a>*op)</td></tr>
+<tr class="memdesc:a8c2363f7fc308c5cb15f84d5ff1c59da"><td class="mdescLeft">&#160;</td><td class="mdescRight">метод удаляет оператор из набора поддерживаемых операторов  <a href="classjpl_1_1_a_l_u.html#a8c2363f7fc308c5cb15f84d5ff1c59da">Подробнее...</a><br /></td></tr>
+<tr class="separator:a8c2363f7fc308c5cb15f84d5ff1c59da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8287ae57e8d7872fcb9062d528d3de6b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1_a_l_u.html#a8287ae57e8d7872fcb9062d528d3de6b">is_running</a> () const</td></tr>
+<tr class="memdesc:a8287ae57e8d7872fcb9062d528d3de6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">метод возвращает флаг состояния АЛУ  <a href="classjpl_1_1_a_l_u.html#a8287ae57e8d7872fcb9062d528d3de6b">Подробнее...</a><br /></td></tr>
+<tr class="separator:a8287ae57e8d7872fcb9062d528d3de6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fe899221892d7aeb4bd7b7ccbba4f4e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjpl_1_1_a_l_u.html#a5fe899221892d7aeb4bd7b7ccbba4f4e">is_available</a> (const <a class="el" href="classjpl_1_1operators_1_1base.html">operator_</a>&amp;op) const</td></tr>
+<tr class="memdesc:a5fe899221892d7aeb4bd7b7ccbba4f4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">метод проверяет, поддерживается ли переданный оператор  <a href="classjpl_1_1_a_l_u.html#a5fe899221892d7aeb4bd7b7ccbba4f4e">Подробнее...</a><br /></td></tr>
+<tr class="separator:a5fe899221892d7aeb4bd7b7ccbba4f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Арифметико-Логическое Устройство. Выполняет переданные команды, если используемые операторы принадлежат списку поддерживаемых данным АЛУ </p>
+</div><h2 class="groupheader">Конструктор(ы)</h2>
+<a id="a7fcca4cd32a590a98231a39e4eb9684b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fcca4cd32a590a98231a39e4eb9684b">&#9670;&nbsp;</a></span>ALU() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">jpl::ALU::ALU </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>dur_</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>конструктор инициализирует АЛУ с указанным временем выполнения операции и пустым списком поддерживаемых операторов </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dur_</td><td>количество тиков, требуемое на выполнение одного оператора <br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a783de45f01b02ef10a0804b152a28486"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a783de45f01b02ef10a0804b152a28486">&#9670;&nbsp;</a></span>ALU() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">jpl::ALU::ALU </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>dur_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; const <a class="el" href="classjpl_1_1operators_1_1base.html">operator_</a>*&gt;&#160;</td>
+          <td class="paramname"><em>cmds</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>конструктор инициализирует АЛУ с указанными временем выполнения операции и списком поддерживаемых операторов </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dur_</td><td>количество тиков, требуемое на выполнение одного оператора <br  />
+ </td></tr>
+    <tr><td class="paramname">cmds</td><td>вектор константных ссылок на объекты операторы. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Методы</h2>
+<a id="a4b3ff79dc6bcb78f22710ab9e57c6415"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b3ff79dc6bcb78f22710ab9e57c6415">&#9670;&nbsp;</a></span>add_operator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void jpl::ALU::add_operator </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classjpl_1_1operators_1_1base.html">operator_</a>*&#160;</td>
+          <td class="paramname"><em>op</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>метод добавляет новый оператор в набор поддерживаемых операторов </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">op</td><td>константный указатель на оператор </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5fe899221892d7aeb4bd7b7ccbba4f4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fe899221892d7aeb4bd7b7ccbba4f4e">&#9670;&nbsp;</a></span>is_available()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool jpl::ALU::is_available </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classjpl_1_1operators_1_1base.html">operator_</a>&amp;&#160;</td>
+          <td class="paramname"><em>op</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>метод проверяет, поддерживается ли переданный оператор </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">op</td><td>константный указатель на оператор </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>true, если указатель на переданный оператор содержится в наборе поддерживаемых операторов. </dd></dl>
+
+</div>
+</div>
+<a id="a8287ae57e8d7872fcb9062d528d3de6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8287ae57e8d7872fcb9062d528d3de6b">&#9670;&nbsp;</a></span>is_running()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool jpl::ALU::is_running </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>метод возвращает флаг состояния АЛУ </p>
+<dl class="section return"><dt>Возвращает</dt><dd>true, если АЛУ выполняет какую-либо команду. </dd></dl>
+
+</div>
+</div>
+<a id="a58bb224fda32b7819309399e8bacb7af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58bb224fda32b7819309399e8bacb7af">&#9670;&nbsp;</a></span>lock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool jpl::ALU::lock </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classjpl_1_1processor.html">processor</a> &amp;&#160;</td>
+          <td class="paramname"><em>proc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classjpl_1_1operand.html">operand</a> &amp;&#160;</td>
+          <td class="paramname"><em>op</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>метод пытается заблокировать операнд. Владельцем блокировки выступает экземпляр АЛУ. Константные операнды пропускаются </p>
+<p>&mdash; <a class="el" href="classjpl_1_1_a_l_u.html" title="Арифметико-Логическое Устройство. Выполняет переданные команды, если используемые операторы принадлеж...">ALU</a> &mdash;///</p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">proc</td><td>ссылка на процессор </td></tr>
+    <tr><td class="paramname">op</td><td>ссылка на операнд. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>true, если блокировка прошла успешно, или предыдущая блокировка наложена этим же АЛУ. false, если операнд уже заблокирован другим АЛУ. Для константных операндов (в т.ч. и для меток) метод всегда возвращает true </dd></dl>
+
+</div>
+</div>
+<a id="a3c30f7a60b1804551072e6fcedcf1175"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c30f7a60b1804551072e6fcedcf1175">&#9670;&nbsp;</a></span>operator()() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool jpl::ALU::operator() </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classjpl_1_1processor.html">processor</a> &amp;&#160;</td>
+          <td class="paramname"><em>proc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classjpl_1_1command.html">command</a> &amp;&#160;</td>
+          <td class="paramname"><em>cmd_n</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>time</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>оператор проверяет, возможно ли сейчас приступить к выполнению данной команды. Если так, то указатель на команду сохраняется в АЛУ для последующего исполнения. При этом, все операнды команды блокируются на время исполнения. </p>
+<p>Команда принимается к исполнению, если выполнение предыдущей команды уже завершено, содержащийся в новой комаде оператор поддерживается АЛУ и если все операнды команды были успешны заблокированы данным АЛУ. </p><dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">proc</td><td>ссылка на процессор </td></tr>
+    <tr><td class="paramname">cmd_n</td><td>ссылка на описатель команды </td></tr>
+    <tr><td class="paramname">time</td><td>системное время </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>возвращает true, если команда принята к исполнению. Иначе false. </dd></dl>
+
+</div>
+</div>
+<a id="affdb91d87c1b63d97c8e331117476c8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affdb91d87c1b63d97c8e331117476c8b">&#9670;&nbsp;</a></span>operator()() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool jpl::ALU::operator() </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classjpl_1_1processor.html">processor</a> &amp;&#160;</td>
+          <td class="paramname"><em>proc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>time</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>передает такт в АЛУ. Если &lt;время принятия команды к исполнению&gt; + &lt;время исполнения одной команды&gt; меньше или равно переданному системному времени, то прошлая команда выполняется, ее операнды разблокируются и АЛУ становится доступен для принятия новых команд. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">proc</td><td>ссылка на процессор </td></tr>
+    <tr><td class="paramname">системное</td><td>время </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>true, если сейчас нет исполняемой команды (или она была завершена во время текущего вызова). Если выполнение команды не завершено, то возвращается false </dd></dl>
+
+</div>
+</div>
+<a id="a8c2363f7fc308c5cb15f84d5ff1c59da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c2363f7fc308c5cb15f84d5ff1c59da">&#9670;&nbsp;</a></span>remove_operator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void jpl::ALU::remove_operator </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classjpl_1_1operators_1_1base.html">operator_</a>*&#160;</td>
+          <td class="paramname"><em>op</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>метод удаляет оператор из набора поддерживаемых операторов </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">op</td><td>константный указатель на оператор </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad5b962e4f98cba3bfffbeb4ec7586163"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5b962e4f98cba3bfffbeb4ec7586163">&#9670;&nbsp;</a></span>unlock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void jpl::ALU::unlock </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classjpl_1_1processor.html">processor</a> &amp;&#160;</td>
+          <td class="paramname"><em>proc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classjpl_1_1operand.html">operand</a> &amp;&#160;</td>
+          <td class="paramname"><em>op</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>метод пытается снять блокировку с операнда. Константные операнды пропускаются </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">proc</td><td>ссылка на процессор </td></tr>
+    <tr><td class="paramname">op</td><td>ссылка на операнд. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Исключения</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::logic_error()</td><td>если данное АЛУ не является владельцем блокировки, которую пытается снять </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>Объявления и описания членов классов находятся в файлах:<ul>
+<li><a class="el" href="processor_8h_source.html">processor.h</a></li>
+<li>processor.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
+</small></address>
+</body>
+</html>

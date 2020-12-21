@@ -1,0 +1,100 @@
+\hypertarget{classjpl_1_1reg__operand}{}\doxysection{Класс jpl\+::reg\+\_\+operand}
+\label{classjpl_1_1reg__operand}\index{jpl::reg\_operand@{jpl::reg\_operand}}
+
+
+класс операнда -\/ указатель на регистр  
+
+
+
+
+{\ttfamily \#include $<$operands.\+h$>$}
+
+Граф наследования\+:jpl\+::reg\+\_\+operand\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classjpl_1_1reg__operand}
+\end{center}
+\end{figure}
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classjpl_1_1reg__operand_acd8c24f4a8b4002e286962437424a4cd}{reg\+\_\+operand}} (const \mbox{\hyperlink{classjpl_1_1operand}{operand}} \&adr\+\_\+)
+\item 
+const \mbox{\hyperlink{classjpl_1_1operand}{operand}} \& \mbox{\hyperlink{classjpl_1_1reg__operand_a7582784c9b3a48e18130c624c952974d}{value}} () const
+\item 
+virtual \mbox{\hyperlink{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06}{O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{classjpl_1_1reg__operand_ac6d9f359b298bf257a09140495ef7090}{type}} () const override
+\begin{DoxyCompactList}\small\item\em возвращает тип операнда \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classjpl_1_1reg__operand}{reg\+\_\+operand}} $\ast$ \mbox{\hyperlink{classjpl_1_1reg__operand_adc641638f99eb494939ac6b28f806b8e}{copy}} () const override
+\begin{DoxyCompactList}\small\item\em возвращает указатель на точную копию данного экземпляра \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1reg__operand_ae389c4d7cd0da351e18099b3ee538c13}\label{classjpl_1_1reg__operand_ae389c4d7cd0da351e18099b3ee538c13}} 
+virtual std\+::ostream \& \mbox{\hyperlink{classjpl_1_1reg__operand_ae389c4d7cd0da351e18099b3ee538c13}{print}} (std\+::ostream \&) const override
+\begin{DoxyCompactList}\small\item\em --- \mbox{\hyperlink{classjpl_1_1reg__operand}{reg\+\_\+operand}} ---/// \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+класс операнда -\/ указатель на регистр 
+
+\doxysubsection{Конструктор(ы)}
+\mbox{\Hypertarget{classjpl_1_1reg__operand_acd8c24f4a8b4002e286962437424a4cd}\label{classjpl_1_1reg__operand_acd8c24f4a8b4002e286962437424a4cd}} 
+\index{jpl::reg\_operand@{jpl::reg\_operand}!reg\_operand@{reg\_operand}}
+\index{reg\_operand@{reg\_operand}!jpl::reg\_operand@{jpl::reg\_operand}}
+\doxysubsubsection{\texorpdfstring{reg\_operand()}{reg\_operand()}}
+{\footnotesize\ttfamily jpl\+::reg\+\_\+operand\+::reg\+\_\+operand (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classjpl_1_1operand}{operand}} \&}]{adr\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Аргументы}
+{\em adr\+\_\+} & операнд, в котором хранится номер регистра процессора \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classjpl_1_1reg__operand_adc641638f99eb494939ac6b28f806b8e}\label{classjpl_1_1reg__operand_adc641638f99eb494939ac6b28f806b8e}} 
+\index{jpl::reg\_operand@{jpl::reg\_operand}!copy@{copy}}
+\index{copy@{copy}!jpl::reg\_operand@{jpl::reg\_operand}}
+\doxysubsubsection{\texorpdfstring{copy()}{copy()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classjpl_1_1reg__operand}{reg\+\_\+operand}}$\ast$ jpl\+::reg\+\_\+operand\+::copy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+возвращает указатель на точную копию данного экземпляра 
+
+\begin{DoxyReturn}{Возвращает}
+указатель на компию 
+\end{DoxyReturn}
+
+
+Замещает \mbox{\hyperlink{classjpl_1_1operand_a16e5db84aae8d271ab7916deb1311c3e}{jpl\+::operand}}.
+
+\mbox{\Hypertarget{classjpl_1_1reg__operand_ac6d9f359b298bf257a09140495ef7090}\label{classjpl_1_1reg__operand_ac6d9f359b298bf257a09140495ef7090}} 
+\index{jpl::reg\_operand@{jpl::reg\_operand}!type@{type}}
+\index{type@{type}!jpl::reg\_operand@{jpl::reg\_operand}}
+\doxysubsubsection{\texorpdfstring{type()}{type()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06}{O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE}} jpl\+::reg\+\_\+operand\+::type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+возвращает тип операнда 
+
+\begin{DoxyReturn}{Возвращает}
+тип операнда (O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE) 
+\end{DoxyReturn}
+
+
+Замещает \mbox{\hyperlink{classjpl_1_1operand_ad9d49492d693134e9b3fb10859d62ede}{jpl\+::operand}}.
+
+\mbox{\Hypertarget{classjpl_1_1reg__operand_a7582784c9b3a48e18130c624c952974d}\label{classjpl_1_1reg__operand_a7582784c9b3a48e18130c624c952974d}} 
+\index{jpl::reg\_operand@{jpl::reg\_operand}!value@{value}}
+\index{value@{value}!jpl::reg\_operand@{jpl::reg\_operand}}
+\doxysubsubsection{\texorpdfstring{value()}{value()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classjpl_1_1operand}{operand}}\& jpl\+::reg\+\_\+operand\+::value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Возвращает}
+операнд, в котором хранится номер регистра процессора 
+\end{DoxyReturn}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{operands_8h}{operands.\+h}}\item 
+operands.\+cpp\end{DoxyCompactItemize}

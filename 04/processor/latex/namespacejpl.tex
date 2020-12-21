@@ -1,0 +1,219 @@
+\hypertarget{namespacejpl}{}\doxysection{Пространство имен jpl}
+\label{namespacejpl}\index{jpl@{jpl}}
+
+
+пространство имен Jawa Programmer Library.  
+
+
+\doxysubsection*{Пространства имен}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacejpl_1_1operations}{operations}}
+\begin{DoxyCompactList}\small\item\em это пространстро имён содержит глобальные константы, определяющие базовые операции \end{DoxyCompactList}\item 
+ \mbox{\hyperlink{namespacejpl_1_1operators}{operators}}
+\begin{DoxyCompactList}\small\item\em пространство имён содержит базовые математические операторы. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Классы}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classjpl_1_1_a_l_u}{A\+LU}}
+\begin{DoxyCompactList}\small\item\em Арифметико-\/Логическое Устройство. Выполняет переданные команды, если используемые операторы принадлежат списку поддерживаемых данным АЛУ \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classjpl_1_1command}{command}}
+\begin{DoxyCompactList}\small\item\em класс команды процессора. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classjpl_1_1const__operand}{const\+\_\+operand}}
+\begin{DoxyCompactList}\small\item\em класс константного операнда \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classjpl_1_1controller}{controller}}
+\begin{DoxyCompactList}\small\item\em Устройство Управления (УУ). \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classjpl_1_1label__operand}{label\+\_\+operand}}
+\begin{DoxyCompactList}\small\item\em класс операнда метки. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classjpl_1_1operand}{operand}}
+\begin{DoxyCompactList}\small\item\em абстрактный класс описателя операнда \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classjpl_1_1process}{process}}
+\begin{DoxyCompactList}\small\item\em класс описателя процесса. Процесс автоматически создается в методе процессора run. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classjpl_1_1processor}{processor}}
+\begin{DoxyCompactList}\small\item\em класс процессора. Процессор определяется набором АЛУ, блоком регистров и указателем на память. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classjpl_1_1progmem}{progmem}}
+\begin{DoxyCompactList}\small\item\em класс памяти программ. Хранит основную информацию о программе (последовательность инструкций, словарь \char`\"{}метка\char`\"{}-\/\char`\"{}число\char`\"{}, количство статически выделяемой памяти) \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classjpl_1_1_r_a_m}{R\+AM}}
+\begin{DoxyCompactList}\small\item\em класс оперативной памяти \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classjpl_1_1ram__operand}{ram\+\_\+operand}}
+\begin{DoxyCompactList}\small\item\em класс операнда -\/ указатель на ячейку в ОП \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classjpl_1_1reg__operand}{reg\+\_\+operand}}
+\begin{DoxyCompactList}\small\item\em класс операнда -\/ указатель на регистр \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classjpl_1_1registers__block}{registers\+\_\+block}}
+\begin{DoxyCompactList}\small\item\em класс блока регистров процессора. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structjpl_1_1slot}{slot}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Определения типов}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacejpl_a6eac36f967442575ceec4981f5295996}\label{namespacejpl_a6eac36f967442575ceec4981f5295996}} 
+typedef uint16\+\_\+t \mbox{\hyperlink{namespacejpl_a6eac36f967442575ceec4981f5295996}{byte}}
+\begin{DoxyCompactList}\small\item\em минимальноадресуемая единица памяти в структуре процессора. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacejpl_ad184eaa6b9a578af74333cdfd1fffb50}\label{namespacejpl_ad184eaa6b9a578af74333cdfd1fffb50}} 
+typedef \mbox{\hyperlink{classjpl_1_1operations_1_1base}{operations\+::base}} {\bfseries operation}
+\item 
+\mbox{\Hypertarget{namespacejpl_afb10fe3d3b1e66dd2b3333c360ccd6a4}\label{namespacejpl_afb10fe3d3b1e66dd2b3333c360ccd6a4}} 
+typedef \mbox{\hyperlink{classjpl_1_1operators_1_1base}{operators\+::base}} {\bfseries operator\+\_\+}
+\end{DoxyCompactItemize}
+\doxysubsection*{Перечисления}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacejpl_a8f9423c363d0d3ef87c408d510fd90ac}{O\+P\+E\+R\+A\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}} \{ \mbox{\hyperlink{namespacejpl_a8f9423c363d0d3ef87c408d510fd90aca4bda3bedbe7d9195e4c0981966d289c9}{O\+P\+\_\+\+V\+AR}}, 
+\mbox{\hyperlink{namespacejpl_a8f9423c363d0d3ef87c408d510fd90acaffafda55934879af7a77d3de8fda6147}{O\+P\+\_\+\+E\+X\+T\+ER}}, 
+\mbox{\hyperlink{namespacejpl_a8f9423c363d0d3ef87c408d510fd90aca156dff4d722d1da8e1d428d5a184c08f}{O\+P\+\_\+\+N\+O\+NE}}
+ \}
+\begin{DoxyCompactList}\small\item\em тип операции. используется для внутреннего пользования. При создании своего типа операции, следует использовать O\+P\+\_\+\+E\+X\+T\+ER. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{namespacejpl_a33048375400995b60ea37a939940e975}{E\+X\+E\+C\+U\+T\+OR}} \{ \mbox{\hyperlink{namespacejpl_a33048375400995b60ea37a939940e975a7d99bfc8878b2e7c1f9625cac10fec3d}{E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}}, 
+\mbox{\hyperlink{namespacejpl_a33048375400995b60ea37a939940e975a9a8483c771aa816b6655e1e596c47190}{E\+\_\+\+A\+LU}}
+ \}
+\begin{DoxyCompactList}\small\item\em устройство, на котором выполняется операция \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06}{O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE}} \{ \mbox{\hyperlink{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06a3c1e5f3aaf2b3ede2d736bc1e6d5e471}{O\+P\+R\+\_\+\+C\+O\+N\+ST}}, 
+\mbox{\hyperlink{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06a890494ecdb4f0e714b609597602f4f39}{O\+P\+R\+\_\+\+L\+A\+B\+EL}}, 
+\mbox{\hyperlink{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06ae4e72e613b1f4eb5818c32957211410e}{O\+P\+R\+\_\+\+R\+EG}}, 
+\mbox{\hyperlink{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06ad6713e48c73d1f1987962df3532100f0}{O\+P\+R\+\_\+\+R\+AM}}
+ \}
+\begin{DoxyCompactList}\small\item\em тип операнда \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{namespacejpl_a663f36b17d80a7958ea526acb09737e6}{operator$<$$<$}} (std\+::ostream \&out, const \mbox{\hyperlink{classjpl_1_1_r_a_m}{R\+AM}} \&ram)
+\item 
+bool \mbox{\hyperlink{namespacejpl_a43140c6cc341e869869d36ac64f24b0f}{is\+\_\+valid\+\_\+name}} (const std\+::string \&lab)
+\begin{DoxyCompactList}\small\item\em проверяет, соответсвует ли переданная строка формату имени переменной (содержит только буквы латинского алфавита и цифры. начинается с буквы) \end{DoxyCompactList}\item 
+std\+::ostream \& \mbox{\hyperlink{namespacejpl_a2807dbded037787ec72076d26eff0e0a}{operator$<$$<$}} (std\+::ostream \&out, const \mbox{\hyperlink{classjpl_1_1command}{command}} \&cmd)
+\item 
+\mbox{\Hypertarget{namespacejpl_afd721e524b66166693b4129e0b80d6f8}\label{namespacejpl_afd721e524b66166693b4129e0b80d6f8}} 
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&out, const \mbox{\hyperlink{classjpl_1_1progmem}{progmem}} \&prog)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+пространство имен Jawa Programmer Library. 
+
+\doxysubsection{Перечисления}
+\mbox{\Hypertarget{namespacejpl_a33048375400995b60ea37a939940e975}\label{namespacejpl_a33048375400995b60ea37a939940e975}} 
+\index{jpl@{jpl}!EXECUTOR@{EXECUTOR}}
+\index{EXECUTOR@{EXECUTOR}!jpl@{jpl}}
+\doxysubsubsection{\texorpdfstring{EXECUTOR}{EXECUTOR}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacejpl_a33048375400995b60ea37a939940e975}{jpl\+::\+E\+X\+E\+C\+U\+T\+OR}}}
+
+
+
+устройство, на котором выполняется операция 
+
+\begin{DoxyEnumFields}{Элементы перечислений}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_CONTROLLER@{E\_CONTROLLER}!jpl@{jpl}}\index{jpl@{jpl}!E\_CONTROLLER@{E\_CONTROLLER}}}\mbox{\Hypertarget{namespacejpl_a33048375400995b60ea37a939940e975a7d99bfc8878b2e7c1f9625cac10fec3d}\label{namespacejpl_a33048375400995b60ea37a939940e975a7d99bfc8878b2e7c1f9625cac10fec3d}} 
+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER&операция исполняется сразу на УУ \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\_ALU@{E\_ALU}!jpl@{jpl}}\index{jpl@{jpl}!E\_ALU@{E\_ALU}}}\mbox{\Hypertarget{namespacejpl_a33048375400995b60ea37a939940e975a9a8483c771aa816b6655e1e596c47190}\label{namespacejpl_a33048375400995b60ea37a939940e975a9a8483c771aa816b6655e1e596c47190}} 
+E\+\_\+\+A\+LU&в процессе выполнения операции УУ вызывает АЛУ для исполнения некоторой части работы \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06}\label{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06}} 
+\index{jpl@{jpl}!OPERAND\_TYPE@{OPERAND\_TYPE}}
+\index{OPERAND\_TYPE@{OPERAND\_TYPE}!jpl@{jpl}}
+\doxysubsubsection{\texorpdfstring{OPERAND\_TYPE}{OPERAND\_TYPE}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06}{jpl\+::\+O\+P\+E\+R\+A\+N\+D\+\_\+\+T\+Y\+PE}}}
+
+
+
+тип операнда 
+
+\begin{DoxyEnumFields}{Элементы перечислений}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OPR\_CONST@{OPR\_CONST}!jpl@{jpl}}\index{jpl@{jpl}!OPR\_CONST@{OPR\_CONST}}}\mbox{\Hypertarget{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06a3c1e5f3aaf2b3ede2d736bc1e6d5e471}\label{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06a3c1e5f3aaf2b3ede2d736bc1e6d5e471}} 
+O\+P\+R\+\_\+\+C\+O\+N\+ST&константа \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OPR\_LABEL@{OPR\_LABEL}!jpl@{jpl}}\index{jpl@{jpl}!OPR\_LABEL@{OPR\_LABEL}}}\mbox{\Hypertarget{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06a890494ecdb4f0e714b609597602f4f39}\label{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06a890494ecdb4f0e714b609597602f4f39}} 
+O\+P\+R\+\_\+\+L\+A\+B\+EL&переменная (метка) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OPR\_REG@{OPR\_REG}!jpl@{jpl}}\index{jpl@{jpl}!OPR\_REG@{OPR\_REG}}}\mbox{\Hypertarget{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06ae4e72e613b1f4eb5818c32957211410e}\label{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06ae4e72e613b1f4eb5818c32957211410e}} 
+O\+P\+R\+\_\+\+R\+EG&данные в регистре процессора \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OPR\_RAM@{OPR\_RAM}!jpl@{jpl}}\index{jpl@{jpl}!OPR\_RAM@{OPR\_RAM}}}\mbox{\Hypertarget{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06ad6713e48c73d1f1987962df3532100f0}\label{namespacejpl_acd748a0d5a186f9cb9051c64e868fe06ad6713e48c73d1f1987962df3532100f0}} 
+O\+P\+R\+\_\+\+R\+AM&данные в ОП \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{namespacejpl_a8f9423c363d0d3ef87c408d510fd90ac}\label{namespacejpl_a8f9423c363d0d3ef87c408d510fd90ac}} 
+\index{jpl@{jpl}!OPERATION\_TYPE@{OPERATION\_TYPE}}
+\index{OPERATION\_TYPE@{OPERATION\_TYPE}!jpl@{jpl}}
+\doxysubsubsection{\texorpdfstring{OPERATION\_TYPE}{OPERATION\_TYPE}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacejpl_a8f9423c363d0d3ef87c408d510fd90ac}{jpl\+::\+O\+P\+E\+R\+A\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}}}
+
+
+
+тип операции. используется для внутреннего пользования. При создании своего типа операции, следует использовать O\+P\+\_\+\+E\+X\+T\+ER. 
+
+\begin{DoxyEnumFields}{Элементы перечислений}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OP\_VAR@{OP\_VAR}!jpl@{jpl}}\index{jpl@{jpl}!OP\_VAR@{OP\_VAR}}}\mbox{\Hypertarget{namespacejpl_a8f9423c363d0d3ef87c408d510fd90aca4bda3bedbe7d9195e4c0981966d289c9}\label{namespacejpl_a8f9423c363d0d3ef87c408d510fd90aca4bda3bedbe7d9195e4c0981966d289c9}} 
+O\+P\+\_\+\+V\+AR&операция статического выделения. Обрабатывается обособленно, на этапе компиляции \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OP\_EXTER@{OP\_EXTER}!jpl@{jpl}}\index{jpl@{jpl}!OP\_EXTER@{OP\_EXTER}}}\mbox{\Hypertarget{namespacejpl_a8f9423c363d0d3ef87c408d510fd90acaffafda55934879af7a77d3de8fda6147}\label{namespacejpl_a8f9423c363d0d3ef87c408d510fd90acaffafda55934879af7a77d3de8fda6147}} 
+O\+P\+\_\+\+E\+X\+T\+ER&тип обычной операции. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OP\_NONE@{OP\_NONE}!jpl@{jpl}}\index{jpl@{jpl}!OP\_NONE@{OP\_NONE}}}\mbox{\Hypertarget{namespacejpl_a8f9423c363d0d3ef87c408d510fd90aca156dff4d722d1da8e1d428d5a184c08f}\label{namespacejpl_a8f9423c363d0d3ef87c408d510fd90aca156dff4d722d1da8e1d428d5a184c08f}} 
+O\+P\+\_\+\+N\+O\+NE&тип обстрактной операции, генерируемый command конструктором по умолчанию. Не должен быть вызван для исполнея. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Функции}
+\mbox{\Hypertarget{namespacejpl_a43140c6cc341e869869d36ac64f24b0f}\label{namespacejpl_a43140c6cc341e869869d36ac64f24b0f}} 
+\index{jpl@{jpl}!is\_valid\_name@{is\_valid\_name}}
+\index{is\_valid\_name@{is\_valid\_name}!jpl@{jpl}}
+\doxysubsubsection{\texorpdfstring{is\_valid\_name()}{is\_valid\_name()}}
+{\footnotesize\ttfamily bool jpl\+::is\+\_\+valid\+\_\+name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{lab }\end{DoxyParamCaption})}
+
+
+
+проверяет, соответсвует ли переданная строка формату имени переменной (содержит только буквы латинского алфавита и цифры. начинается с буквы) 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em lab} & строка для проверки \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+результат проверки. true если строка соответсвуют формату имени переменной, иначе -\/ false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacejpl_a2807dbded037787ec72076d26eff0e0a}\label{namespacejpl_a2807dbded037787ec72076d26eff0e0a}} 
+\index{jpl@{jpl}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!jpl@{jpl}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::ostream\& jpl\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out,  }\item[{const \mbox{\hyperlink{classjpl_1_1command}{command}} \&}]{cmd }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Аргументы}
+{\em out} & ссылка на поток \\
+\hline
+{\em cmd} & константная ссылка на команду, которую необходимо вывести в поток \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+ссылка на переданный поток 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacejpl_a663f36b17d80a7958ea526acb09737e6}\label{namespacejpl_a663f36b17d80a7958ea526acb09737e6}} 
+\index{jpl@{jpl}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!jpl@{jpl}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::ostream\& jpl\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out,  }\item[{const \mbox{\hyperlink{classjpl_1_1_r_a_m}{R\+AM}} \&}]{ram }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Аргументы}
+{\em out} & адрес блока для освобождения ~\newline
+ \\
+\hline
+{\em out} & ссылка на ОП для вывода \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+ссылка на переданный поток 
+\end{DoxyReturn}

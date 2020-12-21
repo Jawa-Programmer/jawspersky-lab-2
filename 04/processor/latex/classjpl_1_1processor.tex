@@ -1,0 +1,240 @@
+\hypertarget{classjpl_1_1processor}{}\doxysection{Класс jpl\+::processor}
+\label{classjpl_1_1processor}\index{jpl::processor@{jpl::processor}}
+
+
+класс процессора. Процессор определяется набором АЛУ, блоком регистров и указателем на память.  
+
+
+
+
+{\ttfamily \#include $<$processor.\+h$>$}
+
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classjpl_1_1processor_ab7741193dddb6b0735001d677bf56083}{processor}} (const \mbox{\hyperlink{classjpl_1_1_a_l_u}{A\+LU}} \&alu, int regs\+\_\+, \mbox{\hyperlink{classjpl_1_1_r_a_m}{R\+AM}} $\ast$ram\+\_\+=nullptr)
+\begin{DoxyCompactList}\small\item\em конструктор процессора. Инициализация одним АЛУ, количеством регистров и указателем на ОП. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classjpl_1_1processor_a1f5380adbc90f8de2856f0050365e8e7}{processor}} (const std\+::vector$<$ \mbox{\hyperlink{classjpl_1_1_a_l_u}{A\+LU}} $>$ \&alus\+\_\+, int regs\+\_\+, \mbox{\hyperlink{classjpl_1_1_r_a_m}{R\+AM}} $\ast$ram\+\_\+=nullptr)
+\begin{DoxyCompactList}\small\item\em конструктор процессора. Инициализация набором АЛУ, количеством регистров и указателем на ОП. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classjpl_1_1processor_ad67219c04c765c70f59ddfceb8621add}{processor}} (std\+::vector$<$ \mbox{\hyperlink{classjpl_1_1_a_l_u}{A\+LU}} $>$ \&\&alus\+\_\+, int regs\+\_\+, \mbox{\hyperlink{classjpl_1_1_r_a_m}{R\+AM}} $\ast$ram\+\_\+=nullptr)
+\begin{DoxyCompactList}\small\item\em конструктор процессора. Инициализация набором АЛУ, количеством регистров и указателем на ОП. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classjpl_1_1processor_ae27a3f91dfa204e987ec9166716a1227}{run}} (const \mbox{\hyperlink{classjpl_1_1progmem}{progmem}} \&\mbox{\hyperlink{classjpl_1_1progmem}{progmem}})
+\begin{DoxyCompactList}\small\item\em начинает выполнение команды. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classjpl_1_1processor_a99b7c326964d73a70c2aba26aa87418a}{is\+\_\+free}} (const \mbox{\hyperlink{classjpl_1_1operand}{operand}} \&op) const
+\begin{DoxyCompactList}\small\item\em Проверяет, является ли данный операнд заблокирован каким-\/либо АЛУ \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structjpl_1_1slot}{slot}} \& \mbox{\hyperlink{classjpl_1_1processor_a80d001b742f7ada2f2e744748fe4c8b9}{get\+\_\+slot}} (const \mbox{\hyperlink{classjpl_1_1operand}{operand}} \&op)
+\begin{DoxyCompactList}\small\item\em возвращает слот памяти, на который ссылается операнд (содержит рекурсию, так как \mbox{\hyperlink{classjpl_1_1reg__operand}{reg\+\_\+operand}} и \mbox{\hyperlink{classjpl_1_1ram__operand}{ram\+\_\+operand}} могут хранить адреса в других операндах) \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structjpl_1_1slot}{slot}} \& \mbox{\hyperlink{classjpl_1_1processor_a790f73ef9f6c5e44c3ae684480704aa8}{get\+\_\+slot}} (const \mbox{\hyperlink{classjpl_1_1operand}{operand}} \&op) const
+\begin{DoxyCompactList}\small\item\em возвращает слот памяти, на который ссылается операнд, в режиме \char`\"{}только для чтения\char`\"{} (содержит рекурсию, так как \mbox{\hyperlink{classjpl_1_1reg__operand}{reg\+\_\+operand}} и \mbox{\hyperlink{classjpl_1_1ram__operand}{ram\+\_\+operand}} могут хранить адреса в других операндах) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacejpl_a6eac36f967442575ceec4981f5295996}{byte}} \mbox{\hyperlink{classjpl_1_1processor_a914d7097e551e2b48c730cce268f97fd}{get\+\_\+value}} (const \mbox{\hyperlink{classjpl_1_1operand}{operand}} \&op) const
+\begin{DoxyCompactList}\small\item\em возвращает фактическое значение переданного операнда (содержит рекурсию, так как \mbox{\hyperlink{classjpl_1_1reg__operand}{reg\+\_\+operand}} и \mbox{\hyperlink{classjpl_1_1ram__operand}{ram\+\_\+operand}} могут хранить адреса в других операндах) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1processor_a648cc4d3b77c6bc32284a25a37a9c0cc}\label{classjpl_1_1processor_a648cc4d3b77c6bc32284a25a37a9c0cc}} 
+\mbox{\hyperlink{classjpl_1_1process}{process}} \& \mbox{\hyperlink{classjpl_1_1processor_a648cc4d3b77c6bc32284a25a37a9c0cc}{get\+\_\+process}} ()
+\begin{DoxyCompactList}\small\item\em возвращает ссылку на описатель исполняемого процесса \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1processor_a75478996cd43f4b20f41a8f22323b053}\label{classjpl_1_1processor_a75478996cd43f4b20f41a8f22323b053}} 
+const \mbox{\hyperlink{classjpl_1_1process}{process}} \& \mbox{\hyperlink{classjpl_1_1processor_a75478996cd43f4b20f41a8f22323b053}{get\+\_\+process}} () const
+\begin{DoxyCompactList}\small\item\em возвращает константную ссылку на описатель исполняемого процесса \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1processor_aeb572b74b167192ace83a05c4170ffb3}\label{classjpl_1_1processor_aeb572b74b167192ace83a05c4170ffb3}} 
+void \mbox{\hyperlink{classjpl_1_1processor_aeb572b74b167192ace83a05c4170ffb3}{add\+\_\+alu}} (const \mbox{\hyperlink{classjpl_1_1_a_l_u}{A\+LU}} \&alu)
+\begin{DoxyCompactList}\small\item\em добавляет экземпляр АЛУ в набор АЛУ процессора \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1processor_a243c19aec796541f5332665942634fb9}\label{classjpl_1_1processor_a243c19aec796541f5332665942634fb9}} 
+void \mbox{\hyperlink{classjpl_1_1processor_a243c19aec796541f5332665942634fb9}{add\+\_\+alu}} (\mbox{\hyperlink{classjpl_1_1_a_l_u}{A\+LU}} \&\&alu)
+\begin{DoxyCompactList}\small\item\em добавляет экземпляр АЛУ в набор АЛУ процессора, используя семантику перемещения АЛУ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1processor_aa30181b5fffffa4ca06a35338a7593e3}\label{classjpl_1_1processor_aa30181b5fffffa4ca06a35338a7593e3}} 
+void \mbox{\hyperlink{classjpl_1_1processor_aa30181b5fffffa4ca06a35338a7593e3}{remove\+\_\+alu}} (int a)
+\begin{DoxyCompactList}\small\item\em удаляет АЛУ из набора АЛУ процессора по номеру \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1processor_a9ac48d832e5d27371e668bd54d7a968f}\label{classjpl_1_1processor_a9ac48d832e5d27371e668bd54d7a968f}} 
+\mbox{\hyperlink{classjpl_1_1_a_l_u}{A\+LU}} \& \mbox{\hyperlink{classjpl_1_1processor_a9ac48d832e5d27371e668bd54d7a968f}{edit\+\_\+alu}} (int a)
+\begin{DoxyCompactList}\small\item\em возвращает АЛУ по номеру для возможности редактирования \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1processor_a8c65bebc554db2d2e88db7a701235896}\label{classjpl_1_1processor_a8c65bebc554db2d2e88db7a701235896}} 
+auto \mbox{\hyperlink{classjpl_1_1processor_a8c65bebc554db2d2e88db7a701235896}{al\+\_\+begin}} ()
+\begin{DoxyCompactList}\small\item\em возвращает итератор на начало вектора АЛУ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1processor_a26c8258fc6246d7389d66b07d1ce949c}\label{classjpl_1_1processor_a26c8258fc6246d7389d66b07d1ce949c}} 
+auto \mbox{\hyperlink{classjpl_1_1processor_a26c8258fc6246d7389d66b07d1ce949c}{al\+\_\+end}} () const
+\begin{DoxyCompactList}\small\item\em возвращает итератор на конец вектора АЛУ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1processor_af6d6e443d0f677b69454ed33c29c91fd}\label{classjpl_1_1processor_af6d6e443d0f677b69454ed33c29c91fd}} 
+int \mbox{\hyperlink{classjpl_1_1processor_af6d6e443d0f677b69454ed33c29c91fd}{reg\+\_\+count}} () const
+\begin{DoxyCompactList}\small\item\em возвраащет общее количество регистров процессора \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1processor_a1747b414ff2138c623207d29dd49b823}\label{classjpl_1_1processor_a1747b414ff2138c623207d29dd49b823}} 
+\mbox{\hyperlink{structjpl_1_1slot}{slot}} \& \mbox{\hyperlink{classjpl_1_1processor_a1747b414ff2138c623207d29dd49b823}{reg\+\_\+access}} (\mbox{\hyperlink{namespacejpl_a6eac36f967442575ceec4981f5295996}{byte}} i)
+\begin{DoxyCompactList}\small\item\em предостовляет доступ к указанному регистру из блока регистров процессора \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1processor_a5d8934787b691398fd10fd88c8accefe}\label{classjpl_1_1processor_a5d8934787b691398fd10fd88c8accefe}} 
+const \mbox{\hyperlink{structjpl_1_1slot}{slot}} \& \mbox{\hyperlink{classjpl_1_1processor_a5d8934787b691398fd10fd88c8accefe}{read\+\_\+reg}} (\mbox{\hyperlink{namespacejpl_a6eac36f967442575ceec4981f5295996}{byte}} i) const
+\begin{DoxyCompactList}\small\item\em предостовляет доступ к указанному регистру из блока регистров процессора только для чтения \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1processor_a1629e922cf19362a6d703a7b716dfc66}\label{classjpl_1_1processor_a1629e922cf19362a6d703a7b716dfc66}} 
+void \mbox{\hyperlink{classjpl_1_1processor_a1629e922cf19362a6d703a7b716dfc66}{set\+\_\+\+R\+AM}} (\mbox{\hyperlink{classjpl_1_1_r_a_m}{R\+AM}} $\ast$ram\+\_\+)
+\begin{DoxyCompactList}\small\item\em утанавливает указатель на ОП \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classjpl_1_1processor_aa8b67d362b09e6f0fdfa583bd44ef91f}\label{classjpl_1_1processor_aa8b67d362b09e6f0fdfa583bd44ef91f}} 
+\mbox{\hyperlink{classjpl_1_1_r_a_m}{R\+AM}} $\ast$ \mbox{\hyperlink{classjpl_1_1processor_aa8b67d362b09e6f0fdfa583bd44ef91f}{get\+\_\+\+R\+AM}} () const
+\begin{DoxyCompactList}\small\item\em возвращает указатель на ОП, котоырый был установлен в данном экземпляре процессора. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+класс процессора. Процессор определяется набором АЛУ, блоком регистров и указателем на память. 
+
+\doxysubsection{Конструктор(ы)}
+\mbox{\Hypertarget{classjpl_1_1processor_ab7741193dddb6b0735001d677bf56083}\label{classjpl_1_1processor_ab7741193dddb6b0735001d677bf56083}} 
+\index{jpl::processor@{jpl::processor}!processor@{processor}}
+\index{processor@{processor}!jpl::processor@{jpl::processor}}
+\doxysubsubsection{\texorpdfstring{processor()}{processor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily jpl\+::processor\+::processor (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classjpl_1_1_a_l_u}{A\+LU}} \&}]{alu,  }\item[{int}]{regs\+\_\+,  }\item[{\mbox{\hyperlink{classjpl_1_1_r_a_m}{R\+AM}} $\ast$}]{ram\+\_\+ = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+конструктор процессора. Инициализация одним АЛУ, количеством регистров и указателем на ОП. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em alu} & экземпляр класса АЛУ \\
+\hline
+{\em regs\+\_\+} & количество регистров в блоке регистров процессора \\
+\hline
+{\em ram\+\_\+} & указатель на экземпляр оперативной памяти \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1processor_a1f5380adbc90f8de2856f0050365e8e7}\label{classjpl_1_1processor_a1f5380adbc90f8de2856f0050365e8e7}} 
+\index{jpl::processor@{jpl::processor}!processor@{processor}}
+\index{processor@{processor}!jpl::processor@{jpl::processor}}
+\doxysubsubsection{\texorpdfstring{processor()}{processor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily jpl\+::processor\+::processor (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classjpl_1_1_a_l_u}{A\+LU}} $>$ \&}]{alus\+\_\+,  }\item[{int}]{regs\+\_\+,  }\item[{\mbox{\hyperlink{classjpl_1_1_r_a_m}{R\+AM}} $\ast$}]{ram\+\_\+ = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+конструктор процессора. Инициализация набором АЛУ, количеством регистров и указателем на ОП. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em alus\+\_\+} & вектор экземпляров АЛУ \\
+\hline
+{\em regs\+\_\+} & количество регистров в блоке регистров процессора \\
+\hline
+{\em ram\+\_\+} & указатель на экземпляр оперативной памяти \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classjpl_1_1processor_ad67219c04c765c70f59ddfceb8621add}\label{classjpl_1_1processor_ad67219c04c765c70f59ddfceb8621add}} 
+\index{jpl::processor@{jpl::processor}!processor@{processor}}
+\index{processor@{processor}!jpl::processor@{jpl::processor}}
+\doxysubsubsection{\texorpdfstring{processor()}{processor()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily jpl\+::processor\+::processor (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classjpl_1_1_a_l_u}{A\+LU}} $>$ \&\&}]{alus\+\_\+,  }\item[{int}]{regs\+\_\+,  }\item[{\mbox{\hyperlink{classjpl_1_1_r_a_m}{R\+AM}} $\ast$}]{ram\+\_\+ = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+конструктор процессора. Инициализация набором АЛУ, количеством регистров и указателем на ОП. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em alus\+\_\+} & вектор экземпляров АЛУ \\
+\hline
+{\em regs\+\_\+} & количество регистров в блоке регистров процессора \\
+\hline
+{\em ram\+\_\+} & указатель на экземпляр оперативной памяти \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{classjpl_1_1processor_a80d001b742f7ada2f2e744748fe4c8b9}\label{classjpl_1_1processor_a80d001b742f7ada2f2e744748fe4c8b9}} 
+\index{jpl::processor@{jpl::processor}!get\_slot@{get\_slot}}
+\index{get\_slot@{get\_slot}!jpl::processor@{jpl::processor}}
+\doxysubsubsection{\texorpdfstring{get\_slot()}{get\_slot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structjpl_1_1slot}{slot}} \& jpl\+::processor\+::get\+\_\+slot (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classjpl_1_1operand}{operand}} \&}]{op }\end{DoxyParamCaption})}
+
+
+
+возвращает слот памяти, на который ссылается операнд (содержит рекурсию, так как \mbox{\hyperlink{classjpl_1_1reg__operand}{reg\+\_\+operand}} и \mbox{\hyperlink{classjpl_1_1ram__operand}{ram\+\_\+operand}} могут хранить адреса в других операндах) 
+
+
+\begin{DoxyExceptions}{Исключения}
+{\em std\+::logic\+\_\+error} & если была произведена попытка получить слот памяти для \mbox{\hyperlink{classjpl_1_1label__operand}{label\+\_\+operand}} или \mbox{\hyperlink{classjpl_1_1const__operand}{const\+\_\+operand}} \\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyParams}{Аргументы}
+{\em op} & ссылка на операнд \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+ссылку на слот памяти slot 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classjpl_1_1processor_a790f73ef9f6c5e44c3ae684480704aa8}\label{classjpl_1_1processor_a790f73ef9f6c5e44c3ae684480704aa8}} 
+\index{jpl::processor@{jpl::processor}!get\_slot@{get\_slot}}
+\index{get\_slot@{get\_slot}!jpl::processor@{jpl::processor}}
+\doxysubsubsection{\texorpdfstring{get\_slot()}{get\_slot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structjpl_1_1slot}{slot}} \& jpl\+::processor\+::get\+\_\+slot (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classjpl_1_1operand}{operand}} \&}]{op }\end{DoxyParamCaption}) const}
+
+
+
+возвращает слот памяти, на который ссылается операнд, в режиме \char`\"{}только для чтения\char`\"{} (содержит рекурсию, так как \mbox{\hyperlink{classjpl_1_1reg__operand}{reg\+\_\+operand}} и \mbox{\hyperlink{classjpl_1_1ram__operand}{ram\+\_\+operand}} могут хранить адреса в других операндах) 
+
+
+\begin{DoxyExceptions}{Исключения}
+{\em std\+::logic\+\_\+error} & если была произведена попытка получить слот памяти для \mbox{\hyperlink{classjpl_1_1label__operand}{label\+\_\+operand}} или \mbox{\hyperlink{classjpl_1_1const__operand}{const\+\_\+operand}} \\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyParams}{Аргументы}
+{\em op} & ссылка на операнд \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+константную ссылку на слот памяти slot 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classjpl_1_1processor_a914d7097e551e2b48c730cce268f97fd}\label{classjpl_1_1processor_a914d7097e551e2b48c730cce268f97fd}} 
+\index{jpl::processor@{jpl::processor}!get\_value@{get\_value}}
+\index{get\_value@{get\_value}!jpl::processor@{jpl::processor}}
+\doxysubsubsection{\texorpdfstring{get\_value()}{get\_value()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacejpl_a6eac36f967442575ceec4981f5295996}{byte}} jpl\+::processor\+::get\+\_\+value (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classjpl_1_1operand}{operand}} \&}]{op }\end{DoxyParamCaption}) const}
+
+
+
+возвращает фактическое значение переданного операнда (содержит рекурсию, так как \mbox{\hyperlink{classjpl_1_1reg__operand}{reg\+\_\+operand}} и \mbox{\hyperlink{classjpl_1_1ram__operand}{ram\+\_\+operand}} могут хранить адреса в других операндах) 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em op} & ссылка на операнд \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+константную ссылку на слот памяти slot 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classjpl_1_1processor_a99b7c326964d73a70c2aba26aa87418a}\label{classjpl_1_1processor_a99b7c326964d73a70c2aba26aa87418a}} 
+\index{jpl::processor@{jpl::processor}!is\_free@{is\_free}}
+\index{is\_free@{is\_free}!jpl::processor@{jpl::processor}}
+\doxysubsubsection{\texorpdfstring{is\_free()}{is\_free()}}
+{\footnotesize\ttfamily bool jpl\+::processor\+::is\+\_\+free (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classjpl_1_1operand}{operand}} \&}]{op }\end{DoxyParamCaption}) const}
+
+
+
+Проверяет, является ли данный операнд заблокирован каким-\/либо АЛУ 
+
+--- processor ---///
+
+
+\begin{DoxyParams}{Аргументы}
+{\em op} & ссылка на операнд \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+true, если операнд свободен, false если его заблокировало какое-\/либо АЛУ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classjpl_1_1processor_ae27a3f91dfa204e987ec9166716a1227}\label{classjpl_1_1processor_ae27a3f91dfa204e987ec9166716a1227}} 
+\index{jpl::processor@{jpl::processor}!run@{run}}
+\index{run@{run}!jpl::processor@{jpl::processor}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void jpl\+::processor\+::run (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classjpl_1_1progmem}{progmem}} \&}]{progmem }\end{DoxyParamCaption})}
+
+
+
+начинает выполнение команды. 
+
+При необходимости запустить выполнение метода в отдельном потоке можно использовать подобную команду\+: std\+::thread thr(\mbox{\hyperlink{classjpl_1_1processor_ae27a3f91dfa204e987ec9166716a1227}{processor\+::run}}, std\+::ref(proc), std\+::ref(prog)); где proc -\/ экземпляр класса процессора, а prog -\/ экземпляр класса progmem 
+\begin{DoxyParams}{Аргументы}
+{\em progmem} & ссылка на память программ \\
+\hline
+\end{DoxyParams}
+
+
+Объявления и описания членов классов находятся в файлах\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{processor_8h}{processor.\+h}}\item 
+processor.\+cpp\end{DoxyCompactItemize}
