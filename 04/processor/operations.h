@@ -69,6 +69,24 @@ namespace jpl {
 		const class : public base {
 				public:
 				virtual EXECUTOR executor() const override {return E_CONTROLLER;}
+				virtual const char* lab() const override {return "CLCK";}
+				virtual void operator()(processor &proc, const command& cmd, long time) const override{
+					int argc = cmd.get_args_count();
+					process &prog = proc.get_process();
+					RAM *ram = proc.get_RAM();
+					if(argc == 1){
+						lock_ram_by_operands(cmd, proc);
+						proc.get_slot(*cmd.get_operand(0)).data = clock();
+						prog.inc();
+						unlock_ram(proc);
+					}
+					else throw std::logic_error("CLCK must have one arg");
+			}				
+		} CLCK; ///< операция записывает в переданный аргумент значение функции clock()
+		
+		const class : public base {
+				public:
+				virtual EXECUTOR executor() const override {return E_CONTROLLER;}
 				virtual const char* lab() const override {return "ALLC";}
 				virtual void operator()(processor &proc, const command& cmd, long time) const override{
 					int argc = cmd.get_args_count();
@@ -178,14 +196,15 @@ namespace jpl {
 			public:
 				virtual EXECUTOR executor() const override {return E_CONTROLLER;}
 				virtual void operator()(processor &proc, const command& cmd, long time) const override{
-					proc.get_RAM()->lock_read();
 					int argc = cmd.get_args_count();
 					process &prog = proc.get_process();
 					int cc = proc.reg_count();
 					for(int i = 0; i < cc; ++i)
+						if(!proc.is_free(reg_operand(const_operand(i))))	
+							return;
+					for(int i = 0; i < cc; ++i)
 						prog.push(proc.read_reg(i).data);	
-					prog.inc();			
-					proc.get_RAM()->unlock_read();					
+					prog.inc();							
 				}
 				virtual const char* lab() const override {return "PUSHR";}	
 		} PUSHR;///< Одна из базовых операций. Помещает состояние всех регистров блока регистров процессора на вершину стека процесса (первый регистр в помещается первым)
@@ -214,13 +233,14 @@ namespace jpl {
 			public:
 				virtual EXECUTOR executor() const override {return E_CONTROLLER;}
 				virtual void operator()(processor &proc, const command& cmd, long time) const override{
-					proc.get_RAM()->lock_read();
-					int argc = cmd.get_args_count();
+					int cc = proc.reg_count();
 					process &prog = proc.get_process();
-					for(int i = proc.reg_count() - 1; i >=0 ; --i)
+					for(int i = 0; i < cc; ++i)
+						if(!proc.is_free(reg_operand(const_operand(i))))
+							return;						
+					for(int i = cc - 1; i >=0 ; --i)
 						proc.reg_access(i).data = prog.pop();
 					proc.get_process().inc();		
-					proc.get_RAM()->unlock_read();
 				}
 				virtual const char* lab() const override {return "POPR";}	
 		} POPR;	///< Одна из базовых операций. Переносит значения с вершины стека процесса в регисты процессора (так, что вершина стека станет последним регистром)

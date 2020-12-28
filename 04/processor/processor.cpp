@@ -134,6 +134,7 @@ namespace jpl
 	
 	
 	///--- controller ---///
+//	const command *last = nullptr;
 	
 	bool controller::on_tick(processor& proc)
 	{
@@ -151,11 +152,13 @@ namespace jpl
 			++time;
 			return false;
 		}
-		//std::cout << prog.current() << std::endl;
-		prog.current().execute(proc, time);
+		const command &cur = prog.current();
+		//if(last!= &cur){
+		//std::cout << std::hex << "[0x" << prog.count() << "]\t" << std::dec << cur << std::endl; last = &cur;}
+		cur.execute(proc, time);
 		
 		++time;
-		std::this_thread::sleep_for(std::chrono::milliseconds(1));
+		std::this_thread::sleep_for(std::chrono::microseconds(1));
 		return prog.has_next();
 	}
 

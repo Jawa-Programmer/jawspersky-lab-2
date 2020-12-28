@@ -183,6 +183,17 @@ namespace jpl {
 				}
 		} NOT; ///< оператор возвращает результат применения логического НЕ к аргументу (не путать с побитовым НЕ)
 		
+		
+		const class : public base 
+		{
+			public:
+			virtual std::ostream& print(std::ostream& out) const override {return out << "NEG";}
+			virtual byte operator()(const std::initializer_list<byte> &args) const override {
+				if(args.size() != 1) throw std::logic_error("incorrect count of args");
+				const byte *beg = args.begin();
+				return ((sbyte)*beg < 0) ? 1 : 0;
+				}
+		} NEG; ///< оператор определяет, является ли число отрицательным. Если число меньше нуля, то запишется 1. Если число больше или равно нуля, то 0.
 	}
 }
 #endif

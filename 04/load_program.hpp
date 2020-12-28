@@ -28,6 +28,7 @@ namespace jpl
 			{"CALL", {&operations::CALL, nullptr}},
 			{"RET", {&operations::RET, nullptr}},
 			{"PEEK", {&operations::PEEK, nullptr}},
+			{"CLCK", {&operations::CLCK, nullptr}},
 			
 			{"SET", {&operations::SET, nullptr}},
 			
@@ -45,6 +46,7 @@ namespace jpl
 			{"NOT", {&operations::UNARY, &operators::NOT}},
 			{"EQL", {&operations::BINARY, &operators::EQL}},
 			{"NEQL", {&operations::BINARY, &operators::NEQL}},
+			{"NEG", {&operations::UNARY, &operators::NEG}},
 		};
 		
 		operand* op_from_string(const std::string& str)

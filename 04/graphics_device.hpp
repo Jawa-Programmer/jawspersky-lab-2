@@ -71,8 +71,8 @@ namespace jpl
 		kpair pop_key(){m_kb.lock(); kpair ret = keys.front();  keys.pop(); m_kb.unlock();  return ret;}
 		spkpair pop_spkey(){m_kb.lock(); spkpair ret = spkeys.front(); spkeys.pop(); m_kb.unlock(); return ret; }
 		
-		bool has_keys() const {m_kb.lock(); bool ret = !keys.empty(); m_kb.unlock();return ret;}
-		bool has_spkeys() const {m_kb.lock(); bool ret = !spkeys.empty(); m_kb.unlock();return ret;}
+		byte has_keys() const {m_kb.lock(); bool ret = !keys.empty(); m_kb.unlock();return ret;}
+		byte has_spkeys() const {m_kb.lock(); bool ret = !spkeys.empty(); m_kb.unlock();return ret;}
 		
 		const gd::KBD* get_operation() const {return &kbd;}
 	};
@@ -151,7 +151,7 @@ namespace jpl
 							color(com.args[0],com.args[1],com.args[2],com.args[3]);
 						break;
 						case 0x02:	// начать отрисовку примитива. в регистре 4 лежит тип примитива (0 - точка, 1 - линия, 2 - замкнутая линия, 3 - цепочка линий, 4 - треугольник, 5 - цепочка треугольников, 
-									// 6 - треугольник-вейер, 7 - квадраты, 8 - цепочка квадратов, 9 - произвольный многоугольник с заливкой)
+									// 6 - треугольник-вейер, 7 - квадраты, 8 - цепочка квадратов, 9 - произвольный (выпуклый!) многоугольник с заливкой)
 							begin(com.args[0]);
 						break;
 						case 0x03:	// закончить отрисовку примитива. не требует аргументов.
@@ -190,7 +190,7 @@ namespace jpl
 		
 		void clear(uint8_t r, uint8_t g, uint8_t b) const {
 			glutSetWindow(window); 
-			glClearColor(r, g, b, 1);
+			glClearColor(r/255.0, g/255.0, b/255.0, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 		}
 		
